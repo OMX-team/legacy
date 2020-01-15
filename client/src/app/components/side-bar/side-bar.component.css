@@ -28,6 +28,13 @@ ul{
 ul li{
 	list-style:none;
 	position: fixed;
+	width:200px;
+	text-align: center;
+	vertical-align: middle;
+}
+#user{
+	list-style:none;
+	position: fixed;
 	bottom: 0px;
 	width:200px;
 	text-align: center;

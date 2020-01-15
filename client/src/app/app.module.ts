@@ -10,7 +10,8 @@ import { ProductComponent } from './components/product/product.component';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
-import { dummydata } from '../../../dummy data'
+import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
+import { AddProductComponent } from './components/add-product/add-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,15 +19,17 @@ import { dummydata } from '../../../dummy data'
     ProductsComponent,
     CategroyComponent,
     SideBarComponent,
-    ProductComponent
+    ProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule
-
+    FormsModule,
+    AngularMaterialModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
