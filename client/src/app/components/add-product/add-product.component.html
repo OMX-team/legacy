@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>ADD PRODUCT</h1>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">quantity</label>
+            <input type="number" class="form-control" id="quantity" required>
+        </div>
+        <div class="form-group">
+            <label for="available">available</label>
+            <input type="checkbox" class="form-control" id="available" required>
+        </div>
+        <div class="form-group">
+            <label for="categroy">Categroy</label>
+            <select class="form-control" id="categroy" required>
+                <option *ngFor="let categroy of categroys" [value]="pow">{{categroy}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="picture">Picture URL</label>
+            <input type="text" class="form-control" id="picture" required>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>
