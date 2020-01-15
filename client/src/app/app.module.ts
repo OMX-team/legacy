@@ -2,6 +2,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserComponent } from './components/user/user.component';
+import { ProductsComponent } from './components/products/products.component';
+import { CategroyComponent } from './components/categroy/categroy.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { ProductComponent } from './components/product/product.component';
 
 import { AppComponent } from './app.component';
 
@@ -10,13 +15,19 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserComponent,
+    ProductsComponent,
+    CategroyComponent,
+    SideBarComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
