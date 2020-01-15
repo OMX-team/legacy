@@ -7,12 +7,10 @@ import { ProductsComponent } from './components/products/products.component';
 import { CategroyComponent } from './components/categroy/categroy.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { ProductComponent } from './components/product/product.component';
-
 import { AppComponent } from './app.component';
-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
-
+import { dummydata } from '../../../dummy data'
 @NgModule({
   declarations: [
     AppComponent,
