@@ -9,8 +9,10 @@ import $ from 'jquery'
 })
 export class SideBarComponent implements OnInit {
   query: String = "";
-  usedfor: String = "Products";
+  usedfor: String = "People";
   usedforArray = ['Products', 'People'];
+  users;
+  products;
   constructor(private requestHandler: RequestHandlerService) {
   }
   @Input() user: String
@@ -21,10 +23,15 @@ export class SideBarComponent implements OnInit {
     event.preventDefault();
     // make search api funciontionality later
     console.log(this.query, this.usedfor)
-    this.requestHandler.getUsers()
+
+    this.requestHandler.search(this.query, this.usedfor)
       .subscribe(result => {
-        console.log(result)
+        this.usedfor == 'Products' ?
+          this.products = result
+          :
+          this.users = result;
         this.query = "";
+        console.log('users', this.users.users)
       })
   }
   ngOnInit() {

@@ -18,10 +18,7 @@ export class UserComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.hideSideNav()
-    this.httpService.getRequest('/users')
-      .subscribe(data => {
-        console.log(data)
-      })
+
   }
   hideSideNav() {
     $('#sidebar').hasClass('visible') || !$('#sidebar').hasClass() ?

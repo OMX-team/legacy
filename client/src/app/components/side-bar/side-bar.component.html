@@ -13,6 +13,11 @@
   </form>
   <ul>
     <li><a href="#" id="cat"> categroy </a></li>
+    <div *ngIf="users">
+      <div class="" *ngFor="let user of users.users">
+        <li><a href="" id="cat">{{user.username}}</a></li>
+      </div>
+    </div>
     <li>
       <a id="logout">
         <button type="button" class="btn btn-default btn-sm">

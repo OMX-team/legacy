@@ -13,7 +13,7 @@ export class RequestHandlerService {
     return this.http.getRequest('/user')
   }
   search(query, usedfor) {
-    return this.http.getRequest(`/search?${query}&usedfor=${usedfor}`)
+    return this.http.getRequest(`/search?keyword=${query}&usedfor=${usedfor}`)
   }
 
 }
