@@ -10,7 +10,8 @@ export class RequestHandlerService {
   getProducts() {
   }
   getUsers() {
-    console.log
     return this.http.getRequest('/user')
   }
+
+
 }

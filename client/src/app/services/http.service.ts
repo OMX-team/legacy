@@ -12,7 +12,9 @@ export class HttpService {
   url: string = 'https://reqres.in/api'
   constructor(private http: HttpClient) {
   }
-  //this causes alot of bugs need to learn how to use probably
+
+  //This causes alot of bugs need to learn how to use probably
+  // If I want send to post request I need to work the header
 
   // httpOptions = {
   //   headers: new HttpHeaders({
