@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import $ from 'jquery'
 
 @Component({
   selector: 'app-user',
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  username: String = "Adam"
+  username: String = "Adam";
 
   constructor() { }
-
   ngOnInit() {
+    this.hideSideNav()
   }
-
+  hideSideNav() {
+    $('#sidebar').hasClass('visible') || !$('#sidebar').hasClass() ?
+      $("#sidebar").attr("class", "") : ''
+  }
 }

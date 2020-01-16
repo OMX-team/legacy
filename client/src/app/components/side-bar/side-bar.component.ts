@@ -6,11 +6,17 @@ import $ from 'jquery'
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+  query: String = "";
   constructor() {
   }
   @Input() user: String
-  clicker() {
+  showSideNav() {
     $("#sidebar").toggleClass("visible");
+  }
+  onSearch() {
+    // make search api funciontionality later
+    console.log(this.query)
+    this.query = "";
   }
   ngOnInit() {
   }

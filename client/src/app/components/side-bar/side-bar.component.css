@@ -1,79 +1,95 @@
-body{
-	margin:0px;
-	padding:0px;
-	font-family:"Helvetica Neue", Helvetica, Arial;
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Helvetica Neue", Helvetica, Arial;
 }
 
-#sidebar{
-	background:#151718;
-	width:200px;
-	height:100%;
-	display:block;
-	position:absolute;
-	left:-200px;
-	top:0px;
-	transition:left 0.5s linear;
+#sidebar {
+  background: #151718;
+  width: 200px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: -200px;
+  top: 0px;
+  transition: left 0.5s linear;
 }
 
-#sidebar.visible{
-	left:0px;
-	transition:left 0.3s linear;
+
+#sidebar.visible {
+  left: 0px;
+  transition: left 0.3s linear;
 }
 
-ul{
-	margin:0px;
-	padding:0px;
+#sidebar.inVisible {
+  left: -200px;
+  transition: left 0.3s linear;
 }
 
-ul li{
-	list-style:none;
-	position: fixed;
-	width:200px;
-	text-align: center;
-	vertical-align: middle;
-}
-#user{
-	list-style:none;
-	position: fixed;
-	bottom: 0px;
-	width:200px;
-	text-align: center;
+ul {
+  margin: 0px;
+  padding: 0px;
 }
 
-ul li a{
-	background:#1C1E1F;
-	color:#ccc;
-	border-bottom:1px solid #111;
-	display:block;
-	width:180px;
-	padding:10px;
-	text-decoration: none;
+ul li {
+  list-style: none;
+  position: fixed;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
 }
 
-#sidebar-btn{
-	display:inline-block;
-	vertical-align: middle;
-	width:20px;
-	height:15px;
-	cursor:pointer;
-	margin:20px;
-	position:absolute;
-	top:0px;
-    right:-60px;
-    border-radius: 30px;
+#user {
+  list-style: none;
+  position: fixed;
+  bottom: 50px;
+  width: 200px;
+  text-align: center;
 }
 
-#sidebar-btn span{
-	height:1px;
-	background:#111;
-	margin-bottom:5px;
-	display:block;
+#logout {
+  list-style: none;
+  position: fixed;
+  bottom: 0px;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
 }
 
-#sidebar-btn span:nth-child(2){
-	width:75%;
+ul li a {
+  background: #1C1E1F;
+  color: #ccc;
+  border-bottom: 1px solid #111;
+  display: block;
+  width: 180px;
+  padding: 10px;
+  text-decoration: none;
 }
 
-#sidebar-btn span:nth-child(3){
-	width:50%;
+#sidebar-btn {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 15px;
+  cursor: pointer;
+  margin: 20px;
+  position: absolute;
+  top: 0px;
+  right: -60px;
+  border-radius: 30px;
+}
+
+#sidebar-btn span {
+  height: 1px;
+  background: #111;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#sidebar-btn span:nth-child(2) {
+  width: 75%;
+}
+
+#sidebar-btn span:nth-child(3) {
+  width: 50%;
 }
