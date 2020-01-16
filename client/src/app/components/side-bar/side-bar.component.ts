@@ -20,9 +20,6 @@ export class SideBarComponent implements OnInit {
   }
   onSearch(event) {
     event.preventDefault();
-    // make search api funciontionality later
-    console.log(this.query, this.usedfor)
-
     this.requestHandler.search(this.query, this.usedfor)
       .subscribe(result => {
         this.usedfor == 'Products' ?
