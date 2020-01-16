@@ -8,12 +8,16 @@ import { Hero } from '../../hero'
 export class AddProductComponent implements OnInit {
 
 
-  categroys = ['Electronics', 'Clothes', 'Fourniture', 'Medical', 'Garbage', 'Jwery',]
+  categorys = ['Electronics', 'Clothes', 'Fourniture', 'Medical', 'Garbage', 'Jwery']
+
   submitted = false;
-  product = new Hero('IphoneX', 'brand new I phoneX', 500, 1, true, 'Electronics', '')
+
+  product = new Hero('', '', 1000, 1, true, '', '')
   constructor() { }
 
   ngOnInit() {
   }
-  get diagnostic() { return JSON.stringify(this.product); }
+  onSubmit() {
+    console.log(this.product)
+  }
 }

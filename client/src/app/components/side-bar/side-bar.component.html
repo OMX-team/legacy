@@ -1,18 +1,43 @@
 <div id="sidebar">
-    <form class="form-inline md-form mr-auto mb-4">
-        <!-- I need to change the search functionality here -->
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button mdbBtn size="sm" color="warning" outline="true" rounded="true" class="my-0 waves-light" mdbWavesEffect
-            type="submit">Search</button>
-    </form>
-    <ul>
-        <li><a href="#" id="cat"> categroy </a></li>
-        <li><a id="user" href="#"> {{ user }} </a> </li>
-    </ul>
-    <div id="sidebar-btn" (click)="clicker()">
-        <span></span>
-        <span></span>
-        <span></span>
-        </ div>
+  <form class="form-inline md-form mr-auto mb-4" (submit)="onSearch($event)">
+    <!-- I need to change the search functionality here -->
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="query"
+      [(ngModel)]="query" required>
+    <button mdbBtn size="sm" color="warning" outline="true" rounded="true" class="my-0 waves-light" mdbWavesEffect
+      type="submit">Search</button>
+    <select name="usedfor" id="usedfor" mdbBtn size="sm" color="warning" outline="true" rounded="true"
+      class="my-0 waves-light" mdbWavesEffect [(ngModel)]="usedfor" name="usedfor">
+      <option *ngFor="let usedfor of usedforArray"> {{ usedfor }} </option>
+    </select>
 
+  </form>
+  <ul>
+    <li><a href="#" id="cat"> categroy </a></li>
+    <div *ngIf="users">
+      <hr />
+      <div *ngFor="let user of users.users">
+        <li><a href="">{{user.username}}</a></li>
+        <br>
+        <br>
+        <hr />
+
+
+      </div>
     </div>
+
+    <li>
+      <a id="logout">
+        <button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button>
+      </a>
+    </li>
+    <li><a id="user" href="#"> {{ user }} </a></li>
+  </ul>
+  <div id="sidebar-btn" (click)="showSideNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+</div>

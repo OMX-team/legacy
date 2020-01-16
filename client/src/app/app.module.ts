@@ -1,4 +1,5 @@
 
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,14 +22,16 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     CategroyComponent,
     SideBarComponent,
     ProductComponent,
-    AddProductComponent
+    AddProductComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule,
   ],
 
   providers: [],

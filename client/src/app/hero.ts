@@ -5,7 +5,7 @@ export class Hero {
         public price: number,
         public quantity: number,
         public available: boolean,
-        public categroy: string,
+        public category: string,
         public picture: string,
     ) { }
 
