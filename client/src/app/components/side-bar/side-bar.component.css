@@ -39,6 +39,17 @@ ul li {
   vertical-align: middle;
 }
 
+#cat {
+  list-style: none;
+  position: fixed;
+  bottom: 95px;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
 #user {
   list-style: none;
   position: fixed;
