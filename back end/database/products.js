@@ -43,4 +43,5 @@ const Schema = mongoose.Schema({
 });
 
 // here we are exporting the model
-module.exports.Product = mongoose.model("product", Schema);
+const Product = mongoose.model("product", Schema);
+module.exports.Product = Product;
