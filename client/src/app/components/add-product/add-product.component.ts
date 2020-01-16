@@ -19,11 +19,9 @@ export class AddProductComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    console.log(this.product)
     this.requestHandler.postProduct(this.product)
       .subscribe(result => {
         console.log('request sent!!!')
       }, err => console.log(err))
-
   }
 }

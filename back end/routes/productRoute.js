@@ -10,15 +10,15 @@ const bcrypt = require("bcryptjs");
 // const upload = require("../upload.js"); fix the location
 
 productRoute.route("/").post(
-  // passport.authenticate("jwt", {
-  //   session: false
-  // }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   // upload.single("photo"),
   (req, res) => {
     // req.body.photo = req.file.filename;
 
-    // req.body.user = req.user._id; //try to understand this
-    // req.body.available = JSON.parse(req.body.available); //i should reconsider this for security
+    req.body.user = req.user._id; //try to understand this
+    req.body.available = JSON.parse(req.body.available); //i should reconsider this for security
 
     Product.create(req.body, function (err, product) {
       if (err) res.json({

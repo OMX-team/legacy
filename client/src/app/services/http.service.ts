@@ -13,9 +13,6 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  //This causes alot of bugs need to learn how to use probably
-  // If I want send to post request I need to work the header
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
