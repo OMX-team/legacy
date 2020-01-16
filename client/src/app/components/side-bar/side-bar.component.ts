@@ -27,7 +27,6 @@ export class SideBarComponent implements OnInit {
           :
           this.users = result;
         this.query = "";
-        console.log('users', this.users.users)
       })
   }
   ngOnInit() {

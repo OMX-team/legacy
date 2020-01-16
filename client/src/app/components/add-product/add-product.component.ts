@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../../hero'
+import { RequestHandlerService } from '../../services/request-handler.service'
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -13,11 +14,15 @@ export class AddProductComponent implements OnInit {
   submitted = false;
 
   product = new Hero('', '', 1000, 1, true, '', '')
-  constructor() { }
+  constructor(private requestHandler: RequestHandlerService) { }
 
   ngOnInit() {
   }
   onSubmit() {
     console.log(this.product)
+    this.requestHandler.postProduct(this.product)
+      .subscribe(result => {
+        console.log(result)
+      })
   }
 }
