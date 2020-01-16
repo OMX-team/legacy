@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service'
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RequestHandlerService {
 
@@ -10,6 +10,7 @@ export class RequestHandlerService {
   getProducts() {
   }
   getUsers() {
+    console.log
     return this.http.getRequest('/user')
   }
 }

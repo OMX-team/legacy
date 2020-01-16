@@ -12,12 +12,13 @@ export class HttpService {
   url: string = 'https://reqres.in/api'
   constructor(private http: HttpClient) {
   }
+  //this causes alot of bugs need to learn how to use probably
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json'
+  //   })
+  // }
 
 
   getRequest(method) {

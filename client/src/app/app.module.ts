@@ -13,7 +13,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 import { AddProductComponent } from './components/add-product/add-product.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +21,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     CategroyComponent,
     SideBarComponent,
     ProductComponent,
-    AddProductComponent
+    AddProductComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     MDBBootstrapModule.forRoot(),
     FormsModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
 
   providers: [],

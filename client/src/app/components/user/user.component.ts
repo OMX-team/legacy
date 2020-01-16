@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestHandlerService } from '../../services/request-handler.service'
+import { HttpService } from '../../services/http.service'
+
 import $ from 'jquery'
 
 @Component({
@@ -9,12 +12,20 @@ import $ from 'jquery'
 export class UserComponent implements OnInit {
   username: String = "Adam";
 
-  constructor() { }
+  constructor(
+    private requestHandler: RequestHandlerService,
+    private httpService: HttpService
+  ) { }
   ngOnInit() {
     this.hideSideNav()
+    this.httpService.getRequest('/users')
+      .subscribe(data => {
+        console.log(data)
+      })
   }
   hideSideNav() {
     $('#sidebar').hasClass('visible') || !$('#sidebar').hasClass() ?
       $("#sidebar").attr("class", "") : ''
   }
+
 }

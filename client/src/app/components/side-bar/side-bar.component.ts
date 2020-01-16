@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import $ from 'jquery'
+import { RequestHandlerService } from 'src/app/services/request-handler.service';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
@@ -7,7 +9,7 @@ import $ from 'jquery'
 })
 export class SideBarComponent implements OnInit {
   query: String = "";
-  constructor() {
+  constructor(private requestHandler: RequestHandlerService) {
   }
   @Input() user: String
   showSideNav() {
@@ -15,8 +17,11 @@ export class SideBarComponent implements OnInit {
   }
   onSearch() {
     // make search api funciontionality later
-    console.log(this.query)
-    this.query = "";
+    this.requestHandler.getUsers()
+      .subscribe(result => {
+        console.log(result)
+        this.query = "";
+      })
   }
   ngOnInit() {
   }
