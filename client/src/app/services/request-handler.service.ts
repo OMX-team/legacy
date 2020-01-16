@@ -20,5 +20,4 @@ export class RequestHandlerService {
     return this.http.postRequest(data, '/product');
   }
 
-
 }

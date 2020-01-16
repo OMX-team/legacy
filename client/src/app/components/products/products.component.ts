@@ -32,7 +32,6 @@ export class ProductsComponent implements OnInit {
     this.requestHandler.getProducts()
       .subscribe(results => {
         this.products = results;
-        console.log(results)
       })
   }
 }

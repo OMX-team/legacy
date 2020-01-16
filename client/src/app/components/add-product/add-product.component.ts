@@ -13,7 +13,7 @@ export class AddProductComponent implements OnInit {
 
   submitted = false;
 
-  product = new Hero('', '', 1000, 1, true, '', '')
+  product = new Hero('', '', false, 1000, 1, true, '')
   constructor(private requestHandler: RequestHandlerService) { }
 
   ngOnInit() {
@@ -23,6 +23,7 @@ export class AddProductComponent implements OnInit {
     this.requestHandler.postProduct(this.product)
       .subscribe(result => {
         console.log(result)
-      })
+      }, err => console.log(err))
+
   }
 }
