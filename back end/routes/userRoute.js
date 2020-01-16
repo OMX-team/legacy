@@ -149,8 +149,6 @@ userRoute
       });
   });
 
-
-  
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
   //check it
