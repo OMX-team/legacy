@@ -22,7 +22,7 @@ export class AddProductComponent implements OnInit {
     console.log(this.product)
     this.requestHandler.postProduct(this.product)
       .subscribe(result => {
-        console.log(result)
+        console.log('request sent!!!')
       }, err => console.log(err))
 
   }
