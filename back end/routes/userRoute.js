@@ -3,7 +3,9 @@ const app = express();
 const userRoute = express.Router();
 const userDB = require("../database/userDB");
 const User = userDB.User;
-// const Follow = require("../model/following.js");
+const productDB = require("../database/products");
+const Product = productDB.Product;
+const Follow = require("../database/follow");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 // const Item = require("../model/item.js");
@@ -71,7 +73,84 @@ userRoute.route("/:id").get((req, res) => {
     else res.json({ user });
   });
 });
+// passport.authenticate("jwt", { session: false }),
+userRoute
+  .route("/:username/products")
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    if (req.user.username == req.params.username) {
+      Product.find({ user: req.user._id })
+        .sort({ _id: -1 })
+        .exec((err, products) => {
+          if (err) res.json({ err });
+          else res.json({ products, user: req.user });
+        });
+    } else {
+      User.findOne({ username: req.params.username })
+        .lean()
+        .exec((err, user) => {
+          Follow.exists(
+            { followed: user._id, follower: req.user._id },
+            (err, exist) => {
+              user.followed = exist;
+              user.password = undefined;
+              Product.find({ user: user._id })
+                .sort({ _id: -1 })
+                .exec((err, products) => {
+                  if (err) res.json({ err });
+                  else res.json({ products, user });
+                });
+            }
+          );
+        });
+    }
+  });
+//add followers and removes follower
+userRoute
+  .route("/:id/follow")
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    var data = {
+      follower: req.user._id,
+      followed: req.params.id
+    };
+    Follow.findOne(data, (err, found) => {
+      if (!found) {
+        Follow.create(data, function(err, user) {
+          if (err) res.json({ success: false, err });
+          else res.json({ success: true });
+        });
+      } else {
+        Follow.remove(data, function(err, user) {
+          if (err) res.json({ success: false, err });
+          else res.json({ success: true });
+        });
+      }
+    });
+  });
 
+userRoute
+  .route("/:id/followers")
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    Follow.find({ followed: ObjectId(req.params.id) })
+      .populate("follower")
+      .exec(function(err, data) {
+        if (err) res.json({ success: false, err });
+        else res.json(data);
+      });
+  });
+
+userRoute
+  .route("/:id/followings") //here
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    Follow.find({ follower: ObjectId(req.params.id) })
+      .populate("followed")
+      .exec(function(err, data) {
+        if (err) res.json({ success: false, err });
+        else res.json(data);
+      });
+  });
+
+
+  
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
   //check it
