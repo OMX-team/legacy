@@ -9,7 +9,7 @@ import { JsonPipe } from '@angular/common';
 
 export class HttpService {
 
-  url: string = 'https://reqres.in/api'
+  url: string = 'http://localhost:4000/api'
   constructor(private http: HttpClient) {
   }
 

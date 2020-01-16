@@ -9,14 +9,18 @@ import $ from 'jquery'
 })
 export class SideBarComponent implements OnInit {
   query: String = "";
+  usedfor: String = "Products";
+  usedforArray = ['Products', 'People'];
   constructor(private requestHandler: RequestHandlerService) {
   }
   @Input() user: String
   showSideNav() {
     $("#sidebar").toggleClass("visible");
   }
-  onSearch() {
+  onSearch(event) {
+    event.preventDefault();
     // make search api funciontionality later
+    console.log(this.query, this.usedfor)
     this.requestHandler.getUsers()
       .subscribe(result => {
         console.log(result)
