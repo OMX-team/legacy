@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RequestHandlerService } from 'src/app/services/request-handler.service';
 import $ from 'jquery'
-
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',

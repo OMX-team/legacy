@@ -29,6 +29,7 @@ body {
 ul {
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
 }
 
 ul li {
