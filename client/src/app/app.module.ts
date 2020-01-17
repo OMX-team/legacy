@@ -23,15 +23,15 @@ import { SecondPageComponent } from "./components/second-page/second-page.compon
 
 const appRoutes: Routes = [
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: "home", component: FirstPageComponent },
-  { path: "quick", component: SecondPageComponent },
-  {
-    path: "dashboard", component: UserComponent,
-    children: [
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // { path: "home", component: FirstPageComponent },
+  // { path: "quick", component: SecondPageComponent },
+  // {
+  // path: "dashboard", component: UserComponent,
+  // children: [
 
-    ]
-  },
+  // ]
+  // },
 ];
 
 @NgModule({
