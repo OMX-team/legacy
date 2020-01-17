@@ -21,7 +21,6 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
 
-<<<<<<< HEAD
 const appRoutes: Routes = [
 
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -34,9 +33,6 @@ const appRoutes: Routes = [
   // ]
   // },
 ];
-=======
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
->>>>>>> parent of 7eaa722... updating @angular-Cli
 
 @NgModule({
   declarations: [
