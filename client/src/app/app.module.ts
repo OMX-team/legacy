@@ -23,7 +23,6 @@ import { SecondPageComponent } from "./components/second-page/second-page.compon
 import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
-
   {
     path: "home", component: HomeComponent, children:
       [
@@ -34,13 +33,12 @@ const appRoutes: Routes = [
   {
     path: "dashboard", component: UserComponent,
     children: [
+      { path: "products", component: ProductsComponent },
       { path: "add-product", component: AddProductComponent },
       { path: "category", component: CategroyComponent },
-      {
-        path: "products", component: AddProductComponent
-      },
     ]
   },
+  { path: '*', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
