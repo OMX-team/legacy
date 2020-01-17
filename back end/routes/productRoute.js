@@ -11,16 +11,21 @@ const bcrypt = require("bcryptjs");
 
 productRoute.route("/add").post(
   passport.authenticate("jwt", { session: false }),
+
   // upload.single("photo"),
   (req, res) => {
     // req.body.photo = req.file.filename;
 
     req.body.user = req.user._id; //try to understand this
-    req.body.available = Boolean(req.body.available); //i should reconsider this for security
+    req.body.available = JSON.parse(req.body.available); //i should reconsider this for security
 
-    Product.create(req.body, function(err, product) {
-      if (err) res.json({ err });
-      else res.json({ product });
+    Product.create(req.body, function (err, product) {
+      if (err) res.json({
+        err
+      });
+      else res.json({
+        product
+      });
     });
   }
 );
@@ -38,13 +43,18 @@ productRoute.route("/:id").get((req, res) => {
 productRoute.route("/all").get((req, res) => {
   //test this
   Product.find({})
-    .sort({ _id: -1 })
+    .sort({
+      _id: -1
+    })
     .populate(["user"])
     .exec((err, items) => {
-      if (err) res.json({ err });
+      if (err) res.json({
+        err
+      });
       else res.json(items);
     });
 });
+
 
 productRoute.route("/:id").patch((req, res) => {
   // upadate product by id
@@ -70,3 +80,4 @@ productRoute.route("/:id/toggle").patch((req, res) => {
 });
 
 module.exports = productRoute;
+

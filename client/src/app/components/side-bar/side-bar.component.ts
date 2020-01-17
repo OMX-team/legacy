@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { RequestHandlerService } from 'src/app/services/request-handler.service';
 import $ from 'jquery'
 @Component({
@@ -11,26 +11,22 @@ export class SideBarComponent implements OnInit {
   usedfor: String = "People";
   usedforArray = ['Products', 'People'];
   users;
-  products;
   constructor(private requestHandler: RequestHandlerService) {
   }
   @Input() user: String
+  @Output() srhProducts: Object
   showSideNav() {
     $("#sidebar").toggleClass("visible");
   }
   onSearch(event) {
     event.preventDefault();
-    // make search api funciontionality later
-    console.log(this.query, this.usedfor)
-
     this.requestHandler.search(this.query, this.usedfor)
       .subscribe(result => {
         this.usedfor == 'Products' ?
-          this.products = result
+          this.srhProducts = result
           :
           this.users = result;
         this.query = "";
-        console.log('users', this.users.users)
       })
   }
   ngOnInit() {

@@ -1,4 +1,5 @@
-<p>products works!</p>
-<app-product [data]="dummyData">
-
-</app-product>
+<div class="" *ngIf="products">
+  <div *ngFor="let product of products" class="products">
+    <app-product [(product)]="product"></app-product>
+  </div>
+</div>

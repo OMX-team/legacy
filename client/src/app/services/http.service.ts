@@ -13,20 +13,19 @@ export class HttpService {
   constructor(private http: HttpClient) {
   }
 
-  //This causes alot of bugs need to learn how to use probably
-  // If I want send to post request I need to work the header
-
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json'
-  //   })
-  // }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': ' "   jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWFjdGl2YXRlZCI6ZmFsc2UsInJhdGluZyI6MC45OTYwOTM3NSwiX2lkIjoiNWUyMDJmNTQ1ZWI3ZWUzYTBjNWU0NzQ4IiwidXNlcm5hbWUiOiIzYWJkYWxhMzIiLCJmaXJzdG5hbWUiOiJhYSIsImxhc3RuYW1lIjoiYmIiLCJnZW5kZXIiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInBob25lIjoxMjEyMTIyNCwiYmlydGhkYXRlIjoiMjAxNi0wNS0yNVQxMDowNTo0NC4wMDBaIiwiX192IjowLCJpYXQiOjE1NzkxOTIyMzEsImV4cCI6MTU3OTc5NzAzMX0.yjfW4zSr_U7-yUaRzIjksJQoKyDL07XqobaJTXpksWk"'
+    })
+  }
 
 
   getRequest(method) {
     return this.http.get(this.url + method)
   }
   postRequest(data = {}, method) {
-    return this.http.post(this.url + method, JSON.stringify(data))
+    console.log('form http service', data)
+    return this.http.post(this.url + method, data, this.httpOptions)
   }
 }
