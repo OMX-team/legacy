@@ -1,74 +1,68 @@
 <!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black" [containerInside]="false" class="fixed-top">
 
-  <!-- Navbar brand -->
-  <mdb-navbar-brand>
-
-    <ul class="navbar-nav ml-5">
-      <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>
-          <mdb-icon fas icon="home"></mdb-icon> home<span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect>
-          <mdb-icon far icon="eye"></mdb-icon> Quick look
-        </a>
-      </li>
-    </ul>
-  </mdb-navbar-brand>
-
-  <!-- Collapsible content -->
-  <links>
-
-    <!-- Links -->
-    <ul class="navbar-nav ml-auto mr-5">
-      <!-- Dropdown -->
-      <li class="nav-item dropdown " dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span>
-        </a>
-        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#" data-target="#basicExample"
+    <!-- Navbar brand -->
+    <mdb-navbar-brand >    
+        
+        <ul class="navbar-nav ml-5">
+        <li class="nav-item active">
+          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="home" ></mdb-icon> home<span class="sr-only">(current)</span></a>
+         </li>
+        <li class="nav-item">
+             <a class="nav-link waves-light" mdbWavesEffect><mdb-icon far icon="eye" ></mdb-icon> Quick look</a>
+        </li>
+        </ul>
+    </mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto mr-5">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown " dropdown >
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon> Profil<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#" data-target="#basicExample"
             (click)="frame.show()" mdbWavesEffect>Login</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#" data-target="#basicExample"
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#"  data-target="#basicExample"
             (click)="frame1.show()" mdbWavesEffect>Sign up</a>
-        </div>
-      </li>
-
-    </ul>
-    <!-- Links -->
-  </links>
-  <!-- Collapsible content -->
-
-</mdb-navbar>
-<!--/.Navbar-->
+          </div>
+        </li>
+  
+      </ul>
+      <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+  
+  </mdb-navbar>
+  <!--/.Navbar-->
 
 
 <!-- login -->
-<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center" style=" position: absolute;top: 5px; border: none; width: 100%;">
-        <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px; color: #01DF01;"><span
-            style="color: white;">Sign</span> in</h4>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" >
+      <div class="modal-header text-center"  style=" position: absolute;top: 5px; border: none; width: 100%;" >
+        <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px; color: #01DF01;"><span style="color: white;" >Sign</span> in</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
           <span aria-hidden="true" style="color:#04B4AE; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-        <div id="logininputs">
-          <input ngModel name="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
-            mdbInput>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate  >
+        <div id="logininputs" >
+          <input ngModel name ="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
+                 mdbInput >
           <input ngModel name="password" type="text" id="orangeForm-name" class="form-control" placeholder="password"
-            mdbInput>
-        </div>
+                 mdbInput >
+        </div> 
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
           <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Login</button>
         </div>
       </form>
-
+    
     </div>
   </div>
 </div>
@@ -105,3 +99,7 @@
     </div>
   </div>
 </div> -->
+
+
+
+

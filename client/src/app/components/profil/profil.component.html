@@ -1,17 +1,11 @@
 <h3>
-  Hello , welcome to my profile <mdb-icon far icon="smile-beam"></mdb-icon>
+  Hello , welcome to my profil <mdb-icon far icon="smile-beam"></mdb-icon>
 </h3>
 <div>
   <app-product-card [info]="info"></app-product-card>
-  <div>
-    <mdb-icon fas icon="signature"> </mdb-icon>:{{ info.id }}
-  </div>
-  <div>
-    <mdb-icon far icon="file-alt"></mdb-icon>:{{ info.name }}
-  </div>
-  <div>
-    <mdb-icon fas icon="phone-slash"></mdb-icon>:{{ info.email }}
-  </div>
+  <div><mdb-icon fas icon="signature"> </mdb-icon>:{{ info.id }}</div>
+  <div><mdb-icon far icon="file-alt"></mdb-icon>:{{ info.name }}</div>
+  <div><mdb-icon fas icon="phone-slash"></mdb-icon>:{{ info.email }}</div>
 </div>
 <!-- <button (click)="showdata()"></button> -->
 <app-start-rating [id]="id"></app-start-rating>
