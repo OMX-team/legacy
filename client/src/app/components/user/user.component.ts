@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+
 
 import $ from "jquery";
 
@@ -10,7 +11,7 @@ import $ from "jquery";
 export class UserComponent implements OnInit {
   username: String = "Adam";
 
-  constructor() {}
+  constructor() { }
   ngOnInit() {
     this.hideSideNav();
   }

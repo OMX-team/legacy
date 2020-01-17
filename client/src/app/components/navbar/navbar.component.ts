@@ -46,7 +46,11 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.value); // { first: '', last: '' }
-    console.log(f.valid); // false
+
+    console.log(f.value);  // { first: '', last: '' }
+  }
+
+  onSubmit1(f1: NgForm) {
+    console.log(f1.value);  // { first: '', last: '' }
   }
 }
