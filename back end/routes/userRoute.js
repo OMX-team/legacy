@@ -92,9 +92,9 @@ userRoute
   );
 // passport.authenticate("jwt", { session: false }),
 userRoute
-  .route("/:username/products")
+  .route("/:id/products")
   .get(passport.authenticate("jwt", { session: false }), (req, res) => {
-    if (req.user.username == req.params.username) {
+    if (req.user._id == req.params.id) {
       Product.find({ user: req.user._id })
         .sort({ _id: -1 })
         .exec((err, products) => {
@@ -102,23 +102,22 @@ userRoute
           else res.json({ products, user: req.user });
         });
     } else {
-      User.findOne({ username: req.params.username })
-        .lean()
-        .exec((err, user) => {
-          Follow.exists(
-            { followed: user._id, follower: req.user._id },
-            (err, exist) => {
-              user.followed = exist;
-              user.password = undefined;
-              Product.find({ user: user._id })
-                .sort({ _id: -1 })
-                .exec((err, products) => {
-                  if (err) res.json({ err });
-                  else res.json({ products, user });
-                });
-            }
-          );
-        });
+      // User.findOne({ username: req.params.username })
+      //   .lean()
+      //   .exec((err, user) => {
+      Follow.exists(
+        { followed: req.params.id, follower: req.user._id },
+        (err, exist) => {
+          user.followed = exist;
+          user.password = undefined;
+          Product.find({ user: req.params.id })
+            .sort({ _id: -1 })
+            .exec((err, products) => {
+              if (err) res.json({ err });
+              else res.json({ products, user });
+            });
+        }
+      );
     }
   });
 //add followers and removes follower
