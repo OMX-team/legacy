@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { JsonPipe } from "@angular/common";
 
 @Injectable({
   providedIn: "root"
 })
 export class HttpService {
   url: string = "http://localhost:4000/api";
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -22,7 +20,6 @@ export class HttpService {
     return this.http.get(this.url + method);
   }
   postRequest(data = {}, method) {
-    console.log("form http service", data);
     return this.http.post(this.url + method, data, this.httpOptions);
   }
 }

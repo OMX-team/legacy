@@ -54,20 +54,17 @@ export class NavbarComponent implements OnInit {
 
 
 
-  onSubmit(f: NgForm) {
-
-    console.log(f.value);  // { first: '', last: '' }
-    let res = this.service.signin(f.value).subscribe(data => {
-      localStorage.setItem("token", data.token)
-
-      console.log(data)
+  loginUser(f: NgForm) {
+    this.service.signin(f.value).subscribe(data => {
+      this.responseData = data
+      localStorage.setItem("token", this.responseData.token)
+      this.logged = true;
     })
 
   }
 
-  onSubmit1(f1: NgForm) {
+  signupUser(f1: NgForm) {
     console.log(f1.value);  // { first: '', last: '' }
-    let res = this.service.signUp(f1.value).subscribe(data => { console.log(data) })
-    console.log(res, "/////")
+    this.service.signUp(f1.value).subscribe(data => { console.log(data) })
   }
 }

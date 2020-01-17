@@ -57,7 +57,7 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
         <div id="logininputs">
           <input ngModel name="username" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
             mdbInput>
@@ -86,7 +86,7 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f1="ngForm" (ngSubmit)="onSubmit1(f1)" novalidate>
+      <form #f1="ngForm" (ngSubmit)="signupUser(f1)" novalidate>
         <div id="logininputs">
           <input ngModel name="username" type="text" id="orangeForm-name1" class="form-control" placeholder="user name">
           <input ngModel name="email" type="text" id="orangeForm-name1" class="form-control"

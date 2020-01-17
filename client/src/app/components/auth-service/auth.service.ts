@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpService } from "../../services/http.service";
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpService) { }
 
-  signUp(obj): Observable<any> {
-    return this.http
-      .post("http://127.0.0.1:4000/api/user/signUp", obj)
-    // .subscribe(data => {}); //when intergrated uncomment this part
-    //console.log(data);
+  signUp(user) {
+    return this.http.postRequest(user, '/user/signUp')
   }
 
-  signin(obj): Observable<any> {
-    return this.http
-      .post("http://127.0.0.1:4000/api/user/logIn", obj)
-    // .subscribe(data => {}); //when intergrated uncomment this part
-    //console.log(data);
+  signin(data) {
+    return this.http.postRequest(data, '/user/logIn')
   }
 }

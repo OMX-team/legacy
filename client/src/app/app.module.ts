@@ -20,7 +20,7 @@ import { ServicesService } from "./components/services/services.service";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
-import{AuthService} from  "./components/auth-service/auth.service"
+import { AuthService } from "./components/auth-service/auth.service"
 // const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 import { HomeComponent } from './components/home/home.component';
 
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
       { path: "add-product", component: AddProductComponent },
       { path: "category", component: CategroyComponent },
       {
-        path: "products", component: AddProductComponent
+        path: "products", component: ProductsComponent
       },
     ]
   },
@@ -74,7 +74,7 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
 
-  providers: [ServicesService,AuthService],
+  providers: [ServicesService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
