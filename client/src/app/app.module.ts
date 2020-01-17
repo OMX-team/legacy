@@ -20,8 +20,32 @@ import { ServicesService } from "./components/services/services.service";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
+import { HomeComponent } from './components/home/home.component';
 
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
+const appRoutes: Routes = [
+
+  {
+    path: "home", component: HomeComponent, children:
+      [
+        { path: "quick", component: SecondPageComponent },
+      ]
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: "dashboard", component: UserComponent,
+    children: [
+      { path: "add-product", component: AddProductComponent },
+      { path: "category", component: CategroyComponent },
+      {
+        path: "products", component: AddProductComponent,
+        //  children: [
+        //   { path: "profuct/:id", component: ProductComponent },
+        // ]
+      },
+      // { path: "category", component: CategroyComponent },
+    ]
+  },
+];
 
 @NgModule({
   declarations: [
@@ -37,14 +61,13 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
     AddProductComponent,
     ProductCardComponent,
     ProfilComponent,
-    StartRatingComponent
+    StartRatingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+      appRoutes),
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
@@ -56,4 +79,4 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
   providers: [ServicesService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
