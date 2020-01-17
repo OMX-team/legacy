@@ -1,0 +1,54 @@
+*{
+    outline:none;
+   
+}
+#logininputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:none;
+    border: none;
+    background-color: transparent;
+ 
+}
+#logininputs input{
+    all: unset;
+    width: 80%;
+    margin: 5% 0;
+    height: 50px;
+    border:none;
+    background: none;
+    background-color: transparent ;
+    border-bottom:2px solid white;
+
+}
+.modal-content{
+    background-color: #2E2E2E;
+    color:#04B4AE;
+    height: 600px;
+    justify-content: center;
+    background-image: url(https://get.pxhere.com/photo/cold-desktop-wallpaper-fog-foggy-landscape-light-mist-misty-mountain-nature-nature-wallpaper-outdoors-scenery-scenic-smoke-travel-trees-weather-1524593.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px  rgba(160,160,160,0.4) inset !important;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+.btn{
+    position: absolute;
+    bottom: 50px;
+    width: 80%;
+    height: 50px;
+    border-radius:20px 20px 20px 20px;
+    background-color: #01DF01;
+    color: white;
+}
+

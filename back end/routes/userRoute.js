@@ -13,7 +13,7 @@ const passport = require("passport");
 const ObjectId = require("mongodb").ObjectID;
 const bcrypt = require("bcryptjs");
 // const Items = require("../model/item");
-// const upload = require("../upload.js");
+const upload = require("./uploadroute");
 
 // user model   //note to self import the model
 let user = require("../database/userDB");
@@ -68,11 +68,28 @@ userRoute.route("/logIn").post((req, res, next) => {
 
 userRoute.route("/:id").get((req, res) => {
   //fetch user from data base
+  console.log(req.params.id);
   User.findById(req.params.id, (err, user) => {
     if (err) res.json({ err });
     else res.json({ user });
   });
 });
+
+userRoute
+  .route("/:id/uploadImage")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    upload.single("photo"),
+    (req, res) => {
+      User.findByIdAndUpdate(
+        req.user._id,
+        { $set: { photo: req.file.filename } },
+        (err, updated) => {
+          res.json({ success: true });
+        }
+      );
+    }
+  );
 // passport.authenticate("jwt", { session: false }),
 userRoute
   .route("/:username/products")
@@ -151,6 +168,7 @@ userRoute
 
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
+  console.log("hi");
   //check it
   let rating = parseInt(req.body.rating);
   let id = req.body.id;
