@@ -24,15 +24,25 @@ import { SecondPageComponent } from './second-page/second-page.component';
     CategroyComponent,
     SideBarComponent,
     ProductComponent,
-    AddProductComponent,
+    NavbarComponent,
+    FirstPageComponent,
+    SecondPageComponent,
+    // AddProductComponent,
 
   ],
   imports: [
+
     BrowserModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    AngularMaterialModule,
+    ReactiveFormsModule
+    ,
+    
+    
+    
+  
+    // AngularMaterialModule,
     HttpClientModule,
   ],
 

@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
   constructor() { }
+  
+  profileForm = new FormGroup({
+    loginFormModalEmail: new FormControl(''),
+    loginFormModalPassword: new FormControl(''),
+  });
 
   ngOnInit() {
     
@@ -40,4 +46,9 @@ export class NavbarComponent implements OnInit {
     return this.validatingForm.get('signupFormModalPassword')
   }
 
+  
+  onSubmit(f: NgForm) {
+    console.log(f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
+  }
 }
