@@ -51,7 +51,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~8.6.2",
     "tslint": "~5.20.1",
-    "typescript": "*"
+    "typescript": "^3.5.1"
   },
   "license": "MIT"
 }
