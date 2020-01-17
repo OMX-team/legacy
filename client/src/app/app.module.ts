@@ -11,9 +11,9 @@ import { ProductComponent } from './components/product/product.component';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FirstPageComponent } from './first-page/first-page.component';
-import { SecondPageComponent } from './second-page/second-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FirstPageComponent } from './components/first-page/first-page.component';
+import { SecondPageComponent } from './components/second-page/second-page.component';
 
 
 @NgModule({
