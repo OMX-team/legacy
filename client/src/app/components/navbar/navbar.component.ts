@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from "@angular/forms";
-
+import { LoginService } from './log-in.service'
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -9,7 +9,10 @@ import { NgForm } from "@angular/forms";
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
-  constructor() {}
+  logged: Boolean = false;
+  responseData;
+  constructor(
+    private loginService: LoginService) { }
 
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
@@ -45,12 +48,21 @@ export class NavbarComponent implements OnInit {
     return this.validatingForm.get("signupFormModalPassword");
   }
 
-  onSubmit(f: NgForm) {
-
-    console.log(f.value);  // { first: '', last: '' }
+  loginUser(f: NgForm, event) {
+    event.preventDefault();
+    this.loginService.logIn(f.value)
+      .subscribe(result => {
+        console.log(result)
+        this.responseData = <any>result
+        localStorage.setItem("token", this.responseData.token)
+        this.logged = true;
+      }
+        , err => {
+          localStorage.removeItem("token")
+          console.log(err)
+        })
   }
-
-  onSubmit1(f1: NgForm) {
-    console.log(f1.value);  // { first: '', last: '' }
+  signupUser(f1: NgForm, event) {
+    console.log(f1.value);
   }
 }

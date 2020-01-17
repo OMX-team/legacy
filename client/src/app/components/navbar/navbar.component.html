@@ -57,9 +57,9 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <form #f="ngForm" (ngSubmit)="loginUser(f,$event)" novalidate>
         <div id="logininputs">
-          <input ngModel name="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
+          <input ngModel name="username" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
             mdbInput>
           <input ngModel name="password" type="text" id="orangeForm-name" class="form-control" placeholder="password"
             mdbInput>
@@ -86,16 +86,18 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f1="ngForm" (ngSubmit)="onSubmit1(f1)" novalidate>
+      <form #f1="ngForm" (ngSubmit)="signupUser(f1, $event)" novalidate>
         <div id="logininputs">
           <input ngModel name="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name">
           <input ngModel name="email" type="text" id="orangeForm-name" class="form-control" placeholder="OMX@gmail.com">
           <input ngModel name="password" type="text" id="orangeForm-name" class="form-control" placeholder="password">
           <input ngModel name="phone" type="text" id="orangeForm-name" class="form-control"
             placeholder="+216 24 754 854">
+          <input ngModel name="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name">
+
         </div>
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
-          <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Login</button>
+          <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Signup</button>
         </div>
       </form>
 
