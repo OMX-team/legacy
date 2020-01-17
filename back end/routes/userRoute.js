@@ -13,7 +13,7 @@ const passport = require("passport");
 const ObjectId = require("mongodb").ObjectID;
 const bcrypt = require("bcryptjs");
 // const Items = require("../model/item");
-// const upload = require("../upload.js");
+const upload = require("./uploadroute");
 
 // user model   //note to self import the model
 let user = require("../database/userDB");
@@ -73,6 +73,22 @@ userRoute.route("/:id").get((req, res) => {
     else res.json({ user });
   });
 });
+
+userRoute
+  .route("/:id/uploadImage")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    upload.single("photo"),
+    (req, res) => {
+      User.findByIdAndUpdate(
+        req.user._id,
+        { $set: { photo: req.file.filename } },
+        (err, updated) => {
+          res.json({ success: true });
+        }
+      );
+    }
+  );
 // passport.authenticate("jwt", { session: false }),
 userRoute
   .route("/:username/products")
