@@ -54,7 +54,7 @@
         <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px; color: #01DF01;"><span
             style="color: white;">Sign</span> in</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-          <span aria-hidden="true" style="color:#04B4AE; position: absolute;top: 5px; right: 5px;">&times;</span>
+          <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
       <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
@@ -80,25 +80,25 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center" style=" position: absolute;top: 5px; border: none; width: 100%;">
-        <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px;"><span style="color: white;">Sign</span>
-          in</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px; color: #01DF01;"><span
+            style="color: white;">Sign</span> UP</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame1.hide()">
-          <span aria-hidden="true" style="color:#04B4AE; position: absolute;top: 5px; right: 5px;">&times;</span>
+          <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <form #f1="ngForm" (ngSubmit)="onSubmit1(f1)" novalidate>
         <div id="logininputs">
-          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-          <input type="text" id="orangeForm-name" class="form-control" ngModel mdbInput mdbValidate>
-          <label for="orangeForm-name">Your name</label>
-          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
-          <input type="text" id="orangeForm-name" class="form-control" ngModel mdbInput mdbValidate>
-          <label for="orangeForm-name">Your name</label>
+          <input ngModel name="name" type="text" id="orangeForm-name" class="form-control" placeholder="user name">
+          <input ngModel name="email" type="text" id="orangeForm-name" class="form-control" placeholder="OMX@gmail.com">
+          <input ngModel name="password" type="text" id="orangeForm-name" class="form-control" placeholder="password">
+          <input ngModel name="phone" type="text" id="orangeForm-name" class="form-control"
+            placeholder="+216 24 754 854">
         </div>
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
-          <button mdbBtn color="default" class="waves-light" mdbWavesEffect>Sign up</button>
+          <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Login</button>
         </div>
       </form>
+
     </div>
   </div>
 </div>
