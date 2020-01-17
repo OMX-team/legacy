@@ -11,7 +11,7 @@
 
   </form>
   <ul>
-    <li><a href="#" id="cat"> categroy </a></li>
+    <li><a [routerLink]="['categroy']" [routerLinkActive]="['active','profile']" id="cat"> categroy </a></li>
     <div *ngIf="users">
       <hr />
       <div *ngFor="let user of users.users">
@@ -29,7 +29,7 @@
         </button>
       </a>
     </li>
-    <li><a id="user" href="#"> {{ user }} </a></li>
+    <li><a routerLink="/profile" id="user"> {{ user }} </a></li>
   </ul>
   <div id="sidebar-btn" (click)="showSideNav()">
     <span></span>

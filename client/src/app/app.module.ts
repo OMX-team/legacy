@@ -13,6 +13,23 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { RouterModule, Routes } from '@angular/router';
+
+
+const appRoutes: Routes = [
+  // { path: '', component:  },
+
+  {
+    // { path: '**', redirectTo: 'home', pathMatch: 'full' }
+    path: 'profile', component: UserComponent,
+    children: [
+      { path: '', redirectTo: 'profile', pathMatch: 'full' },
+      { path: 'categroy', component: CategroyComponent },
+      { path: 'add-product', component: AddProductComponent },
+    ]
+  }
+];
+
 
 @NgModule({
   declarations: [
@@ -32,6 +49,10 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     FormsModule,
     AngularMaterialModule,
     HttpClientModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
   ],
 
   providers: [],

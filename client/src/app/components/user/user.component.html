@@ -1,6 +1,12 @@
 <body (click)="hideSideNav()">
+  <a [routerLink]="['/profile']" routerLinkActive="['active','profile']">
+    ADD PRODUCT
+  </a>
+
   <!-- <app-categroy></app-categroy> -->
-  <app-products></app-products>
-  <!-- <app-add-product></app-add-product> -->
+  <!-- <app-products></app-products> -->
+
+  <!-- <app-add-product [routerLink]="['/profile']" routerLinkActive="['active','profile']"></app-add-product> -->
+
 </body>
 <app-side-bar [(user)]="username"></app-side-bar>
