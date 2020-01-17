@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgForm} from '@angular/forms';
+import {AuthService} from "../auth-service/auth.service"
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import {NgForm} from '@angular/forms';
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
-  constructor() { }
+  constructor(private service: AuthService) { }
   
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(''),
@@ -49,9 +50,13 @@ export class NavbarComponent implements OnInit {
   
   onSubmit(f: NgForm) {
     console.log(f.value);  // { first: '', last: '' }
+
+  
   }
 
   onSubmit1(f1: NgForm) {
     console.log(f1.value);  // { first: '', last: '' }
+    let res = this.service.submit(f1.value).subscribe(data=>console.log(data))
+    console.log(res,"/////")
   }
 }
