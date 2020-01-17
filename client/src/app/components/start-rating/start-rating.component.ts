@@ -8,9 +8,9 @@ import { ServicesService } from "../services/services.service";
 })
 export class StartRatingComponent implements OnInit {
   value = 0;
-  id;
+  id = window.location.pathname.split("/")[2];
   constructor(private service: ServicesService) {}
-  @Input() id;
+  //  @Input() id;
   ngOnInit() {}
   rateValue(event) {
     console.log(this.value);

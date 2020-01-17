@@ -1,69 +1,11 @@
-<h3>
-  Hello , welcome to my profil <mdb-icon far icon="smile-beam"></mdb-icon>
-  {{ this.info }}
-</h3>
-<div [hidden]="!this.info">
-  <app-product-card [info]="this.info"></app-product-card>
-  <div><mdb-icon fas icon="signature"> </mdb-icon>:{{ this.info._id }}</div>
-  <div><mdb-icon far icon="file-alt"></mdb-icon>:{{ this.info.username }}</div>
-  <div><mdb-icon fas icon="phone-slash"></mdb-icon>:{{ this.info.phone }}</div>
-</div>
-<!-- <button (click)="showdata()"></button> -->
-<app-start-rating [id]="id"></app-start-rating>
+<h3>Hello , welcome to my profil</h3>
 
-<!-- rating.js file -->
-<mdb-tabset
-  [vertical]="true"
-  [buttonClass]="'tabs-white flex-column list-group'"
-  [contentClass]="'vertical'"
->
-  <!--Panel 1-->
-  <mdb-tab heading="<a class='list-group-item'> Home </a>">
-    <div class="row">
-      <div class="col-12 waves-light" mdbWavesEffect>
-        <br />
-        <p class="h5">Heading 1</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-          similique, eveniet inventore magni laborum, a sed quaerat quam dicta
-          possimus, quos sint veniam. Minus vero quo voluptates, error, quisquam
-          impedit.
-        </p>
-      </div>
-    </div>
-  </mdb-tab>
-  <!--Panel 2-->
-  <mdb-tab heading="<a class='list-group-item'> Profile </a>">
-    <div class="row">
-      <div class="col-12 waves-light" mdbWavesEffect>
-        <br />
-        <p class="h5">My info</p>
-      </div>
-    </div>
-  </mdb-tab>
-  <!--Panel 3-->
-  <mdb-tab heading="<a class='list-group-item'> Messages </a>">
-    <div class="row">
-      <div class="col-12 waves-light" mdbWavesEffect>
-        <br />
-        <p class="h5">id</p>
-        <p>{{ this.info._id }}</p>
-      </div>
-    </div>
-  </mdb-tab>
-  <!--Panel 4-->
-  <mdb-tab heading="<a class='list-group-item'> Settings </a>">
-    <div class="row">
-      <div class="col-12 waves-light" mdbWavesEffect>
-        <br />
-        <p class="h5">Heading 4</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-          similique, eveniet inventore magni laborum, a sed quaerat quam dicta
-          possimus, quos sint veniam. Minus vero quo voluptates, error, quisquam
-          impedit.
-        </p>
-      </div>
-    </div>
-  </mdb-tab>
-</mdb-tabset>
+<div *ngIf="render">
+  <app-product-card></app-product-card>
+  <div><mdb-icon fas icon="signature"> </mdb-icon>:{{ info._id }}</div>
+  <div><mdb-icon far icon="file-alt"></mdb-icon>:{{ info.username }}</div>
+  <div><mdb-icon fas icon="phone-slash"></mdb-icon>:{{ info.phone }}</div>
+
+  <!-- <button (click)="showdata()"></button> -->
+  <app-start-rating [id]="id"></app-start-rating>
+</div>
