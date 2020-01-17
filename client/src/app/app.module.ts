@@ -21,7 +21,18 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
 
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
+const appRoutes: Routes = [
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: "home", component: FirstPageComponent },
+  { path: "quick", component: SecondPageComponent },
+  {
+    path: "dashboard", component: UserComponent,
+    children: [
+
+    ]
+  },
+];
 
 @NgModule({
   declarations: [
@@ -43,7 +54,7 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
