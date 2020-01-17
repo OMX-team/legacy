@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 import { Component, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from "@angular/forms";
 import { LoginService } from './log-in.service'
+=======
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NgForm} from '@angular/forms';
+import {AuthService} from "../auth-service/auth.service"
+
+>>>>>>> 9f8acff878a9622fd288021db1f57761b73703e1
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -9,11 +17,16 @@ import { LoginService } from './log-in.service'
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
+<<<<<<< HEAD
   logged: Boolean = false;
   responseData;
   constructor(
     private loginService: LoginService) { }
 
+=======
+  constructor(private service: AuthService) { }
+  
+>>>>>>> 9f8acff878a9622fd288021db1f57761b73703e1
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
     loginFormModalPassword: new FormControl("")
@@ -48,6 +61,7 @@ export class NavbarComponent implements OnInit {
     return this.validatingForm.get("signupFormModalPassword");
   }
 
+<<<<<<< HEAD
   loginUser(f: NgForm, event) {
     event.preventDefault();
     this.loginService.logIn(f.value)
@@ -64,5 +78,18 @@ export class NavbarComponent implements OnInit {
   }
   signupUser(f1: NgForm, event) {
     console.log(f1.value);
+=======
+  onSubmit(f: NgForm) {
+
+    console.log(f.value);  // { first: '', last: '' }
+
+  
+  }
+
+  onSubmit1(f1: NgForm) {
+    console.log(f1.value);  // { first: '', last: '' }
+    let res = this.service.submit(f1.value).subscribe(data=>console.log(data))
+    console.log(res,"/////")
+>>>>>>> 9f8acff878a9622fd288021db1f57761b73703e1
   }
 }
