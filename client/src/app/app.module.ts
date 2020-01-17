@@ -25,23 +25,24 @@ import { HomeComponent } from './components/home/home.component';
 const appRoutes: Routes = [
 
   {
-    path: "home", component: HomeComponent, children: [
-      { path: "quick", component: SecondPageComponent },
-    ]
+    path: "home", component: HomeComponent, children:
+      [
+        { path: "quick", component: SecondPageComponent },
+      ]
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: "user", component: UserComponent,
+    path: "dashboard", component: UserComponent,
     children: [
       { path: "add-product", component: AddProductComponent },
       { path: "category", component: CategroyComponent },
-
       {
-        path: "products", component: AddProductComponent, children: [
-          { path: "profuct/:id", component: ProductComponent },
-        ]
+        path: "products", component: AddProductComponent,
+        //  children: [
+        //   { path: "profuct/:id", component: ProductComponent },
+        // ]
       },
-      { path: "category", component: CategroyComponent },
+      // { path: "category", component: CategroyComponent },
     ]
   },
 ];
@@ -66,9 +67,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+      appRoutes),
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,

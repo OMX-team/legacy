@@ -1,11 +1,11 @@
 <app-side-bar [(user)]="username"></app-side-bar>
 
-<body (click)="hideSideNav()">
+<body (click)="hideSideNav()" style="padding-top: 7.5%;">
   <nav>
-    <a [routerLink]="['/user/add-product']">Add product</a>
-    <a [routerLink]="['/uses/categroy']">Categroy</a>
-    <a [routerLink]="['/user/products']">Products</a>
+    <a [routerLink]="['/dashboard/add-product']">Add product</a>
+    <a [routerLink]="['/dashboard/category']">Categroy</a>
+    <a [routerLink]="['/dashboard/products']">Products</a>
   </nav>
   <router-outlet></router-outlet>
-
+  <app-products></app-products>
 </body>
