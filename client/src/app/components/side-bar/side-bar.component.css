@@ -6,13 +6,14 @@ body {
 
 #sidebar {
   background: #151718;
-  width: 200px;
-  height: 100%;
-  display: block;
+  width: 15%;
+  height: 100vh;
+  display: relative;
   position: absolute;
-  left: -200px;
+  left: -15%;
   top: 0px;
   transition: left 0.5s linear;
+  
 }
 
 
@@ -44,7 +45,7 @@ ul li {
   list-style: none;
   position: fixed;
   bottom: 95px;
-  width: 200px;
+  width: 15%;
   text-align: center;
   vertical-align: middle;
 }
@@ -55,7 +56,7 @@ ul li {
   list-style: none;
   position: fixed;
   bottom: 50px;
-  width: 200px;
+  width: 15%;
   text-align: center;
 }
 
@@ -63,9 +64,10 @@ ul li {
   list-style: none;
   position: fixed;
   bottom: 0px;
-  width: 200px;
+  width: 15%;
   text-align: center;
   vertical-align: middle;
+  
 }
 
 ul li a {
@@ -104,4 +106,7 @@ ul li a {
 
 #sidebar-btn span:nth-child(3) {
   width: 50%;
+}
+#section{
+  display: block;
 }
