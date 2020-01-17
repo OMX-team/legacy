@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { RequestHandlerService } from 'src/app/services/request-handler.service';
+import { SideBarService } from './side-bar.service';
 import $ from 'jquery'
 @Component({
   selector: 'app-side-bar',
@@ -11,7 +11,7 @@ export class SideBarComponent implements OnInit {
   usedfor: String = "People";
   usedforArray = ['Products', 'People'];
   users;
-  constructor(private requestHandler: RequestHandlerService) {
+  constructor(private service: SideBarService) {
   }
   @Input() user: String
   @Output() srhProducts: Object
@@ -20,7 +20,7 @@ export class SideBarComponent implements OnInit {
   }
   onSearch(event) {
     event.preventDefault();
-    this.requestHandler.search(this.query, this.usedfor)
+    this.service.search(this.query, this.usedfor)
       .subscribe(result => {
         this.usedfor == 'Products' ?
           this.srhProducts = result
