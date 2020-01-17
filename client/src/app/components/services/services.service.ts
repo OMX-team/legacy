@@ -11,10 +11,13 @@ export class ServicesService {
     const obj = { rating, id };
     let data = this.http
       .patch(`http://localhost:4000/api/user/ratings/`, obj)
-      .subscribe(data => {}); //when intergrated uncomment this part
-    console.log(id);
+      .subscribe(data => {});
+    // console.log(id);
   }
   getUserInfo(id): Observable<any> {
     return this.http.get(`http://127.0.0.1:4000/api/user/${id}`);
+  }
+  getUserProducts(id): Observable<any> {
+    return this.http.get(`http://127.0.0.1:4000/${id}/products`);
   }
 }
