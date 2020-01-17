@@ -6,15 +6,15 @@ const Schema = mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: true
+    // required: true
   },
   firstname: {
     type: String,
-    required: true
+    // required: true
   },
   lastname: {
     type: String,
-    required: true
+    // required: true
   },
   gender: String,
   phone: {
@@ -23,18 +23,18 @@ const Schema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    // required: true
   },
   password: {
     type: String,
-    required: true
+    // required: true
   },
   address: String,
   photo: String,
   bio: String,
   birthdate: {
     type: Date,
-    required: true
+    // required: true
   },
   deactivated: {
     type: Boolean,
