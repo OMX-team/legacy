@@ -1,0 +1,64 @@
+<div id="container">
+  <div>
+    <button
+      mdbBtn
+      type="button"
+      gradient="blue"
+      rounded="true"
+      id="previous"
+      mdbWavesEffect
+      (click)="previousProduct($event)"
+    >
+      previous
+    </button>
+  </div>
+  <mdb-card>
+    <!--Card image-->
+    <div class="view overlay waves-light" mdbWavesEffect>
+      <mdb-card-img [src]="products[counter].image"></mdb-card-img>
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+    <!--/.Card image-->
+
+    <!--Button-->
+
+    <!--Card content-->
+    <mdb-card-body>
+      <!--Title-->
+      <mdb-card-title>
+        <h4>{{ info[0].id }}</h4>
+      </mdb-card-title>
+
+      <hr />
+      <!--Text-->
+      <p class="font-small grey-dark-text mb-0">
+        {{ info[0].name }}
+      </p>
+    </mdb-card-body>
+    <!--/.Card content-->
+    <!-- Card footer -->
+    <mdb-card-footer class="mdb-color lighten-3 text-center">
+      <ul class="list-unstyled list-inline font-small mt-3">
+        <li class="list-inline-item pr-2 white-text">
+          <mdb-icon far icon="clock" class="pr-1"></mdb-icon>05/10/2015
+        </li>
+      </ul>
+    </mdb-card-footer>
+    <!-- Card footer -->
+  </mdb-card>
+  <div>
+    <button
+      mdbBtn
+      type="button"
+      gradient="blue"
+      rounded="true"
+      id="previous"
+      mdbWavesEffect
+      (click)="nextProduct($event)"
+    >
+      next
+    </button>
+  </div>
+</div>
