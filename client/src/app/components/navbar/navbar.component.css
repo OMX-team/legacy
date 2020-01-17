@@ -25,19 +25,16 @@
 }
 .modal-content{
     background-color: #2E2E2E;
-    color:#04B4AE;
+    color:#01DF01;
+    font-size: 19px;
+    font-weight: bold;
     height: 600px;
     justify-content: center;
-    background-image: url(https://get.pxhere.com/photo/cold-desktop-wallpaper-fog-foggy-landscape-light-mist-misty-mountain-nature-nature-wallpaper-outdoors-scenery-scenic-smoke-travel-trees-weather-1524593.jpg);
+    background-image: url(https://ssl.c.photoshelter.com/img-get/I0000.8JT.nDu6hk/s/900/900/50-mountain-GOZOOMA-8046.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px  rgba(160,160,160,0.4) inset !important;
-}
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: white;
     opacity: 1; /* Firefox */
