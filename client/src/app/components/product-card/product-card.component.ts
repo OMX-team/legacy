@@ -32,11 +32,12 @@ export class ProductCardComponent implements OnInit {
   @Input() info;
   ngOnInit() {}
   nextProduct($event) {
-    if (this.counter >= this.products.length - 1) {
-      this.counter = 0;
-      return;
-    }
-    this.counter++;
+    // if (this.counter >= this.products.length - 1) {
+    //   this.counter = 0;
+    //   return;
+    // }
+    // this.counter++;
+    console.log(this.info);
   }
   previousProduct($event) {
     if (this.counter === 0) {
