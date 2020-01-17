@@ -1,12 +1,11 @@
+<app-side-bar [(user)]="username"></app-side-bar>
+
 <body (click)="hideSideNav()">
-  <a [routerLink]="['/profile']" routerLinkActive="['active','profile']">
-    ADD PRODUCT
-  </a>
-
-  <!-- <app-categroy></app-categroy> -->
-  <!-- <app-products></app-products> -->
-
-  <!-- <app-add-product [routerLink]="['/profile']" routerLinkActive="['active','profile']"></app-add-product> -->
+  <nav>
+    <a [routerLink]="['/user/add-product']">Add product</a>
+    <a [routerLink]="['/uses/categroy']">Categroy</a>
+    <a [routerLink]="['/user/products']">Products</a>
+  </nav>
+  <router-outlet></router-outlet>
 
 </body>
-<app-side-bar [(user)]="username"></app-side-bar>

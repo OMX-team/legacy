@@ -24,15 +24,26 @@ import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
 
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // { path: "home", component: FirstPageComponent },
-  // { path: "quick", component: SecondPageComponent },
-  // {
-  // path: "dashboard", component: UserComponent,
-  // children: [
+  {
+    path: "home", component: HomeComponent, children: [
+      { path: "quick", component: SecondPageComponent },
+    ]
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: "user", component: UserComponent,
+    children: [
+      { path: "add-product", component: AddProductComponent },
+      { path: "category", component: CategroyComponent },
 
-  // ]
-  // },
+      {
+        path: "products", component: AddProductComponent, children: [
+          { path: "profuct/:id", component: ProductComponent },
+        ]
+      },
+      { path: "category", component: CategroyComponent },
+    ]
+  },
 ];
 
 @NgModule({
