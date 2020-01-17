@@ -39,6 +39,7 @@ userRoute.route("/signUp").post((req, res) => {
       });
     }
   });
+  console.log("hi")
 });
 
 userRoute.route("/logIn").post((req, res, next) => {
@@ -81,7 +82,6 @@ userRoute.route("/logIn").post((req, res, next) => {
 
 userRoute.route("/:id").get((req, res) => {
   //fetch user from data base
-  console.log(req.params.id);
   User.findById(req.params.id, (err, user) => {
     if (err) res.json({
       err
