@@ -37,12 +37,8 @@ const appRoutes: Routes = [
       { path: "add-product", component: AddProductComponent },
       { path: "category", component: CategroyComponent },
       {
-        path: "products", component: AddProductComponent,
-        //  children: [
-        //   { path: "profuct/:id", component: ProductComponent },
-        // ]
+        path: "products", component: AddProductComponent
       },
-      // { path: "category", component: CategroyComponent },
     ]
   },
 ];
