@@ -33,7 +33,7 @@ userRoute.route("/signUp").post((req, res) => {
       });
     }
   });
-  console.log("hi")
+  console.log("hi");
 });
 
 userRoute.route("/logIn").post((req, res, next) => {
