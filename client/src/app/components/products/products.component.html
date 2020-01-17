@@ -1,0 +1,5 @@
+<div class="" *ngIf="products">
+  <div *ngFor="let product of products" class="products">
+    <app-product [(product)]="product"></app-product>
+  </div>
+</div>
