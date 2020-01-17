@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestHandlerService } from '../../services/request-handler.service'
-import { HttpService } from '../../services/http.service'
 
 import $ from 'jquery'
 
@@ -13,8 +12,6 @@ export class UserComponent implements OnInit {
   username: String = "Adam";
 
   constructor(
-    private requestHandler: RequestHandlerService,
-    private httpService: HttpService
   ) { }
   ngOnInit() {
     this.hideSideNav()
