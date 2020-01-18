@@ -87,7 +87,8 @@ userRoute.route("/logIn").post((req, res, next) => {
 
 userRoute
   .route("/me")
-  .post(passport.authenticate("jwt", { session: false }), (req, res) => {
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    req.user.password = undefined;
     res.send(req.user);
   });
 

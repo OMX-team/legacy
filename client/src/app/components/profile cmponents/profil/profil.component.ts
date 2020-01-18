@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ServicesService } from "../services/services.service";
+import { ServicesService } from "../../services/services.service";
 @Component({
   selector: "app-profil",
   templateUrl: "./profil.component.html",
