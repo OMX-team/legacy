@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from "../../services/http.service";
-import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -9,10 +8,12 @@ export class AuthService {
   constructor(private http: HttpService) { }
 
   signUp(user) {
-    return this.http.postRequest(user, '/user/signUp')
+    console.log('enetering')
+    return this.http.postRequest(user, "/user/signUp")
   }
 
   signin(data) {
-    return this.http.postRequest(data, '/user/logIn')
+    console.log('enetering')
+    return this.http.postRequest(data, "/user/logIn")
   }
 }

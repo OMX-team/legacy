@@ -11,8 +11,7 @@ export class HttpService {
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
-      authorization:
-        "jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZWFjdGl2YXRlZCI6ZmFsc2UsInJhdGluZyI6MC45OTYwOTM3NSwiX2lkIjoiNWUyMDJmNTQ1ZWI3ZWUzYTBjNWU0NzQ4IiwidXNlcm5hbWUiOiIzYWJkYWxhMzIiLCJmaXJzdG5hbWUiOiJhYSIsImxhc3RuYW1lIjoiYmIiLCJnZW5kZXIiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInBob25lIjoxMjEyMTIyNCwiYmlydGhkYXRlIjoiMjAxNi0wNS0yNVQxMDowNTo0NC4wMDBaIiwiX192IjowLCJpYXQiOjE1NzkxOTIyMzEsImV4cCI6MTU3OTc5NzAzMX0.yjfW4zSr_U7-yUaRzIjksJQoKyDL07XqobaJTXpksWk"
+      "authorization": `jwt ${localStorage.getItem("token")}`
     })
   };
 

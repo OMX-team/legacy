@@ -3,7 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../auth-service/auth.service"
-
+import $ from 'jquery'
+import {
+  CanActivate, Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from '@angular/router';
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -14,9 +19,9 @@ export class NavbarComponent implements OnInit {
 
   logged: Boolean = false;
   responseData;
+  redirectUrl = '/dashboard'
 
-
-  constructor(private service: AuthService) { }
+  constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
@@ -52,19 +57,37 @@ export class NavbarComponent implements OnInit {
     return this.validatingForm.get("signupFormModalPassword");
   }
 
-
-
   loginUser(f: NgForm) {
+    console.log(f);  // { first: '', last: '' }
     this.service.signin(f.value).subscribe(data => {
       this.responseData = data
-      localStorage.setItem("token", this.responseData.token)
-      this.logged = true;
+      console.log(this.responseData)
+      localStorage.setItem("username", this.responseData.username)
+      localStorage.setItem("id", this.responseData._id)
+      if (this.responseData.success) {
+        localStorage.setItem("token", this.responseData.token)
+        this.logged = true;
+        this.router.navigate([this.redirectUrl]);
+      }
+    }, err => {
+      localStorage.removeItem("token")
+      this.logged = false;
     })
-
+    // $('.modal-dialog').hide()
+    this.responseData = undefined;
   }
 
   signupUser(f1: NgForm) {
-    console.log(f1.value);  // { first: '', last: '' }
-    this.service.signUp(f1.value).subscribe(data => { console.log(data) })
+    this.service.signUp(f1.value).subscribe(data => {
+      console.log(data)
+      this.responseData = data;
+      if (this.responseData.success) {
+        this.router.navigate(['/home']);
+        $('#signUpform.modal-dialog').show()
+      } else {
+        console.log('failed signup')
+      }
+    })
   }
+
 }
