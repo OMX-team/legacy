@@ -41,7 +41,7 @@ const Schema = mongoose.Schema({
     default: true
   },
   verify_Id: {
-    type: Number,
+    type: String,
   }
 });
 

@@ -14,9 +14,8 @@ const ObjectId = require("mongodb").ObjectID;
 const bcrypt = require("bcryptjs");
 // const Items = require("../model/item");
 const upload = require("./uploadroute");
-const {
-  semdEmail
-} = require('../emailValidation/emailSender')
+const sendEmail = require('../emailValidation/emailSender').sendEmail
+console.log('send function', sendEmail)
 const generateId = require('uniqid')
 
 // user model   //note to self import the model
@@ -24,6 +23,7 @@ let user = require("../database/userDB");
 
 //add user
 userRoute.route("/signUp").post((req, res) => {
+  console.log('enetering')
   //v //err handeling in case of missing required elements
   //notes : route should be changed
   bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -33,13 +33,13 @@ userRoute.route("/signUp").post((req, res) => {
     else {
       req.body.password = hash;
       //generate id and set it the request body
-      req.body.verify_Id = generateId(`${req.firstname}`)
+      req.body.verify_Id = generateId(`${req.body.username}`)
       User.create(req.body, (err, created) => {
         if (err) return res.json({
           err
         });
         created.password = undefined; // just a secuirity messerment dnt worry about it
-        semdEmail(created.email, req.body.firstname, created.verify_Id).then(result => {
+        sendEmail(created.email, req.body.username, created.verify_Id).then(result => {
             console.log('message sent')
             created.verify_Id = undefined;
             res.json({
@@ -58,9 +58,7 @@ userRoute.route("/signUp").post((req, res) => {
 });
 // Verify route + update deactivated
 userRoute.route("/verify").get((req, res, next) => {
-  console.log('entering')
-  //sample input http://127.0.0.1:4000/api/vrify?user={ user }&verify_id={ 54325415dfsg }
-  User.find({
+  User.findOne({
       username: req.query.user,
     },
     (err, user) => {
@@ -68,25 +66,32 @@ userRoute.route("/verify").get((req, res, next) => {
         success: false,
         err
       });
-      console.log(user)
       //check if the url correct
       if (user.verify_Id === req.query.verify_id) {
         User.findByIdAndUpdate(user._id, {
           deactivated: false
         }, (err, result) => {
-          if (err) res.json({
-            success: false,
-            err
-          })
-          res.json({
-            message: 'user verified',
-            result
-          })
+          if (err) {
+            res.json({
+              err
+            })
+          } else {
+            const token = jwt.sign(
+              user.toJSON(),
+              require("./config/config").secret, {
+                expiresIn: 500
+                //604800 // 1 week
+              }
+            );
+            res.header('authorization', `jwt ${"jwt " + token}`)
+            res.redirect('http://localhost:4200')
+          }
+        })
+      } else {
+        res.json({
+          message: 'Error wrong verification'
         })
       }
-      res.json({
-        message: 'Error wrong verification'
-      })
     })
 })
 

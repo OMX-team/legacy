@@ -78,14 +78,13 @@ export class NavbarComponent implements OnInit {
 
   signupUser(f1: NgForm) {
     if (f1.submitted) {
+      console.log('submitted')
       this.service.signUp(f1.value).subscribe(data => {
-        if (data["success"]) {
-          this.router.navigate(['/verify_Email'])
-          this.frame1.hide();
-          // localStorage.setItem("email", f1.value["email"])
-          // localStorage.setItem("username", f1.value["username"])
+        this.router.navigate(['/verify_Email'])
+        this.frame1.hide();
+        // localStorage.setItem("email", f1.value["email"])
+        // localStorage.setItem("username", f1.value["username"])
 
-        }
       })
     }
   }

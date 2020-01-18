@@ -49,7 +49,7 @@ mongoose
 // Set up express js port
 const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoute");
-const srearchtRoute = require("./routes/searchroute");
+const searchtRoute = require("./routes/searchroute");
 
 const app = express();
 app.use(bodyParser.json());
@@ -62,7 +62,7 @@ app.use(cors());
 
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
-app.use("/api/search", srearchtRoute);
+app.use("/api/search", searchtRoute);
 
 ////////////////
 app.use(passport.initialize());
