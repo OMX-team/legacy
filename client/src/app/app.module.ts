@@ -29,24 +29,24 @@ import { HomeComponent } from "./components/home/home.component";
 // const appRoutes: Routes = [
 
 
-  {
-    path: "home", component: HomeComponent, children:
-      [
-        { path: "quick", component: SecondPageComponent },
-      ]
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: "dashboard", component: UserComponent,
-    children: [
-      { path: "add-product", component: AddProductComponent },
-      { path: "category", component: CategroyComponent },
-      {
-        path: "products", component: ProductsComponent
-      },
-    ]
-  },
-];
+//   {
+//     path: "home", component: HomeComponent, children:
+//       [
+//         { path: "quick", component: SecondPageComponent },
+//       ]
+//   },
+//   { path: '', redirectTo: 'home', pathMatch: 'full' },
+//   {
+//     path: "dashboard", component: UserComponent,
+//     children: [
+//       { path: "add-product", component: AddProductComponent },
+//       { path: "category", component: CategroyComponent },
+//       {
+//         path: "products", component: ProductsComponent
+//       },
+//     ]
+//   },
+// ];
 
 
 @NgModule({
