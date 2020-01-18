@@ -57,13 +57,13 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate  >
-        <div id="logininputs" >
-          <input ngModel name ="username" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
-                 mdbInput >
-          <input ngModel name="password" type="password" id="orangeForm-name" class="form-control" placeholder="password"
-                 mdbInput >
-        </div> 
+      <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
+        <div id="logininputs">
+          <input ngModel name="username" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
+            mdbInput>
+          <input ngModel name="password" type="password" id="orangeForm-name" class="form-control"
+            placeholder="password" mdbInput>
+        </div>
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
           <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Login</button>
         </div>
@@ -77,7 +77,7 @@
 <!-- signup -->
 <div mdbModal #frame1="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div id="signUpform" class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center" style=" position: absolute;top: 5px; border: none; width: 100%;">
         <h4 class="modal-title w-100 font-weight-bold" style="font-size: 40px; color: #01DF01;"><span
@@ -86,13 +86,16 @@
           <span aria-hidden="true" style="color:#01DF01; position: absolute;top: 5px; right: 5px;">&times;</span>
         </button>
       </div>
-      <form #f1="ngForm" (ngSubmit)="onSubmit1(f1)" novalidate  >
-        <div id="logininputs" >
-          <input ngModel name ="username" type="text" id="orangeForm-name1" class="form-control" placeholder="user name">
-          <input ngModel name ="email" type="text" id="orangeForm-name1" class="form-control" placeholder="OMX@gmail.com">    
-          <input ngModel name="password" type="password" id="orangeForm-name1" class="form-control" placeholder="password">
-          <input ngModel name ="phone" type="text" id="orangeForm-name1" class="form-control" placeholder="+216 24 754 854">
-        </div> 
+      <form #f1="ngForm" (ngSubmit)="signupUser(f1)" novalidate>
+        <div id="logininputs">
+          <input ngModel name="username" type="text" id="orangeForm-name1" class="form-control" placeholder="user name">
+          <input ngModel name="email" type="text" id="orangeForm-name1" class="form-control"
+            placeholder="OMX@gmail.com">
+          <input ngModel name="password" type="password" id="orangeForm-name1" class="form-control"
+            placeholder="password">
+          <input ngModel name="phone" type="text" id="orangeForm-name1" class="form-control"
+            placeholder="+216 24 754 854">
+        </div>
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
           <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>signup </button>
         </div>
