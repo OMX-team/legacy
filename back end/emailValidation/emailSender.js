@@ -6,9 +6,9 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 username @params 
 URL @params 
  */
-var semdEmail = (username, URL) => {
+var semdEmail = (to, username, URL) => {
     var msg = {
-        to: 'adammuman81@gmail.com',
+        to: `${to}`,
         from: 'OMX_DO_NOT_REPLY@OMX.com',
         subject: 'Verify_Your_Email at',
         text: 'Email Veritfication',

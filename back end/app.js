@@ -5,7 +5,7 @@ let express = require("express"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
   dataBase = require("./database/db");
-
+require('dotenv').config()
 // Setting Up the Email Verifier
 // xxxxxxxxxxxx.configure({
 //     verificationURL: `http:/localhost:4000/email-verification/:id/${URL}`,

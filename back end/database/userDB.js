@@ -40,6 +40,9 @@ const Schema = mongoose.Schema({
     type: Boolean,
     default: true
   },
+  verify_Id: {
+    type: Number,
+  }
 });
 
 const User = mongoose.model("user", Schema);
