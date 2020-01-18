@@ -8,8 +8,5 @@ const Schema = mongoose.Schema({
 
 // here we are exporting the model
 const Caegory = mongoose.model("category", Schema);
-const getAll = callback => {
-  Caegory.find({}, callback);
-};
 
 module.exports.Caegory = Caegory;

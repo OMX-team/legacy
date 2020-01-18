@@ -33,7 +33,6 @@ userRoute.route("/signUp").post((req, res) => {
       });
     }
   });
-  console.log("hi")
 });
 
 userRoute.route("/logIn").post((req, res, next) => {
@@ -67,9 +66,14 @@ userRoute.route("/logIn").post((req, res, next) => {
   });
 });
 
+userRoute
+  .route("/me")
+  .post(passport.authenticate("jwt", { session: false }), (req, res) => {
+    res.send(req.user);
+  });
+
 userRoute.route("/:id").get((req, res) => {
   //fetch user from data base
-  console.log(req.params.id);
   User.findById(req.params.id, (err, user) => {
     if (err) res.json({ err });
     else res.json({ user });
