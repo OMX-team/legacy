@@ -31,24 +31,24 @@ export class ProductCardComponent implements OnInit {
   constructor(private service: ServicesService) {}
   info;
   id;
-  ngOnInit() {
+  render: boolean = false;
+  async ngOnInit() {
     this.id = window.location.pathname.split("/")[2];
-    this.service.getUserProducts(this.id).subscribe(data => {
-      console.log(data);
-      this.info = data;
-    });
+    this.info = await this.service.getUserProducts(this.id).toPromise();
+    console.log(this.info);
+    this.render = true;
   }
   nextProduct($event) {
-    if (this.counter >= this.info.length - 1) {
+    if (this.counter >= this.info.products.length - 1) {
       this.counter = 0;
       return;
     }
     this.counter++;
-    // console.log(this.info);
+    console.log(this.info);
   }
   previousProduct($event) {
     if (this.counter === 0) {
-      this.counter = this.info.length;
+      this.counter = this.info.products.length;
     }
     this.counter--;
   }

@@ -39,6 +39,7 @@ userRoute.route("/signUp").post((req, res) => {
       });
     }
   });
+
 });
 
 userRoute.route("/logIn").post((req, res, next) => {
