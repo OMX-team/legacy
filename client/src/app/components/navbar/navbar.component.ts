@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../auth-service/auth.service"
@@ -16,6 +16,7 @@ import {
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
+  @ViewChild("frame", { static: true }) frame: any;
 
   logged: Boolean = false;
   responseData;
@@ -62,18 +63,18 @@ export class NavbarComponent implements OnInit {
     this.service.signin(f.value).subscribe(data => {
       this.responseData = data
       console.log(this.responseData)
-      localStorage.setItem("username", this.responseData.username)
+      localStorage.setItem("username", data['username'])
       localStorage.setItem("id", this.responseData._id)
       if (this.responseData.success) {
         localStorage.setItem("token", this.responseData.token)
         this.logged = true;
         this.router.navigate([this.redirectUrl]);
+        this.frame.hide();
       }
     }, err => {
       localStorage.removeItem("token")
       this.logged = false;
     })
-    // $('.modal-dialog').hide()
     this.responseData = undefined;
   }
 
