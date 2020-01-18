@@ -23,9 +23,11 @@ import { SecondPageComponent } from "./components/second-page/second-page.compon
 
 import { AuthService } from "./components/auth-service/auth.service";
 import { HomeComponent } from "./components/home/home.component";
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 
 const appRoutes: Routes = [
+  { path: "verify_Email", component: VerifyEmailComponent },
   {
     path: "home", component: HomeComponent, children:
       [
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     ProductCardComponent,
     ProfilComponent,
     StartRatingComponent,
-    HomeComponent
+    HomeComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from "../auth-service/auth.service"
 import $ from 'jquery'
 import {
-  CanActivate, Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  Router,
 } from '@angular/router';
 @Component({
   selector: "app-navbar",
@@ -82,10 +80,12 @@ export class NavbarComponent implements OnInit {
     if (f1.submitted) {
       this.service.signUp(f1.value).subscribe(data => {
         if (data["success"]) {
-          this.router.navigate(['/home'])
-          this.frame1.hide()
+          this.router.navigate(['/verify_Email'])
+          this.frame1.hide();
+          // localStorage.setItem("email", f1.value["email"])
+          // localStorage.setItem("username", f1.value["username"])
+
         }
-        console.log('failed signup')
       })
     }
   }
