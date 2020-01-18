@@ -15,8 +15,9 @@ var semdEmail = (to, username, URL) => {
         html: `<h1>Hello ${username}</h1>
         <strong>Thanks for registering to our website</strong><br/>
         <h5>Verify Your Account To Complete Signing Up</h5>
-        <button><a href="http:/localhost:4200/verify/${url}">Verify</a></button>
+        <button><a href="http:/localhost:4000/api/user/verify?user=${username}&verify_id=${url}">Verify</a></button>
         `,
+        // http://127.0.0.1:4000/api/vrify?user={ user }&verify_id={ 54325415dfsg }
     };
     return sgMail.send(msg)
 }
