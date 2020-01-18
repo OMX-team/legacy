@@ -20,30 +20,34 @@ import { ServicesService } from "./components/services/services.service";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
-import { AuthService } from "./components/auth-service/auth.service"
-// const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
-import { HomeComponent } from './components/home/home.component';
 
-const appRoutes: Routes = [
+import { AuthService } from "./components/auth-service/auth.service";
+const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
+import { HomeComponent } from "./components/home/home.component";
 
-  {
-    path: "home", component: HomeComponent, children:
-      [
-        { path: "quick", component: SecondPageComponent },
-      ]
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: "dashboard", component: UserComponent,
-    children: [
-      { path: "add-product", component: AddProductComponent },
-      { path: "category", component: CategroyComponent },
-      {
-        path: "products", component: ProductsComponent
-      },
-    ]
-  },
-];
+
+// const appRoutes: Routes = [
+
+
+//   {
+//     path: "home", component: HomeComponent, children:
+//       [
+//         { path: "quick", component: SecondPageComponent },
+//       ]
+//   },
+//   { path: '', redirectTo: 'home', pathMatch: 'full' },
+//   {
+//     path: "dashboard", component: UserComponent,
+//     children: [
+//       { path: "add-product", component: AddProductComponent },
+//       { path: "category", component: CategroyComponent },
+//       {
+//         path: "products", component: ProductsComponent
+//       },
+//     ]
+//   },
+// ];
+
 
 @NgModule({
   declarations: [
@@ -64,8 +68,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(
-      appRoutes),
+    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
@@ -77,4 +80,4 @@ const appRoutes: Routes = [
   providers: [ServicesService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
