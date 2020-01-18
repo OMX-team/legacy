@@ -1,21 +1,14 @@
-<!--Card-->
-<div class="card m-5" style="width: 22rem;">
-  <!--Card image-->
-  <div class="view overlay">
-    <img src={{product.photo}} class="img-fluid" alt="">
-    <a href="#">
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
-
-  <!--Card content-->
-  <div class="card-body">
-    <!--Title-->
-    <h4 class="card-title">{{product.name}}</h4>
-    <!--Text-->
-    <p class="card-text">{{product.description}}.</p>
-    <a href="#" class="btn btn-primary">Buy now</a>
-  </div>
-
+<div class="card1">
+    <div class="imgholder"><div class="img" [style.background-image]="'url('+product.photo+')'"></div></div>
+    <div class="rest">
+        <h2>{{product.name}}</h2>
+        <h3 >description : </h3>
+        <h6>{{product.description}}</h6>
+    </div>
 </div>
-<!--/.Card-->
+
+
+
+<!-- {{product.photo}}
+{{product.name}}
+{{product.description}} -->
