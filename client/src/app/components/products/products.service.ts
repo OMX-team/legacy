@@ -8,7 +8,7 @@ export class ProductsService {
   constructor(private http: HttpService) {
   }
   getProducts() {
-    return this.http.getRequest('/product/all')
+    return this.http.getRequest('/product')
   }
 
 }

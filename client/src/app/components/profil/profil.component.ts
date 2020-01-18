@@ -7,13 +7,12 @@ import { ServicesService } from "../services/services.service";
 })
 export class ProfilComponent implements OnInit {
   info;
-
+  render: boolean = false;
+  id = window.location.pathname.split("/")[2];
   constructor(private service: ServicesService) {}
-  ngOnInit() {
-    const id = window.location.pathname.split("/")[2];
-    this.service.getUserInfo(id).subscribe(data => {
-      this.info = data;
-      console.log(data);
-    });
+  async ngOnInit() {
+    this.info = await this.service.getUserInfo(this.id).toPromise();
+    this.info = this.info.user;
+    this.render = true;
   }
 }

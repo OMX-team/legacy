@@ -44,7 +44,7 @@ productRoute.route("/:id").get((req, res) => {
     });
 });
 
-productRoute.route("/all").get((req, res) => {
+productRoute.route("/").get((req, res) => {
   //test this
   Product.find({})
     .sort({

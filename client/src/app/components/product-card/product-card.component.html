@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" *ngIf="render">
   <div>
     <button
       mdbBtn
@@ -15,7 +15,7 @@
   <mdb-card>
     <!--Card image-->
     <div class="view overlay waves-light" mdbWavesEffect>
-      <mdb-card-img [src]="products[counter].image"></mdb-card-img>
+      <mdb-card-img [src]="info.products[counter].photo"></mdb-card-img>
       <a>
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -28,13 +28,17 @@
     <mdb-card-body>
       <!--Title-->
       <mdb-card-title>
-        <h4>{{ info[0].id }}</h4>
+        <h4>{{ info.products[counter].name }}</h4>
       </mdb-card-title>
 
       <hr />
       <!--Text-->
       <p class="font-small grey-dark-text mb-0">
-        {{ info[0].name }}
+        {{ info.products[counter].description }}
+      </p>
+      <hr />
+      <p class="font-small grey-dark-text mb-0">
+        {{ info.products[counter].price }}
       </p>
     </mdb-card-body>
     <!--/.Card content-->
