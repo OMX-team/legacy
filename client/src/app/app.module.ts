@@ -26,8 +26,6 @@ import { HomeComponent } from "./components/home/home.component";
 
 
 const appRoutes: Routes = [
-
-
   {
     path: "home", component: HomeComponent, children:
       [

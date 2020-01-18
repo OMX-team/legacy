@@ -17,11 +17,11 @@ import {
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
   @ViewChild("frame", { static: true }) frame: any;
+  @ViewChild("frame1", { static: true }) frame1: any;
+
 
   logged: Boolean = false;
-  responseData;
   redirectUrl = '/dashboard'
-
   constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
   });
 
   ngOnInit() {
+    console.log(this.frame1)
     this.validatingForm = new FormGroup({
       loginFormModalEmail: new FormControl("", Validators.email),
       loginFormModalPassword: new FormControl("", Validators.required),
@@ -59,36 +60,33 @@ export class NavbarComponent implements OnInit {
   }
 
   loginUser(f: NgForm) {
-    console.log(f);  // { first: '', last: '' }
-    this.service.signin(f.value).subscribe(data => {
-      this.responseData = data
-      console.log(this.responseData)
-      localStorage.setItem("username", data['username'])
-      localStorage.setItem("id", this.responseData._id)
-      if (this.responseData.success) {
-        localStorage.setItem("token", this.responseData.token)
-        this.logged = true;
-        this.router.navigate([this.redirectUrl]);
-        this.frame.hide();
-      }
-    }, err => {
-      localStorage.removeItem("token")
-      this.logged = false;
-    })
-    this.responseData = undefined;
+    if (f.submitted) {
+      this.service.signin(f.value).subscribe(data => {
+        localStorage.setItem("username", data['username'])
+        localStorage.setItem("id", data["_id"])
+
+        if (data["success"]) {
+          localStorage.setItem("token", data["token"])
+          this.logged = true;
+          this.frame.hide();
+          this.router.navigate([this.redirectUrl]);
+        }
+      }, err => {
+        localStorage.removeItem("token")
+        this.logged = false;
+      })
+    }
   }
 
   signupUser(f1: NgForm) {
-    this.service.signUp(f1.value).subscribe(data => {
-      console.log(data)
-      this.responseData = data;
-      if (this.responseData.success) {
-        this.router.navigate(['/home']);
-        $('#signUpform.modal-dialog').show()
-      } else {
+    if (f1.submitted) {
+      this.service.signUp(f1.value).subscribe(data => {
+        if (data["success"]) {
+          this.router.navigate(['/home'])
+          this.frame1.hide()
+        }
         console.log('failed signup')
-      }
-    })
+      })
+    }
   }
-
 }
