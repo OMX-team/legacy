@@ -1,14 +1,18 @@
-<div class="container" style="padding: 25% 25% 25% 25%;">
-  <h1>Thanks for joining us</h1>
-  <h4>Verify your Email</h4>
+<div class="container" style="padding: 17% 17% 17% 17%">
+  <h1>Thanks For Joining our Community</h1>
+  <h3>Few steps remaining...</h3>
+  <h5>email is sent to
+    <!-- {{localStorage.get("email")}} -->
+
+  </h5>
   <br />
-  <label for="exampleForm2">Enter your vertifcatoin code</label>
-  <input type="text" id="exampleForm2" class="form-control">
-  <br />
-  <button type="text" class="btn btn-primary btn-md">Verify</button>
-  <hr />
-  <div class="email-verify">
-    <h6>Have a problem...</h6>
-    <a href="">resend email</a>
-  </div>
+  <form (submit)="reVerify()">
+    <label for="exampleForm2">Enter your vertifcatoin code</label><br />
+    <input type="text" id="exampleForm2" class="form-control-md-6" name="code" [(ngModel)]="code" required>
+    <hr />
+    <button type="button" type="submit" class="btn btn-primary btn-md">Verify</button>
+    <hr />
+  </form>
+  <h6>Having a problem! <button type="button" (click)="reSend()" class="btn btn-secondary btn-md">resend email</button>
+  </h6>
 </div>

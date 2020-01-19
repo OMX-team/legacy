@@ -1,20 +1,35 @@
-import { Component, OnInit, } from '@angular/core';
-
+import { Component, OnInit, Input, } from '@angular/core';
+import { VerifyService } from './verify.service';
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.scss']
 })
 export class VerifyEmailComponent implements OnInit {
-
-  constructor(
-
-  ) { }
+  code: String = "";
+  success: Boolean = false;
+  @Input() email: String;
+  constructor(private service: VerifyService, private router: Router) { }
 
   ngOnInit() {
 
   }
-  reSendVertificatoinEmail() {
+  verify() {
 
+    this.service.verify(localStorage.getItem("username"), this.code)
+      .subscribe(result => {
+        if (result["success"]) {
+          this.success = true
+          this.router.navigate(['/dashboard'])
+        } else {
+          this.success = false
+        }
+      })
+    this.code = "";
+  }
+  reSend() {
+    //send post request to the backend
+    this.verify()
   }
 }

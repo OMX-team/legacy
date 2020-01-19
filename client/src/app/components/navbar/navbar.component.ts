@@ -1,12 +1,9 @@
 
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../auth-service/auth.service"
-import $ from 'jquery'
-import {
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -20,6 +17,7 @@ export class NavbarComponent implements OnInit {
 
   logged: Boolean = false;
   redirectUrl = '/dashboard'
+  email: String = "";
   constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
@@ -80,10 +78,11 @@ export class NavbarComponent implements OnInit {
     if (f1.submitted) {
       console.log('submitted')
       this.service.signUp(f1.value).subscribe(data => {
+        this.email = f1["email"];
         this.router.navigate(['/verify_Email'])
         this.frame1.hide();
-        // localStorage.setItem("email", f1.value["email"])
-        // localStorage.setItem("username", f1.value["username"])
+
+        localStorage.setItem("username", f1.value["username"])
 
       })
     }
