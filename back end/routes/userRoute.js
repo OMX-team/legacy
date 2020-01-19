@@ -23,8 +23,6 @@ let user = require("../database/userDB");
 
 //add user
 userRoute.route("/signUp").post((req, res) => {
-  console.log('enetering')
-  //v //err handeling in case of missing required elements
   //notes : route should be changed
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) res.json({
@@ -33,7 +31,7 @@ userRoute.route("/signUp").post((req, res) => {
     else {
       req.body.password = hash;
       //generate id and set it the request body
-      req.body.verify_code = generateId(`${req.body.username}`)
+      req.body.verify_code = generateId()
       User.create(req.body, (err, created) => {
         if (err) return res.json({
           err
@@ -44,11 +42,13 @@ userRoute.route("/signUp").post((req, res) => {
             console.log('result', result)
             created.verify_code = undefined;
             res.json({
-              result
+              success: true,
+              created
             })
           })
           .catch(err => {
             return res.json({
+              success: false,
               err
             })
           })

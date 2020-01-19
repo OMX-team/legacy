@@ -8,6 +8,6 @@ export class VerifyService {
   constructor(private http: HttpService) {
   }
   verify(username, code) {
-    return this.http.postRequest({ username, code }, '/verify')
+    return this.http.postRequest({ username, code }, 'user/verify')
   }
 }

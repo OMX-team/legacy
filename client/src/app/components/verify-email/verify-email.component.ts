@@ -10,6 +10,7 @@ export class VerifyEmailComponent implements OnInit {
   code: String = "";
   success: Boolean = false;
   @Input() email: String;
+  @Input() username: String;
   constructor(private service: VerifyService, private router: Router) { }
 
   ngOnInit() {
@@ -17,7 +18,7 @@ export class VerifyEmailComponent implements OnInit {
   }
   verify() {
 
-    this.service.verify(localStorage.getItem("username"), this.code)
+    this.service.verify(this.username, this.code)
       .subscribe(result => {
         if (result["success"]) {
           this.success = true

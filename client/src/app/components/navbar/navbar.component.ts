@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   logged: Boolean = false;
   redirectUrl = '/dashboard'
   email: String = "";
+  username: String = "";
   constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
@@ -77,13 +78,16 @@ export class NavbarComponent implements OnInit {
   signupUser(f1: NgForm) {
     if (f1.submitted) {
       console.log('submitted')
+      this.email = f1.value["email"];
+      this.username = f1.value["username"]
       this.service.signUp(f1.value).subscribe(data => {
-        this.email = f1["email"];
+        if (data["err"]) {
+          console.log('error')
+          return;
+        }
         this.router.navigate(['/verify_Email'])
-        this.frame1.hide();
-
-        localStorage.setItem("username", f1.value["username"])
-
+        this.frame1.hide(),
+          err => console.log(err)
       })
     }
   }
