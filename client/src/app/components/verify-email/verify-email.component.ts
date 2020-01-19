@@ -26,10 +26,8 @@ export class VerifyEmailComponent implements OnInit {
         console.log('before success',
           'result', result)
         if (result["success"]) {
-          console.log('after success')
           localStorage.setItem("token", result["token"])
           this.success = true
-          console.log(this.success)
           this.router.navigate(['/dashboard'])
         } else {
           this.success = false

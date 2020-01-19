@@ -15,9 +15,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild("frame1", { static: true }) frame1: any;
 
   logged: Boolean = false;
-  redirectUrl = '/dashboard'
-  email: String = "";
-  username: String = "";
   constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
@@ -61,12 +58,12 @@ export class NavbarComponent implements OnInit {
         data => {
           localStorage.setItem("username", data["username"]);
           localStorage.setItem("id", data["_id"]);
-
+          console.log(data)
           if (data["success"]) {
             localStorage.setItem("token", data["token"]);
             this.logged = true;
             this.frame.hide();
-            this.router.navigate([this.redirectUrl]);
+            this.router.navigate(['/dashboard']);
           }
         },
         err => {
