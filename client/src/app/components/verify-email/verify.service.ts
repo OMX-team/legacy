@@ -10,4 +10,7 @@ export class VerifyService {
   verify(username, code) {
     return this.http.postRequest({ username, code }, 'user/verify')
   }
+  reSend(email, username, code) {
+    return this.http.postRequest({ username }, 'user/resend-msg')
+  }
 }

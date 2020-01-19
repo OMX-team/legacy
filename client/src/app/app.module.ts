@@ -30,6 +30,8 @@ import { TestUploadComponent } from "./components/test-upload/test-upload.compon
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
+  { path: "verify_Email", component: VerifyEmailComponent },
+
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
     path: "dashboard/:id",

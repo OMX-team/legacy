@@ -42,7 +42,6 @@ userRoute.route("/signUp").post((req, res) => {
         sendEmail(created.email, req.body.username, created.verify_code).then(({
             result
           }) => {
-            console.log('message sent')
             console.log('result', result)
             created.verify_code = undefined;
             res.json({
@@ -74,7 +73,8 @@ userRoute.route("/verify").post((req, res, next) => {
       //check if the url correct
       if (user.verify_code === req.body.verify_code) {
         User.findByIdAndUpdate(user._id, {
-          deactivated: false
+          deactivated: false,
+          verify_code: ""
         }, (err, result) => {
           if (err) {
             res.json({
@@ -85,7 +85,6 @@ userRoute.route("/verify").post((req, res, next) => {
               user.toJSON(),
               require("./config/config").secret, {
                 expiresIn: 500
-                //604800 // 1 week
               }
             );
             // log the user in 
@@ -103,13 +102,37 @@ userRoute.route("/verify").post((req, res, next) => {
       }
     })
 })
-
+userRoute.route("/resend-msg").post((req, res, next) => {
+  User.findOne({
+    username: req.body.username
+  }, (err, user) => {
+    if (err) return res.json({
+      success: false,
+      err
+    })
+    sendEmail(user.email, user.username, user.verify_code).then(({
+        result
+      }) => {
+        res.json({
+          success: true,
+          result
+        })
+      })
+      .catch(err => {
+        if (err) {
+          return res.json({
+            success: false,
+            err
+          })
+        }
+      })
+  })
+})
 ////////////////
 userRoute.route("/logIn").post((req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  User.findOne(
-    {
+  User.findOne({
       username
     },
     (err, user) => {
@@ -126,8 +149,7 @@ userRoute.route("/logIn").post((req, res, next) => {
           user.password = undefined;
           const token = jwt.sign(
             user.toJSON(),
-            require("./config/config").secret,
-            {
+            require("./config/config").secret, {
               expiresIn: 604800 // 1 week
             }
           );
@@ -149,7 +171,9 @@ userRoute.route("/logIn").post((req, res, next) => {
 
 userRoute
   .route("/me")
-  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+  .get(passport.authenticate("jwt", {
+    session: false
+  }), (req, res) => {
     req.user.password = undefined;
     res.send(req.user);
   });
@@ -175,8 +199,7 @@ userRoute.route("/:id/uploadImage").post(
   upload.single("photo"),
   (req, res) => {
     User.findByIdAndUpdate(
-      req.user._id,
-      {
+      req.user._id, {
         $set: {
           photo: req.file.filename
         }
@@ -197,8 +220,8 @@ userRoute.route("/:id/products").get(
   (req, res) => {
     if (req.user._id == req.params.id) {
       Product.find({
-        user: req.user._id
-      })
+          user: req.user._id
+        })
         .sort({
           _id: -1
         })
@@ -217,8 +240,7 @@ userRoute.route("/:id/products").get(
       // User.findOne({ username: req.params.username })
       //   .lean()
       //   .exec((err, user) => {
-      Follow.exists(
-        {
+      Follow.exists({
           followed: req.params.id,
           follower: req.user._id
         },
@@ -226,8 +248,8 @@ userRoute.route("/:id/products").get(
           user.followed = exist;
           user.password = undefined;
           Product.find({
-            user: req.params.id
-          })
+              user: req.params.id
+            })
             .sort({
               _id: -1
             })
@@ -259,7 +281,7 @@ userRoute.route("/:id/follow").get(
     };
     Follow.findOne(data, (err, found) => {
       if (!found) {
-        Follow.create(data, function(err, user) {
+        Follow.create(data, function (err, user) {
           if (err)
             res.json({
               success: false,
@@ -271,7 +293,7 @@ userRoute.route("/:id/follow").get(
             });
         });
       } else {
-        Follow.remove(data, function(err, user) {
+        Follow.remove(data, function (err, user) {
           if (err)
             res.json({
               success: false,
@@ -293,10 +315,10 @@ userRoute.route("/:id/followers").get(
   }),
   (req, res) => {
     Follow.find({
-      followed: ObjectId(req.params.id)
-    })
+        followed: ObjectId(req.params.id)
+      })
       .populate("follower")
-      .exec(function(err, data) {
+      .exec(function (err, data) {
         if (err)
           res.json({
             success: false,
@@ -315,10 +337,10 @@ userRoute
     }),
     (req, res) => {
       Follow.find({
-        follower: ObjectId(req.params.id)
-      })
+          follower: ObjectId(req.params.id)
+        })
         .populate("followed")
-        .exec(function(err, data) {
+        .exec(function (err, data) {
           if (err)
             res.json({
               success: false,
