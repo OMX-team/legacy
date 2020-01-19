@@ -1,6 +1,6 @@
 require('dotenv').config()
 var sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey('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');
 // console.log(process.env.SENDGRID_API_KEY)
 /**
  username @params 
