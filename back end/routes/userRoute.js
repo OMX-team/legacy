@@ -23,8 +23,8 @@ let user = require("../database/userDB");
 
 //add user
 userRoute.route("/signUp").post((req, res) => {
-  //notes : route should be changed
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
+//notes : route should be changed
+bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) res.json({
       err
     });
@@ -33,28 +33,28 @@ userRoute.route("/signUp").post((req, res) => {
       //generate id and set it the request body
       req.body.verify_code = generateId()
       User.create(req.body, (err, created) => {
-        if (err) return res.json({
-          err
-        });
-        created.password = undefined; // just a secuirity messerment dnt worry about it
-        sendEmail(created.email, req.body.username, created.verify_code).then(result => {
-            console.log('message sent')
-            console.log('result', result)
-            created.verify_code = undefined;
-            res.json({
-              success: true,
-              created
-            })
+          if (err) return res.json({
+            err
+          });
+          created.password = undefined; // just a secuirity messerment dnt worry about it
+          // sendEmail(created.email, req.body.username, created.verify_code).then(result => {
+          console.log('message sent')
+          console.log('result', result)
+          created.verify_code = undefined;
+          res.json({
+            success: true,
+            created
           })
-          .catch(err => {
-            return res.json({
-              success: false,
-              err
-            })
+        })
+        .catch(err => {
+          return res.json({
+            success: false,
+            err
           })
-      });
-    }
-  });
+        })
+    });
+}
+});
 });
 // Verify route + update deactivated
 userRoute.route("/verify").post((req, res, next) => {

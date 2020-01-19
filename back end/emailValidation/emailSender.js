@@ -1,22 +1,21 @@
 require('dotenv').config()
-const sgMail = require('@sendgrid/mail');
+var sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
 // console.log(process.env.SENDGRID_API_KEY)
 /**
  username @params 
  URL @params 
  */
-function sendEmail(to = "adammomen0934@gmail.com", username = "adam", code = "35sdfsd") {
-    console.log('to', to, 'username', username, 'code', code)
-    sgMail.setApiKey('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');
+function sendEmail(
+    // to = "adammuman81@gmail.com", username = "adam", code = "35sdfsd"
+) {
     // check the email before before sending
     var msg = {
-        to: `${to}`,
+        to: 'adammuman81@gmail.com',
         from: 'OMX_DO_NOT_REPLY@OMX.com',
         subject: 'Verify_Your_Email',
         text: 'Email Veritfication',
-        html: `
-        <strong>and easy to do anywhere, even with Node.js</strong>
-       `,
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
     };
     return sgMail.send(msg)
 }
