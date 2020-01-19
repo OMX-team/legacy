@@ -22,6 +22,7 @@ import { FirstPageComponent } from "./components/first-page/first-page.component
 import { SecondPageComponent } from "./components/second-page/second-page.component";
 import { AuthService } from "./components/auth-service/auth.service";
 import { HomeComponent } from "./components/home/home.component";
+
 import { FreindsComponent } from "./components/freinds/freinds.component";
 
 const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
@@ -48,6 +49,7 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 // ];
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +66,10 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
     ProfilComponent,
     StartRatingComponent,
     HomeComponent,
+    VerifyEmailComponent,
+
     FreindsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -80,4 +85,4 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
   providers: [ServicesService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

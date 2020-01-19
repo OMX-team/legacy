@@ -38,23 +38,29 @@ const Schema = mongoose.Schema({
   },
   deactivated: {
     type: Boolean,
-    default: false
+    default: true
   },
-  rating: { type: Number, default: 0 }
+  verify_Id: {
+    type: String,
+  }
 });
 
 const User = mongoose.model("user", Schema);
 
 const findOne = id => {
-  return User.findOne({ _id: id });
+  return User.findOne({
+    _id: id
+  });
 };
 
 const updateRating = (id, rating) => {
-  return User.findOneAndUpdate(
-    { _id: id },
-    { rating },
-    { useFindAndModify: false }
-  );
+  return User.findOneAndUpdate({
+    _id: id
+  }, {
+    rating
+  }, {
+    useFindAndModify: false
+  });
 };
 
 // here we are exporting the model

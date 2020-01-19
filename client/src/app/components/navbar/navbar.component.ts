@@ -1,13 +1,11 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../auth-service/auth.service"
 import $ from 'jquery'
 import {
-  CanActivate, Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
+  Router,
 } from '@angular/router';
 @Component({
   selector: "app-navbar",
@@ -16,11 +14,12 @@ import {
 })
 export class NavbarComponent implements OnInit {
   validatingForm: FormGroup;
+  @ViewChild("frame", { static: true }) frame: any;
+  @ViewChild("frame1", { static: true }) frame1: any;
+
 
   logged: Boolean = false;
-  responseData;
   redirectUrl = '/dashboard'
-
   constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
@@ -29,6 +28,7 @@ export class NavbarComponent implements OnInit {
   });
 
   ngOnInit() {
+    console.log(this.frame1)
     this.validatingForm = new FormGroup({
       loginFormModalEmail: new FormControl("", Validators.email),
       loginFormModalPassword: new FormControl("", Validators.required),
@@ -58,36 +58,34 @@ export class NavbarComponent implements OnInit {
   }
 
   loginUser(f: NgForm) {
-    console.log(f);  // { first: '', last: '' }
-    this.service.signin(f.value).subscribe(data => {
-      this.responseData = data
-      console.log(this.responseData)
-      localStorage.setItem("username", this.responseData.username)
-      localStorage.setItem("id", this.responseData._id)
-      if (this.responseData.success) {
-        localStorage.setItem("token", this.responseData.token)
-        this.logged = true;
-        this.router.navigate([this.redirectUrl]);
-      }
-    }, err => {
-      localStorage.removeItem("token")
-      this.logged = false;
-    })
-    // $('.modal-dialog').hide()
-    this.responseData = undefined;
+    if (f.submitted) {
+      this.service.signin(f.value).subscribe(data => {
+        localStorage.setItem("username", data['username'])
+        localStorage.setItem("id", data["_id"])
+
+        if (data["success"]) {
+          localStorage.setItem("token", data["token"])
+          this.logged = true;
+          this.frame.hide();
+          this.router.navigate([this.redirectUrl]);
+        }
+      }, err => {
+        localStorage.removeItem("token")
+        this.logged = false;
+      })
+    }
   }
 
   signupUser(f1: NgForm) {
-    this.service.signUp(f1.value).subscribe(data => {
-      console.log(data)
-      this.responseData = data;
-      if (this.responseData.success) {
-        this.router.navigate(['/home']);
-        $('#signUpform.modal-dialog').show()
-      } else {
-        console.log('failed signup')
-      }
-    })
-  }
+    if (f1.submitted) {
+      console.log('submitted')
+      this.service.signUp(f1.value).subscribe(data => {
+        this.router.navigate(['/verify_Email'])
+        this.frame1.hide();
+        // localStorage.setItem("email", f1.value["email"])
+        // localStorage.setItem("username", f1.value["username"])
 
+      })
+    }
+  }
 }
