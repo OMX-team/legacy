@@ -1,11 +1,15 @@
-<app-side-bar [(user)]="username"></app-side-bar>
+<div class="all">
+  <app-side-bar [(user)]="username"></app-side-bar>
 
-<body (click)="hideSideNav()" style="padding-top: 7.5%;">
-  <nav>
-    <a [routerLink]="['/dashboard/add-product']">Add product</a>
-    <a [routerLink]="['/dashboard/category']">Categroy</a>
-    <a [routerLink]="['/dashboard/products']">Products</a>
-  </nav>
-  <router-outlet></router-outlet>
-  <app-products></app-products>
-</body>
+  <div id="prod">
+    <nav  (click)="hideSideNav()">
+      <a [routerLink]="['/dashboard/add-product']">Add product</a>
+      <a [routerLink]="['/dashboard/category']">Categroy</a>
+      <a [routerLink]="['/dashboard/products']">Products</a>
+    </nav>
+    
+    <router-outlet></router-outlet>
+    <app-products></app-products>
+  </div>
+</div>
+

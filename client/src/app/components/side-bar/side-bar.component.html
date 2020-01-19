@@ -1,42 +1,35 @@
 <div id="sidebar">
   <form class="form-inline md-form mr-auto mb-4" (submit)="onSearch($event)" style="padding-top: 10%;">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="query"
+    <input  type="text" placeholder="Search" aria-label="Search" name="query"
       [(ngModel)]="query" required>
-    <button mdbBtn size="sm" color="warning" outline="true" rounded="true" class="my-0 waves-light" mdbWavesEffect
+     
+      <select name="usedfor" id="usedfor" mdbBtn size="sm"  outline="true" rounded="true"
+        class="my-0 waves-light" mdbWavesEffect [(ngModel)]="usedfor" name="usedfor">
+        <option *ngFor="let usedfor of usedforArray"> {{ usedfor }} </option>
+      </select>
+      <br>
+    <button mdbBtn size="sm" outline="true" rounded="true" class="my-0 waves-light" mdbWavesEffect
       type="submit">Search</button>
-    <select name="usedfor" id="usedfor" mdbBtn size="sm" color="warning" outline="true" rounded="true"
-      class="my-0 waves-light" mdbWavesEffect [(ngModel)]="usedfor" name="usedfor">
-      <option *ngFor="let usedfor of usedforArray"> {{ usedfor }} </option>
-    </select>
+ 
 
   </form>
   <ul>
-    <li><a [routerLink]="['categroy']" [routerLinkActive]="['active','profile']" id="cat"> categroy </a></li>
-    <div *ngIf="users">
-      <hr />
-      <div *ngFor="let user of users.users">
-        <li><a href="">{{user.username}}</a></li>
-        <br>
-        <br>
-        <hr />
+    <li id="cat"><a [routerLink]="['dashboard/categroy']"  id="cat"> categroy </a></li>
+    <li class="proff"><a routerLink="/profile" id="user"> {{ user }} </a></li>
+
+    <div *ngIf="users" id="catego">
+      <div  *ngFor="let user of users.users">
+        <li><a href=""><mdb-icon class="icon" fas icon="user"></mdb-icon>{{user.username}}</a></li>
       </div>
     </div>
 
-    <li>
-      <a id="logout">
-        <button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </button>
-      </a>
-    </li>
-    <li><a routerLink="/profile" id="user"> {{ user }} </a></li>
+   
   </ul>
-
+  <button id="sidebar-btn" (click)="showSideNav()"><mdb-icon fas icon="arrows-alt-h"></mdb-icon></button>
   
-  <div id="sidebar-btn" (click)="showSideNav()">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    
+      <button type="button" id="logout" >  Log out </button>
+    
+  
 
 </div>
