@@ -29,6 +29,7 @@ import { FreindsComponent } from "./components/freinds/freinds.component";
 const appRoutes: Routes = [
 
   { path: "profile/:id", component: ProfilComponent },
+  { path: "verify_Email", component: VerifyEmailComponent },
   {
     path: "home", component: HomeComponent, children:
       [

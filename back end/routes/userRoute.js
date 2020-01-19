@@ -33,17 +33,17 @@ userRoute.route("/signUp").post((req, res) => {
     else {
       req.body.password = hash;
       //generate id and set it the request body
-      req.body.verify_Id = generateId(`${req.body.username}`)
+      req.body.verify_code = generateId(`${req.body.username}`)
       User.create(req.body, (err, created) => {
         if (err) return res.json({
           err
         });
         created.password = undefined; // just a secuirity messerment dnt worry about it
-        sendEmail(created.email, req.body.username, created.verify_Id).then(result => {
+        sendEmail(created.email, req.body.username, created.verify_code).then(result => {
             console.log('message sent')
-            created.verify_Id = undefined;
+            console.log('result', result)
+            created.verify_code = undefined;
             res.json({
-              created,
               result
             })
           })
@@ -57,9 +57,10 @@ userRoute.route("/signUp").post((req, res) => {
   });
 });
 // Verify route + update deactivated
-userRoute.route("/verify").get((req, res, next) => {
+userRoute.route("/verify").post((req, res, next) => {
+  //changed the route to post for better security 
   User.findOne({
-      username: req.query.user,
+      username: req.body.user,
     },
     (err, user) => {
       if (err) res.json({
@@ -67,7 +68,7 @@ userRoute.route("/verify").get((req, res, next) => {
         err
       });
       //check if the url correct
-      if (user.verify_Id === req.query.verify_id) {
+      if (user.verify_code === req.body.verify_code) {
         User.findByIdAndUpdate(user._id, {
           deactivated: false
         }, (err, result) => {
@@ -83,8 +84,12 @@ userRoute.route("/verify").get((req, res, next) => {
                 //604800 // 1 week
               }
             );
-            res.header('authorization', `jwt ${"jwt " + token}`)
-            res.redirect('http://localhost:4200')
+            // log the user in 
+            res.json({
+              success: true,
+              token: "jwt " + token,
+              user
+            });
           }
         })
       } else {
