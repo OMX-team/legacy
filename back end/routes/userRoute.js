@@ -16,7 +16,7 @@ const bcrypt = require("bcryptjs");
 const upload = require("./uploadroute");
 const sendEmail = require('../emailValidation/emailSender').sendEmail
 console.log('send function', sendEmail)
-const generateId = require('uniqid')
+const generateId = require('shortid');
 
 // user model   //note to self import the model
 let user = require("../database/userDB");
@@ -31,8 +31,6 @@ userRoute.route("/signUp").post((req, res) => {
       });
     else {
       req.body.password = hash;
-      //generate id and set it the request body
-      req.body.verify_code = generateId()
       User.create(req.body, (err, created) => {
         if (err)
           return res.json({
@@ -42,7 +40,6 @@ userRoute.route("/signUp").post((req, res) => {
         sendEmail(created.email, req.body.username, created.verify_code).then(({
             result
           }) => {
-            console.log('result', result)
             created.verify_code = undefined;
             res.json({
               success: true,
@@ -63,7 +60,7 @@ userRoute.route("/signUp").post((req, res) => {
 userRoute.route("/verify").post((req, res, next) => {
   //changed the route to post for better security 
   User.findOne({
-      username: req.body.user,
+      username: req.body.username,
     },
     (err, user) => {
       if (err) res.json({
@@ -71,7 +68,7 @@ userRoute.route("/verify").post((req, res, next) => {
         err
       });
       //check if the url correct
-      if (user.verify_code === req.body.verify_code) {
+      if (user.verify_code === req.body.code) {
         User.findByIdAndUpdate(user._id, {
           deactivated: false,
           verify_code: ""
@@ -103,14 +100,17 @@ userRoute.route("/verify").post((req, res, next) => {
     })
 })
 userRoute.route("/resend-msg").post((req, res, next) => {
-  User.findOne({
+  const newVerifyCode = generateId()
+  User.findOneAndUpdate({
     username: req.body.username
+  }, {
+    verify_code: newVerifyCode
   }, (err, user) => {
     if (err) return res.json({
       success: false,
       err
     })
-    sendEmail(user.email, user.username, user.verify_code).then(({
+    sendEmail(user.email, user.username, newVerifyCode).then(({
         result
       }) => {
         res.json({

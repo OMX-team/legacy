@@ -16,23 +16,28 @@ export class VerifyEmailComponent implements OnInit {
   ngOnInit() {
 
   }
-  verify() {
-
+  verify(event) {
+    if (this.success) {
+      return;
+    }
+    event.preventDefault()
     this.service.verify(this.username, this.code)
       .subscribe(result => {
-        console.log(result)
         if (result["success"]) {
           localStorage.setItem("token", result["token"])
           this.success = true
+          console.log(this.success)
           this.router.navigate(['/dashboard'])
         } else {
           this.success = false
         }
       })
-    this.code = "";
   }
   reSend() {
+    if (this.success) {
+      return;
+    }
     //send post request to the backend
-    this.service.reSend(this.email, this.username)
+    this.service.reSendVerifyMsg(this.username)
   }
 }
