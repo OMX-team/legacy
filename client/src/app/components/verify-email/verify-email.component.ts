@@ -37,11 +37,10 @@ export class VerifyEmailComponent implements OnInit {
       })
   }
   reSend() {
-    if (this.success) {
-      return;
+    if (!!this.success) {
+      this.router.navigate(['/home'])
     }
-    console.log(this.username)
     //send post request to the backend
-    this.service.reSendVerifyMsg(this.username)
+    this.service.reSendVerifyMsg(localStorage.getItem("username"))
   }
 }

@@ -82,7 +82,6 @@ export class NavbarComponent implements OnInit {
       localStorage.setItem("username", f1.value["username"])
       this.service.signUp(f1.value).subscribe(data => {
         if (data["err"]) {
-          console.log('error')
           return;
         }
         this.router.navigate(['/verify_Email'])

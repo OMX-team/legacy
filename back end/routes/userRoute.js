@@ -106,6 +106,12 @@ userRoute.route("/resend-msg").post((req, res, next) => {
   }, {
     verify_code: newVerifyCode
   }, (err, user) => {
+    if (!user.deactivated)
+      res.json({
+        success: false,
+        message: "Account is verified"
+      })
+
     if (err) return res.json({
       success: false,
       err
