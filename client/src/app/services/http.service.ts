@@ -20,4 +20,7 @@ export class HttpService {
   postRequest(data = {}, method) {
     return this.http.post(this.url + method, data, this.httpOptions);
   }
+  followAFriend(id){
+    this.http.get(`${this.url}/user/${id}/follow`, this.httpOptions).subscribe(data => console.log(data))
+  }
 }

@@ -267,7 +267,7 @@ userRoute.route("/:id/follow").get(
             });
           else
             res.json({
-              success: true
+              success: "followed"
             });
         });
       } else {
@@ -279,7 +279,7 @@ userRoute.route("/:id/follow").get(
             });
           else
             res.json({
-              success: true
+              success: "un folowed"
             });
         });
       }
@@ -331,13 +331,13 @@ userRoute
 
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
-  console.log("hi");
   //check it
   let rating = parseInt(req.body.rating);
   let id = req.body.id;
   userDB
     .findOne(id)
     .then(user => {
+      console.log(user.rating)
       if (user.rating === 0) {
         return (user.rating = rating);
       }

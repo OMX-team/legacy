@@ -1,4 +1,19 @@
-<button
+<div class="btns">
+  <button
+  type="button"
+  mdbBtn
+  color="primary"
+  class="waves-light"
+  data-toggle="modal"
+  data-target="#basicExample"
+  (click)="frame.show()"
+  mdbWavesEffect
+>
+  followers
+</button>
+
+
+  <button
   type="button"
   mdbBtn
   color="primary"
@@ -10,6 +25,10 @@
 >
   followings
 </button>
+<button (click)='followFriend()'></button>
+
+</div>
+
 
 <div
   mdbModal
@@ -33,6 +52,6 @@
     </div>
   </div>
   <!-- /////////////////////////// -->
-
+  <!-- /let follower of follower / {{follower.follower.username}}*/ -->
   <!-- ///////// -->
 </div>
