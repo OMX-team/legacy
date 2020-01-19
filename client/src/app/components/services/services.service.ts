@@ -12,8 +12,8 @@ export class ServicesService {
     let data = this.http
       .patch(`http://localhost:4000/api/user/ratings/`, obj)
       .subscribe(data => {});
-    // console.log(id);
   }
+
   getUserInfo(id): Observable<any> {
     return this.http.get(`http://127.0.0.1:4000/api/user/${id}`);
   }
@@ -24,6 +24,7 @@ export class ServicesService {
       authorization: localStorage.getItem("token")
     })
   };
+
   getUserProducts(id): Observable<any> {
     return this.http.get(
       `http://127.0.0.1:4000/api/user/${id}/products`,

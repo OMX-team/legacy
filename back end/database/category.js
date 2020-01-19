@@ -7,4 +7,6 @@ const Schema = mongoose.Schema({
 });
 
 // here we are exporting the model
-module.exports = mongoose.model("category", Schema);
+const Caegory = mongoose.model("category", Schema);
+
+module.exports.Caegory = Caegory;
