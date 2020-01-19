@@ -77,4 +77,4 @@ const appRoutes: Routes = [
   providers: [ServicesService, AuthService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
