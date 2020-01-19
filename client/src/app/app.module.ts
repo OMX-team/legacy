@@ -20,12 +20,11 @@ import { ServicesService } from "./components/services/services.service";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FirstPageComponent } from "./components/first-page/first-page.component";
 import { SecondPageComponent } from "./components/second-page/second-page.component";
-
 import { AuthService } from "./components/auth-service/auth.service";
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 import { HomeComponent } from "./components/home/home.component";
+import { FreindsComponent } from "./components/freinds/freinds.component";
 
-
+const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 // const appRoutes: Routes = [
 
 
@@ -64,7 +63,8 @@ import { HomeComponent } from "./components/home/home.component";
     ProductCardComponent,
     ProfilComponent,
     StartRatingComponent,
-    HomeComponent
+    HomeComponent,
+    FreindsComponent
   ],
   imports: [
     BrowserModule,
