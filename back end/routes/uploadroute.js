@@ -4,4 +4,5 @@ const multer = require("multer"),
     filename: (req, file, cb) =>
       cb(null, new Date().getTime() + file.originalname)
   });
+
 module.exports = multer({ storage, limits: 1024 * 1024 * 2 });

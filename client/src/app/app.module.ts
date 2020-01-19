@@ -25,6 +25,7 @@ import { StartRatingComponent } from "./components/profile cmponents/start-ratin
 import { ServicesService } from "./components/services/services.service";
 
 import { AuthService } from "./components/auth-service/auth.service";
+import { TestUploadComponent } from './components/test-upload/test-upload.component';
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     ProductCardComponent,
     ProfilComponent,
     StartRatingComponent,
-    HomeComponent
+    HomeComponent,
+    TestUploadComponent
   ],
   imports: [
     BrowserModule,
