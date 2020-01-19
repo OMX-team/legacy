@@ -27,17 +27,19 @@ userRoute.route("/signUp").post((req, res) => {
   //v //err handeling in case of missing required elements
   //notes : route should be changed
   bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if (err) res.json({
-      err
-    });
+    if (err)
+      res.json({
+        err
+      });
     else {
       req.body.password = hash;
       //generate id and set it the request body
       req.body.verify_Id = generateId(`${req.body.username}`)
       User.create(req.body, (err, created) => {
-        if (err) return res.json({
-          err
-        });
+        if (err)
+          return res.json({
+            err
+          });
         created.password = undefined; // just a secuirity messerment dnt worry about it
         sendEmail(created.email, req.body.username, created.verify_Id).then(result => {
             console.log('message sent')
@@ -99,103 +101,117 @@ userRoute.route("/verify").get((req, res, next) => {
 userRoute.route("/logIn").post((req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  User.findOne({
-    username
-  }, (err, user) => {
-    if (err) throw err;
-    if (!user) {
-      return res.json({
-        success: false,
-        msg: "User not found"
-      });
-    }
-    bcrypt.compare(password, user.password, (err, isMatch) => {
+  User.findOne(
+    {
+      username
+    },
+    (err, user) => {
       if (err) throw err;
-      if (isMatch) {
-        user.password = undefined;
-        const token = jwt.sign(
-          user.toJSON(),
-          require("./config/config").secret, {
-            expiresIn: 604800 // 1 week
-          }
-        );
-        res.json({
-          success: true,
-          token: "jwt " + token,
-          user
-        });
-      } else {
+      if (!user) {
         return res.json({
           success: false,
-          msg: "Wrong password"
+          msg: "User not found"
         });
       }
-    });
-  });
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          user.password = undefined;
+          const token = jwt.sign(
+            user.toJSON(),
+            require("./config/config").secret,
+            {
+              expiresIn: 604800 // 1 week
+            }
+          );
+          res.json({
+            success: true,
+            token: "jwt " + token,
+            user
+          });
+        } else {
+          return res.json({
+            success: false,
+            msg: "Wrong password"
+          });
+        }
+      });
+    }
+  );
 });
+
+userRoute
+  .route("/me")
+  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+    req.user.password = undefined;
+    res.send(req.user);
+  });
 
 userRoute.route("/:id").get((req, res) => {
   //fetch user from data base
-  console.log(req.params.id);
   User.findById(req.params.id, (err, user) => {
-    if (err) res.json({
-      err
-    });
-    else res.json({
-      user
-    });
+    if (err)
+      res.json({
+        err
+      });
+    else
+      res.json({
+        user
+      });
   });
 });
 
-userRoute
-  .route("/:id/uploadImage")
-  .post(
-    passport.authenticate("jwt", {
-      session: false
-    }),
-    upload.single("photo"),
-    (req, res) => {
-      User.findByIdAndUpdate(
-        req.user._id, {
-          $set: {
-            photo: req.file.filename
-          }
-        },
-        (err, updated) => {
-          res.json({
-            success: true
-          });
-        }
-      );
-    }
-  );
-// passport.authenticate("jwt", { session: false }),
-userRoute
-  .route("/:id/products")
-  .get(passport.authenticate("jwt", {
+userRoute.route("/:id/uploadImage").post(
+  passport.authenticate("jwt", {
     session: false
-  }), (req, res) => {
+  }),
+  upload.single("photo"),
+  (req, res) => {
+    User.findByIdAndUpdate(
+      req.user._id,
+      {
+        $set: {
+          photo: req.file.filename
+        }
+      },
+      (err, updated) => {
+        res.json({
+          success: true
+        });
+      }
+    );
+  }
+);
+// passport.authenticate("jwt", { session: false }),
+userRoute.route("/:id/products").get(
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
     if (req.user._id == req.params.id) {
       Product.find({
-          user: req.user._id
-        })
+        user: req.user._id
+      })
         .sort({
           _id: -1
         })
         .exec((err, products) => {
-          if (err) res.json({
-            err
-          });
-          else res.json({
-            products,
-            user: req.user
-          });
+          if (err)
+            res.json({
+              err
+            });
+          else
+            res.json({
+              products,
+              user: req.user
+            });
         });
     } else {
       // User.findOne({ username: req.params.username })
       //   .lean()
       //   .exec((err, user) => {
-      Follow.exists({
+      Follow.exists(
+        {
           followed: req.params.id,
           follower: req.user._id
         },
@@ -203,94 +219,108 @@ userRoute
           user.followed = exist;
           user.password = undefined;
           Product.find({
-              user: req.params.id
-            })
+            user: req.params.id
+          })
             .sort({
               _id: -1
             })
             .exec((err, products) => {
-              if (err) res.json({
-                err
-              });
-              else res.json({
-                products,
-                user
-              });
+              if (err)
+                res.json({
+                  err
+                });
+              else
+                res.json({
+                  products,
+                  user
+                });
             });
         }
       );
     }
-  });
+  }
+);
 //add followers and removes follower
-userRoute
-  .route("/:id/follow")
-  .get(passport.authenticate("jwt", {
+userRoute.route("/:id/follow").get(
+  passport.authenticate("jwt", {
     session: false
-  }), (req, res) => {
+  }),
+  (req, res) => {
     var data = {
       follower: req.user._id,
       followed: req.params.id
     };
     Follow.findOne(data, (err, found) => {
       if (!found) {
-        Follow.create(data, function (err, user) {
-          if (err) res.json({
-            success: false,
-            err
-          });
-          else res.json({
-            success: true
-          });
+        Follow.create(data, function(err, user) {
+          if (err)
+            res.json({
+              success: false,
+              err
+            });
+          else
+            res.json({
+              success: true
+            });
         });
       } else {
-        Follow.remove(data, function (err, user) {
-          if (err) res.json({
-            success: false,
-            err
-          });
-          else res.json({
-            success: true
-          });
+        Follow.remove(data, function(err, user) {
+          if (err)
+            res.json({
+              success: false,
+              err
+            });
+          else
+            res.json({
+              success: true
+            });
         });
       }
     });
-  });
+  }
+);
 
-userRoute
-  .route("/:id/followers")
-  .get(passport.authenticate("jwt", {
+userRoute.route("/:id/followers").get(
+  passport.authenticate("jwt", {
     session: false
-  }), (req, res) => {
+  }),
+  (req, res) => {
     Follow.find({
-        followed: ObjectId(req.params.id)
-      })
+      followed: ObjectId(req.params.id)
+    })
       .populate("follower")
-      .exec(function (err, data) {
-        if (err) res.json({
-          success: false,
-          err
-        });
+      .exec(function(err, data) {
+        if (err)
+          res.json({
+            success: false,
+            err
+          });
         else res.json(data);
       });
-  });
+  }
+);
 
 userRoute
   .route("/:id/followings") //here
-  .get(passport.authenticate("jwt", {
-    session: false
-  }), (req, res) => {
-    Follow.find({
+  .get(
+    passport.authenticate("jwt", {
+      session: false
+    }),
+    (req, res) => {
+      Follow.find({
         follower: ObjectId(req.params.id)
       })
-      .populate("followed")
-      .exec(function (err, data) {
-        if (err) res.json({
-          success: false,
-          err
+        .populate("followed")
+        .exec(function(err, data) {
+          if (err)
+            res.json({
+              success: false,
+              err
+            });
+          else res.json(data);
         });
-        else res.json(data);
-      });
-  });
+    }
+  );
 
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
