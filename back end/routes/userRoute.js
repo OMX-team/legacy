@@ -23,8 +23,6 @@ let user = require("../database/userDB");
 
 //add user
 userRoute.route("/signUp").post((req, res) => {
-  console.log("enetering");
-  //v //err handeling in case of missing required elements
   //notes : route should be changed
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err)
@@ -34,24 +32,27 @@ userRoute.route("/signUp").post((req, res) => {
     else {
       req.body.password = hash;
       //generate id and set it the request body
-      req.body.verify_Id = generateId(`${req.body.username}`);
+      req.body.verify_code = generateId()
       User.create(req.body, (err, created) => {
         if (err)
           return res.json({
             err
           });
         created.password = undefined; // just a secuirity messerment dnt worry about it
-        sendEmail(created.email, req.body.username, created.verify_Id)
-          .then(result => {
-            console.log("message sent");
-            created.verify_Id = undefined;
+        sendEmail(created.email, req.body.username, created.verify_code).then(({
+            result
+          }) => {
+            console.log('message sent')
+            console.log('result', result)
+            created.verify_code = undefined;
             res.json({
-              created,
-              result
-            });
+              success: true,
+              created
+            })
           })
           .catch(err => {
             return res.json({
+              success: false,
               err
             });
           });
@@ -60,10 +61,10 @@ userRoute.route("/signUp").post((req, res) => {
   });
 });
 // Verify route + update deactivated
-userRoute.route("/verify").get((req, res, next) => {
-  User.findOne(
-    {
-      username: req.query.user
+userRoute.route("/verify").post((req, res, next) => {
+  //changed the route to post for better security 
+  User.findOne({
+      username: req.body.user,
     },
     (err, user) => {
       if (err)
@@ -72,29 +73,28 @@ userRoute.route("/verify").get((req, res, next) => {
           err
         });
       //check if the url correct
-      if (user.verify_Id === req.query.verify_id) {
-        User.findByIdAndUpdate(
-          user._id,
-          {
-            deactivated: false
-          },
-          (err, result) => {
-            if (err) {
-              res.json({
-                err
-              });
-            } else {
-              const token = jwt.sign(
-                user.toJSON(),
-                require("./config/config").secret,
-                {
-                  expiresIn: 500
-                  //604800 // 1 week
-                }
-              );
-              res.header("authorization", `jwt ${"jwt " + token}`);
-              res.redirect("http://localhost:4200");
-            }
+      if (user.verify_code === req.body.verify_code) {
+        User.findByIdAndUpdate(user._id, {
+          deactivated: false
+        }, (err, result) => {
+          if (err) {
+            res.json({
+              err
+            })
+          } else {
+            const token = jwt.sign(
+              user.toJSON(),
+              require("./config/config").secret, {
+                expiresIn: 500
+                //604800 // 1 week
+              }
+            );
+            // log the user in 
+            res.json({
+              success: true,
+              token: "jwt " + token,
+              user
+            });
           }
         );
       } else {
