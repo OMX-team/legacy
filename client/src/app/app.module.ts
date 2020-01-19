@@ -34,7 +34,7 @@ const appRoutes: Routes = [
 
   { path: "", redirectTo: "home", pathMatch: "full" },
   {
-    path: "dashboard/:id",
+    path: "dashboard",
     component: UserDashBoardComponent,
     children: [
       { path: "add-product", component: AddProductComponent },

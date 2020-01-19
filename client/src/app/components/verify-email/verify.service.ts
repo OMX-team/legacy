@@ -7,11 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class VerifyService {
-  signupForm = new BehaviorSubject
 
   constructor(private http: HttpService) { }
   verify(username, code) {
-    console.log('entering verify funciton')
     return this.http.postRequest({ username, code }, '/user/verify')
   }
   reSendVerifyMsg(username) {

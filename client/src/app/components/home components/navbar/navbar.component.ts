@@ -79,8 +79,7 @@ export class NavbarComponent implements OnInit {
 
   signupUser(f1: NgForm) {
     if (f1.submitted) {
-      this.email = f1.value["email"];
-      this.username = f1.value["username"]
+      localStorage.setItem("username", f1.value["username"])
       this.service.signUp(f1.value).subscribe(data => {
         if (data["err"]) {
           console.log('error')
