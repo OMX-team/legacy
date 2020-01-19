@@ -5,7 +5,7 @@ let express = require("express"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
   dataBase = require("./database/db");
-require('dotenv').config()
+require("dotenv").config();
 //////////////////////////////////
 // Connecting mongoDB
 mongoose.Promise = global.Promise;
@@ -62,7 +62,7 @@ const server = app.listen(port, () => {
 // });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

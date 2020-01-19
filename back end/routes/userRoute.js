@@ -207,12 +207,15 @@ userRoute.route("/:id").get((req, res) => {
 });
 
 userRoute.route("/:id/uploadImage").post(
-  passport.authenticate("jwt", {
-    session: false
-  }),
-  upload.single("photo"),
+  //passport.authenticate("jwt", {
+  //session: false
+  //}),
+  // upload.single("photo"),
   (req, res) => {
-    console.log(req.file);
+    console.log("testtttt");
+    // console.log(req.body);
+    // console.log({ reqhead: req.headers });
+    console.log({ req: req[file] });
     User.findByIdAndUpdate(
       req.user._id,
       {

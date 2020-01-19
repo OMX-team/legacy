@@ -12,13 +12,14 @@ export class TestUploadComponent implements OnInit {
   ngOnInit() {}
   onFileUpload(event) {
     this.photo = event.target.files[0];
+    console.log(this.photo);
   }
   upload() {
-    console.log(this.photo);
+    console.log({ photo: this.photo });
     this.service
       .uploadToServer(this.photo)
       .toPromise()
       .then(res => console.log(res))
-      .catch(err => console.log("err", err));
+      .catch(err => console.log("errrrrr", err));
   }
 }
