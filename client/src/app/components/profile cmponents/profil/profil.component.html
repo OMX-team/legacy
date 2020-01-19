@@ -1,54 +1,26 @@
-<h3>Hello , welcome to my profile</h3>
-<div class="row">
-  <div class="col-md-4">
-    <!--Card-->
-    <mdb-card cascade="true" wider="true">
-      <!--Card image-->
-      <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-        <mdb-card-img [src]="info.photo"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-      <!--/Card image-->
+<br>
+<br>
+<br>
 
-      <mdb-card-body cascade="true" class="text-center">
-        <!--Card content-->
-        <!--Title-->
-        <h4 class="card-title">
-          <strong>my name is :{{ info.username }}</strong>
-        </h4>
-        <h5 class="indigo-text">
-          <strong>cal me on :{{ info.phone }}</strong>
-        </h5>
 
-        <mdb-card-text>
-          <h3>I'm rated {{ rating }} /5</h3>
-        </mdb-card-text>
+<div class="allcom"> 
+  <div class="card1">
+    <div class="imgholder"><div class="img" [style.background-image]="'url('+info.photo+')'"></div></div>
+    <div class="rest">
+        <h2>{{ info.username }}<mdb-icon style="color: white;margin-left: 10px; font-size: 25px;" fas icon="edit"></mdb-icon></h2>
+        <h3 ><mdb-icon fas icon="phone-volume"></mdb-icon> {{ info.phone }} </h3>
+        <h6>I'm rated {{ rating }} /5</h6>
+        
+    </div>
+    <app-start-rating [id]="id"></app-start-rating>
+    <app-freinds ></app-freinds>
 
-        <!--Linkedin-->
-        <a class="px-2 icons-sm li-ic">
-          <mdb-icon fab icon="linkedin-in"> </mdb-icon>
-        </a>
-        <!--Twitter-->
-        <a class="px-2 icons-sm tw-ic">
-          <mdb-icon fab icon="twitter"> </mdb-icon>
-        </a>
-        <!--Dribbble-->
-        <a class="px-2 icons-sm fb-ic">
-          <mdb-icon fab icon="facebook-f"> </mdb-icon>
-        </a>
-      </mdb-card-body>
-      <!--/.Card content-->
-    </mdb-card>
-    <!--/.Card-->
   </div>
-</div>
+  <!-- /// -->
 
-<!-- /// -->
-<div *ngIf="render">
-  <app-product-card></app-product-card>
-  <app-start-rating [id]="id"></app-start-rating>
-  <br />
-  <app-freinds></app-freinds>
+
+  <div *ngIf="render" class="profinf">
+    <app-product-card></app-product-card> 
+  </div>
+  
 </div>

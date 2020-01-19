@@ -1,68 +1,60 @@
-<div id="container" *ngIf="render">
-  <div>
-    <button
-      mdbBtn
-      type="button"
-      gradient="blue"
-      rounded="true"
-      id="previous"
-      mdbWavesEffect
-      (click)="previousProduct($event)"
-    >
-      previous
-    </button>
-  </div>
-  <mdb-card>
-    <!--Card image-->
-    <div class="view overlay waves-light" mdbWavesEffect>
-      <mdb-card-img [src]="info.products[counter].photo"></mdb-card-img>
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
+  <section>
+    <!-- <mdb-card-img [src]="info.products[counter].photo"></mdb-card-img> -->
+    <img [src]="info.products[counter].photo" alt="img">
+    
+
+    <div class="info">
+      <h4>Product Name : {{ info.products[counter].name }}</h4>
+      <h3>
+          Description :  {{ info.products[counter].description }}
+      </h3>
+      <div class="btns">
+         <button
+          mdbBtn
+          type="button"
+          gradient="blue"
+          rounded="true"
+          id="previous"
+          mdbWavesEffect
+          (click)="previousProduct($event)"
+          >
+          <mdb-icon fas icon="arrow-left"></mdb-icon>
+          </button> 
+          <h5 >
+            Price : {{ info.products[counter].price }} $
+          </h5>
+          <button
+          mdbBtn
+          type="button"
+          gradient="blue"
+          rounded="true"
+          id="previous"
+          mdbWavesEffect
+          (click)="nextProduct($event)"
+          >
+          <mdb-icon fas icon="arrow-right"></mdb-icon>
+          </button>
+        </div>
+     
     </div>
-    <!--/.Card image-->
 
-    <!--Button-->
+  </section>
+  <h1 class="time"><mdb-icon far icon="clock" class="pr-1"></mdb-icon>05/10/2015</h1>
 
-    <!--Card content-->
-    <mdb-card-body>
-      <!--Title-->
-      <mdb-card-title>
-        <h4>{{ info.products[counter].name }}</h4>
-      </mdb-card-title>
 
-      <hr />
-      <!--Text-->
-      <p class="font-small grey-dark-text mb-0">
-        {{ info.products[counter].description }}
-      </p>
-      <hr />
-      <p class="font-small grey-dark-text mb-0">
-        {{ info.products[counter].price }}
-      </p>
-    </mdb-card-body>
-    <!--/.Card content-->
-    <!-- Card footer -->
-    <mdb-card-footer class="mdb-color lighten-3 text-center">
-      <ul class="list-unstyled list-inline font-small mt-3">
-        <li class="list-inline-item pr-2 white-text">
-          <mdb-icon far icon="clock" class="pr-1"></mdb-icon>05/10/2015
-        </li>
-      </ul>
-    </mdb-card-footer>
-    <!-- Card footer -->
-  </mdb-card>
-  <div>
-    <button
-      mdbBtn
-      type="button"
-      gradient="blue"
-      rounded="true"
-      id="previous"
-      mdbWavesEffect
-      (click)="nextProduct($event)"
-    >
-      next
-    </button>
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
