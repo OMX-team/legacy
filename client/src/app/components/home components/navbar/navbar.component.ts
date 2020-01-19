@@ -1,14 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+
+import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgForm } from "@angular/forms";
-import { AuthService } from "../../auth-service/auth.service";
-import $ from "jquery";
-import {
-  CanActivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
-} from "@angular/router";
+import { NgForm } from '@angular/forms';
+import { AuthService } from "../../auth-service/auth.service"
+import { Router } from '@angular/router';
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -20,10 +15,10 @@ export class NavbarComponent implements OnInit {
   @ViewChild("frame1", { static: true }) frame1: any;
 
   logged: Boolean = false;
-  responseData;
-  redirectUrl = "/dashboard";
-
-  constructor(private service: AuthService, private router: Router) {}
+  redirectUrl = '/dashboard'
+  email: String = "";
+  username: String = "";
+  constructor(private service: AuthService, private router: Router) { }
 
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
@@ -84,13 +79,17 @@ export class NavbarComponent implements OnInit {
 
   signupUser(f1: NgForm) {
     if (f1.submitted) {
-      console.log("submitted");
+      this.email = f1.value["email"];
+      this.username = f1.value["username"]
       this.service.signUp(f1.value).subscribe(data => {
-        this.router.navigate(["/verify_Email"]);
-        this.frame1.hide();
-        // localStorage.setItem("email", f1.value["email"])
-        // localStorage.setItem("username", f1.value["username"])
-      });
+        if (data["err"]) {
+          console.log('error')
+          return;
+        }
+        this.router.navigate(['/verify_Email'])
+        this.frame1.hide(),
+          err => console.log(err)
+      })
     }
   }
 }

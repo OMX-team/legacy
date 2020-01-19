@@ -40,7 +40,7 @@ const Schema = mongoose.Schema({
     type: Boolean,
     default: true
   },
-  verify_Id: {
+  verify_code: {
     type: String,
   }
 });
