@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, ElementRef, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from '@angular/forms';
 import { AuthService } from "../../auth-service/auth.service"

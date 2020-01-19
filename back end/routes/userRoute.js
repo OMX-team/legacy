@@ -69,6 +69,7 @@ userRoute.route("/verify").post((req, res, next) => {
       });
       //check if the url correct
       if (user.verify_code === req.body.code) {
+        console.log('Account verified')
         User.findByIdAndUpdate(user._id, {
           deactivated: false,
           verify_code: ""
@@ -83,8 +84,7 @@ userRoute.route("/verify").post((req, res, next) => {
               require("./config/config").secret, {
                 expiresIn: 500
               }
-            );
-            // log the user in 
+            )
             res.json({
               success: true,
               token: "jwt " + token,
