@@ -30,4 +30,16 @@ export class ServicesService {
       this.httpOptions
     );
   }
+  getUserFollowers(id): Observable<any> {
+    return this.http.get(
+      `http://127.0.0.1:4000/api/user/${id}/followers`,
+      this.httpOptions
+    );
+  }
+  getUserFollowings(id): Observable<any> {
+    return this.http.get(
+      `http://127.0.0.1:4000/api/user/${id}/followings`,
+      this.httpOptions
+    );
+  }
 }
