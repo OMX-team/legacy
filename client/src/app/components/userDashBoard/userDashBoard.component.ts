@@ -7,10 +7,11 @@ import $ from "jquery";
   styleUrls: ["./userDashBoard.component.css"]
 })
 export class UserDashBoardComponent implements OnInit {
-  username: String = "Adam"; //should be coded
+  userId = window.location.pathname.split("/")[2]; //should be coded
 
   constructor() {}
   ngOnInit() {
+    console.log(this.userId);
     this.hideSideNav();
   }
 
