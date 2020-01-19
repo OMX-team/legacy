@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { VerifyService } from './verify.service';
-import { Router } from '@angular/router'
+import { Component, OnInit } from "@angular/core";
+import { VerifyService } from "./verify.service";
+import { Router } from "@angular/router";
 @Component({
-  selector: 'app-verify-email',
-  templateUrl: './verify-email.component.html',
-  styleUrls: ['./verify-email.component.scss']
+  selector: "app-verify-email",
+  templateUrl: "./verify-email.component.html",
+  styleUrls: ["./verify-email.component.scss"]
 })
 export class VerifyEmailComponent implements OnInit {
   code: String = "";
@@ -12,9 +12,7 @@ export class VerifyEmailComponent implements OnInit {
 
   constructor(private service: VerifyService, private router: Router) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
   verify(event) {
     if (!!this.success) {
       this.router.navigate(['/home'])

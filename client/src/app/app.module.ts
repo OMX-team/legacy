@@ -10,15 +10,15 @@ import { FirstPageComponent } from "./components/home components/first-page/firs
 import { SecondPageComponent } from "./components/home components/second-page/second-page.component";
 //////////////
 import { UserDashBoardComponent } from "./components/userDashBoard/userDashBoard.component";
-import { ProductsComponent } from "./components/products/products.component";
+import { ProductsComponent } from "./components/userDashBoard/products/products.component";
 import { CategroyComponent } from "./components/categroy/categroy.component";
-import { SideBarComponent } from "./components/side-bar/side-bar.component";
+import { SideBarComponent } from "./components/userDashBoard/side-bar/side-bar.component";
 import { ProductComponent } from "./components/product/product.component";
 import { AppComponent } from "./app.component";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { FormsModule } from "@angular/forms";
 import { AngularMaterialModule } from "./modules/angular-material/angular-material.module";
-import { AddProductComponent } from "./components/add-product/add-product.component";
+import { AddProductComponent } from "./components/userDashBoard/add-product/add-product.component";
 import { ProductCardComponent } from "./components/profile cmponents/product-card/product-card.component";
 import { ProfilComponent } from "./components/profile cmponents/profil/profil.component";
 import { StartRatingComponent } from "./components/profile cmponents/start-rating/start-rating.component";
@@ -33,14 +33,20 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "verify_Email", component: VerifyEmailComponent },
   {
-    path: "dashboard", component: UserDashBoardComponent,
+    path: "dashboard/:id",
+    component: UserDashBoardComponent,
+    pathMatch: "full",
     children: [
       { path: "add-product", component: AddProductComponent },
       { path: "category", component: CategroyComponent },
       { path: "products", component: ProductsComponent }
     ]
   },
-  { path: "profile/:id", component: ProfilComponent }
+  { path: "dashboard/:id/add-product", component: AddProductComponent },
+  { path: "dashboard/:id/category", component: CategroyComponent },
+  { path: "dashboard/:id/products", component: ProductsComponent },
+  { path: "profile/:id", component: ProfilComponent },
+  { path: "**", component: HomeComponent }
 ];
 
 @NgModule({

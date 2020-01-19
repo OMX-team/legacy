@@ -3,11 +3,11 @@
 
   <div id="prod">
     <nav (click)="hideSideNav()">
-      <a [routerLink]="['/dashboard/add-product']">Add product</a>
-      <a [routerLink]="['/dashboard/category']">Categroy</a>
-      <a [routerLink]="['/dashboard/products']">Products</a>
+      <a [routerLink]="['add-product']">Add product </a>
+      <a [routerLink]="['category']">Categroy</a>
+      <a [routerLink]="['products']">Products</a>
     </nav>
-
+    <router-outlet></router-outlet>
     <app-products></app-products>
     <router-outlet></router-outlet>
   </div>
