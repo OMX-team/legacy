@@ -9,16 +9,16 @@ import { async } from "@angular/core/testing";
 export class TestUploadComponent implements OnInit {
   constructor(private service: TestService) {}
   photo = null;
-  info;
   ngOnInit() {}
   onFileUpload(event) {
     this.photo = event.target.files[0];
   }
   upload() {
+    console.log(this.photo);
     this.service
       .uploadToServer(this.photo)
       .toPromise()
       .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .catch(err => console.log("err", err));
   }
 }
