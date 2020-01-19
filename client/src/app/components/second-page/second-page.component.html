@@ -1,0 +1,18 @@
+<div style="height: 80vh;" id="sec-page">
+<div class="content">
+    <a *ngFor="let elm of data" class="card" href="#!">
+        <div class="front" [style.background-image]="'url('+elm.img+')'">
+            <h2>{{elm.name}}</h2>
+        </div>
+        <div class="back">
+            <div id="back">
+                <h3 style=" background: #007fbf; color:  white;">description:</h3>
+                <hr style=" background: #007fbf; color:  white;"/>
+                <h3 style=" background: #007fbf; color:  white;">{{elm.description}}</h3>
+                <hr style=" background: #007fbf ;color:  white;"/>
+                <h3 style=" background: #007fbf; color:  white;">price : {{ elm.price }} $</h3>
+            </div>
+        </div>
+    </a>
+</div>
+</div>

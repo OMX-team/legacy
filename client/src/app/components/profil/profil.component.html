@@ -1,0 +1,11 @@
+<h3>Hello , welcome to my profil</h3>
+
+<div *ngIf="render">
+  <app-product-card></app-product-card>
+  <div><mdb-icon fas icon="signature"> </mdb-icon>:{{ info._id }}</div>
+  <div><mdb-icon far icon="file-alt"></mdb-icon>:{{ info.username }}</div>
+  <div><mdb-icon fas icon="phone-slash"></mdb-icon>:{{ info.phone }}</div>
+
+  <!-- <button (click)="showdata()"></button> -->
+  <app-start-rating [id]="id"></app-start-rating>
+</div>
