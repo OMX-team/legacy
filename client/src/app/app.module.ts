@@ -22,31 +22,31 @@ import { FirstPageComponent } from "./components/first-page/first-page.component
 import { SecondPageComponent } from "./components/second-page/second-page.component";
 import { AuthService } from "./components/auth-service/auth.service";
 import { HomeComponent } from "./components/home/home.component";
-
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component'
 import { FreindsComponent } from "./components/freinds/freinds.component";
 
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
-// const appRoutes: Routes = [
+// const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
+const appRoutes: Routes = [
 
-
-//   {
-//     path: "home", component: HomeComponent, children:
-//       [
-//         { path: "quick", component: SecondPageComponent },
-//       ]
-//   },
-//   { path: '', redirectTo: 'home', pathMatch: 'full' },
-//   {
-//     path: "dashboard", component: UserComponent,
-//     children: [
-//       { path: "add-product", component: AddProductComponent },
-//       { path: "category", component: CategroyComponent },
-//       {
-//         path: "products", component: ProductsComponent
-//       },
-//     ]
-//   },
-// ];
+  { path: "profile/:id", component: ProfilComponent },
+  {
+    path: "home", component: HomeComponent, children:
+      [
+        { path: "quick", component: SecondPageComponent },
+      ]
+  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: "dashboard", component: UserComponent,
+    children: [
+      { path: "add-product", component: AddProductComponent },
+      { path: "category", component: CategroyComponent },
+      {
+        path: "products", component: ProductsComponent
+      },
+    ]
+  },
+];
 
 
 
