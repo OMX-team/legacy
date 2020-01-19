@@ -11,7 +11,7 @@ export class ServicesService {
     const obj = { rating, id };
     let data = this.http
       .patch(`http://localhost:4000/api/user/ratings/`, obj)
-      .subscribe(data => {});
+      .subscribe(data => {console.log(data)});
   }
 
   getUserInfo(id): Observable<any> {

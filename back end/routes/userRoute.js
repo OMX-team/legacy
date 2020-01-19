@@ -16,7 +16,7 @@ const bcrypt = require("bcryptjs");
 const upload = require("./uploadroute");
 const sendEmail = require("../emailValidation/emailSender").sendEmail;
 console.log("send function", sendEmail);
-const generateId = require("uniqid");
+const generateId = require("shortid");
 
 // user model   //note to self import the model
 let user = require("../database/userDB");
@@ -31,24 +31,19 @@ userRoute.route("/signUp").post((req, res) => {
       });
     else {
       req.body.password = hash;
-      //generate id and set it the request body
-      req.body.verify_code = generateId()
       User.create(req.body, (err, created) => {
         if (err)
           return res.json({
             err
           });
         created.password = undefined; // just a secuirity messerment dnt worry about it
-        sendEmail(created.email, req.body.username, created.verify_code).then(({
-            result
-          }) => {
-            console.log('message sent')
-            console.log('result', result)
+        sendEmail(created.email, req.body.username, created.verify_code)
+          .then(({ result }) => {
             created.verify_code = undefined;
             res.json({
               success: true,
               created
-            })
+            });
           })
           .catch(err => {
             return res.json({
@@ -62,9 +57,10 @@ userRoute.route("/signUp").post((req, res) => {
 });
 // Verify route + update deactivated
 userRoute.route("/verify").post((req, res, next) => {
-  //changed the route to post for better security 
-  User.findOne({
-      username: req.body.user,
+  //changed the route to post for better security
+  User.findOne(
+    {
+      username: req.body.username
     },
     (err, user) => {
       if (err)
@@ -73,28 +69,33 @@ userRoute.route("/verify").post((req, res, next) => {
           err
         });
       //check if the url correct
-      if (user.verify_code === req.body.verify_code) {
-        User.findByIdAndUpdate(user._id, {
-          deactivated: false
-        }, (err, result) => {
-          if (err) {
-            res.json({
-              err
-            })
-          } else {
-            const token = jwt.sign(
-              user.toJSON(),
-              require("./config/config").secret, {
-                expiresIn: 500
-                //604800 // 1 week
-              }
-            );
-            // log the user in 
-            res.json({
-              success: true,
-              token: "jwt " + token,
-              user
-            });
+      if (user.verify_code === req.body.code) {
+        User.findByIdAndUpdate(
+          user._id,
+          {
+            deactivated: false,
+            verify_code: ""
+          },
+          (err, result) => {
+            if (err) {
+              res.json({
+                err
+              });
+            } else {
+              const token = jwt.sign(
+                user.toJSON(),
+                require("./config/config").secret,
+                {
+                  expiresIn: 500
+                }
+              );
+              // log the user in
+              res.json({
+                success: true,
+                token: "jwt " + token,
+                user
+              });
+            }
           }
         );
       } else {
@@ -105,7 +106,39 @@ userRoute.route("/verify").post((req, res, next) => {
     }
   );
 });
-
+userRoute.route("/resend-msg").post((req, res, next) => {
+  const newVerifyCode = generateId();
+  User.findOneAndUpdate(
+    {
+      username: req.body.username
+    },
+    {
+      verify_code: newVerifyCode
+    },
+    (err, user) => {
+      if (err)
+        return res.json({
+          success: false,
+          err
+        });
+      sendEmail(user.email, user.username, newVerifyCode)
+        .then(({ result }) => {
+          res.json({
+            success: true,
+            result
+          });
+        })
+        .catch(err => {
+          if (err) {
+            return res.json({
+              success: false,
+              err
+            });
+          }
+        });
+    }
+  );
+});
 ////////////////
 userRoute.route("/logIn").post((req, res, next) => {
   const username = req.body.username;
@@ -149,12 +182,15 @@ userRoute.route("/logIn").post((req, res, next) => {
   );
 });
 
-userRoute
-  .route("/me")
-  .get(passport.authenticate("jwt", { session: false }), (req, res) => {
+userRoute.route("/me").get(
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
     req.user.password = undefined;
     res.send(req.user);
-  });
+  }
+);
 
 userRoute.route("/:id").get((req, res) => {
   //fetch user from data base
@@ -267,7 +303,7 @@ userRoute.route("/:id/follow").get(
             });
           else
             res.json({
-              success: true
+              success: "followed"
             });
         });
       } else {
@@ -279,7 +315,7 @@ userRoute.route("/:id/follow").get(
             });
           else
             res.json({
-              success: true
+              success: "un folowed"
             });
         });
       }
@@ -331,13 +367,13 @@ userRoute
 
 //updates the raiting
 userRoute.route("/ratings").patch((req, res) => {
-  console.log("hi");
   //check it
   let rating = parseInt(req.body.rating);
   let id = req.body.id;
   userDB
     .findOne(id)
     .then(user => {
+      console.log(user.rating);
       if (user.rating === 0) {
         return (user.rating = rating);
       }

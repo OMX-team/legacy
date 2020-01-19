@@ -14,13 +14,12 @@ export class StartRatingComponent implements OnInit {
   //  @Input() id;
   async ngOnInit() {
     let data = await this.service.getUserInfo(this.id).toPromise();
-    console.log(data);
+    // console.log(data);
     this.rate = parseFloat(data.user.rating).toFixed(2);
+    // console.log(this.rate)
   }
-  rateValue(event) {
-    console.log(this.value);
-    console.log(event.target.innerText);
-    this.value = parseInt(event.target.innerText);
-    this.service.updateRating(this.value, this.id);
-  }
+            rateValue($event) {
+             this.value = parseInt($event.target.value);
+             this.service.updateRating(this.value, this.id);
+            }
 }
