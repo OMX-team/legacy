@@ -27,6 +27,7 @@ import { FreindsComponent } from "./components/freinds/freinds.component";
 const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 // const appRoutes: Routes = [
 
+
 //   {
 //     path: "home", component: HomeComponent, children:
 //       [
@@ -45,6 +46,7 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
 //     ]
 //   },
 // ];
+
 
 @NgModule({
   declarations: [
