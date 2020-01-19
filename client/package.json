@@ -25,6 +25,7 @@
     "@material/fab": "^4.0.0",
     "angular-bootstrap-md": "8.8.1",
     "chart.js": "^2.5.0",
+    "dotenv": "^8.2.0",
     "g": "^2.0.1",
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",

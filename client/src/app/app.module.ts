@@ -22,10 +22,11 @@ import { AddProductComponent } from "./components/add-product/add-product.compon
 import { ProductCardComponent } from "./components/profile cmponents/product-card/product-card.component";
 import { ProfilComponent } from "./components/profile cmponents/profil/profil.component";
 import { StartRatingComponent } from "./components/profile cmponents/start-rating/start-rating.component";
+import { FreindsComponent } from "./components/freinds/freinds.component";
 import { ServicesService } from "./components/services/services.service";
-
+import { VerifyEmailComponent } from "./components/verify-email/verify-email.component";
 import { AuthService } from "./components/auth-service/auth.service";
-import { TestUploadComponent } from './components/test-upload/test-upload.component';
+import { TestUploadComponent } from "./components/test-upload/test-upload.component";
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -58,7 +59,9 @@ const appRoutes: Routes = [
     ProfilComponent,
     StartRatingComponent,
     HomeComponent,
-    TestUploadComponent
+    VerifyEmailComponent,
+    TestUploadComponent,
+    FreindsComponent
   ],
   imports: [
     BrowserModule,

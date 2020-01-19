@@ -60,9 +60,9 @@
       <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
         <div id="logininputs">
           <input ngModel name="username" type="text" id="orangeForm-name" class="form-control" placeholder="user name"
-            mdbInput>
+            mdbInput >
           <input ngModel name="password" type="password" id="orangeForm-name" class="form-control"
-            placeholder="password" mdbInput>
+            placeholder="password" mdbInput required>
         </div>
         <div class="modal-footer d-flex justify-content-center" style="border: none;">
           <button mdbBtn color="#00BFFF" class="waves-light btn" mdbWavesEffect>Login</button>
