@@ -16,7 +16,7 @@ export class VerifyEmailComponent implements OnInit {
     private router: Router,
     private navService: AuthService
   ) {}
-  username;
+  username = "s";
 
   async ngOnInit() {
     this.username = this.navService.user;
@@ -41,10 +41,10 @@ export class VerifyEmailComponent implements OnInit {
     });
   }
   reSend() {
-    if (!!this.success) {
+    if (this.success === true) {
       this.router.navigate(['/home'])
     }
     //send post request to the backend
-    this.service.reSendVerifyMsg(this.username)
+    if(!!this.username) this.service.reSendVerifyMsg(this.username)
   }
 }

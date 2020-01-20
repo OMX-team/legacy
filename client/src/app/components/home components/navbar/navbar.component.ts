@@ -66,11 +66,12 @@ export class NavbarComponent implements OnInit {
     if (f.submitted) {
       this.service.signin(f.value).subscribe(
         data => {
+          console.log(data)
           if (data["success"]) {
             this.username = data["user"]["username"]
             this.id =  data["user"]["_id"]
             this.service.userId = this.id
-            localStorage.setItem("token", data["user"]["token"])
+            localStorage.setItem("token", data["token"])
             this.logged = true;
             this.frame.hide();
             this.router.navigate([`/dashboard/:${this.id}`]);
