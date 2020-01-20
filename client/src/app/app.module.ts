@@ -34,7 +34,7 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "verify_Email", component: VerifyEmailComponent },
   {
-    path: 'dashboard',
+    path: 'dashboard/:id',
     component: UserDashBoardComponent,
     pathMatch: "full",
     children: [
@@ -43,9 +43,9 @@ const appRoutes: Routes = [
       { path: "products", component: ProductsComponent }
     ]
   },
-  { path: "dashboard/add-product", component: AddProductComponent },
-  { path: "dashboard/category", component: CategroyComponent },
-  { path: "dashboard/products", component: ProductsComponent },
+  { path: "dashboard/:id/add-product", component: AddProductComponent },
+  { path: "dashboard/:id/category", component: CategroyComponent },
+  { path: "dashboard/:id/products", component: ProductsComponent },
   { path: "profile/:id", component: ProfilComponent },
   { path: "**", component: HomeComponent }
 ];
