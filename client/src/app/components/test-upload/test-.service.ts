@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+
 import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
@@ -14,9 +15,12 @@ export class TestService {
   };
 
   uploadToServer(photo) {
+    let formData = new FormData();
+    formData.append("photo", photo);
+
     return this.http.post(
       `http://localhost:4000/api/user/5e202f545eb7ee3a0c5e4748/uploadImage`,
-      { photo },
+      formData,
       this.httpOptions
     );
   }

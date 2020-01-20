@@ -25,40 +25,53 @@ searchRoute.route("/").get((req, res) => {
     $options: "i"
   };
   if (req.query.usedfor == "People") {
-    User.find({
-        $or: [{
-          username: regex
-        }, {
-          firstname: regex
-        }, {
-          lastname: regex
-        }]
+    User.find(
+      {
+        $or: [
+          {
+            username: regex
+          },
+          {
+            firstname: regex
+          },
+          {
+            lastname: regex
+          }
+        ]
       },
       (err, users) => {
-        if (err) res.json({
-          success: false,
-          err
-        });
-        else res.json({
-          users
-        });
+        if (err)
+          res.json({
+            success: false,
+            err
+          });
+        else
+          res.json({
+            users
+          });
       }
     );
   } else if (req.query.usedfor == "Products") {
-    Product.find({
-      name: regex
-    }, (err, products) => {
-      if (err) res.json({
-        success: false,
-        err
-      });
-      else res.json({
-        products
-      });
+    Product.find(
+      {
+        name: regex
+      },
+      (err, products) => {
+        if (err)
+          res.json({
+            success: false,
+            err
+          });
+        else
+          res.json({
+            products
+          });
+      }
+    );
+  } else
+    res.json({
+      success: false
     });
-  } else res.json({
-    success: false
-  });
 });
 
 module.exports = searchRoute;

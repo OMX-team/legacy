@@ -8,6 +8,9 @@ export class VerifyService {
   constructor(private http: HttpService) {
   }
   verify(username, code) {
-    return this.http.postRequest({ username, code }, 'user/verify')
+    return this.http.postRequest({ username, code }, '/user/verify')
+  }
+  reSendVerifyMsg(username) {
+    return this.http.postRequest({ username }, '/user/resend-msg')
   }
 }

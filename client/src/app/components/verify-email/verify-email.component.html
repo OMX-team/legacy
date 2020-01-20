@@ -3,7 +3,7 @@
   <h3>Few steps remaining...</h3>
   <h6>Email has been sent to {{email}}</h6>
   <br />
-  <form (submit)="reVerify()">
+  <form (submit)="verify($event)">
     <label for="exampleForm2">Enter your vertifcatoin code</label><br />
     <input type="text" id="exampleForm2" class="form-control-md-6" name="code" [(ngModel)]="code" required>
     <hr />
