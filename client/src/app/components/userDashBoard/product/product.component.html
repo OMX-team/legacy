@@ -25,12 +25,12 @@
       </div>
     </div>
     <div class="card__img"></div>
-    <a href="#" class="card_link">
-      <div
+    <!-- <a href="#" class="card_link"> -->
+      <div (click)='goToProfile(product)'
         class="card__img--hover"
         [style.background-image]="'url(' + product.photo + ')'"
       ></div>
-    </a>
+    <!-- </a> -->
     <div class="card__info">
       <span class="card__category"> {{ product.name }}</span>
       <h3 class="card__title">description :</h3>

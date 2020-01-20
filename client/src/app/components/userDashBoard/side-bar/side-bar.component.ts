@@ -34,7 +34,6 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {}
 
 goToUser(id){
- 
    this.router.navigate([`/profile/${id}`])
 }
   profile (){
@@ -48,8 +47,8 @@ goToUser(id){
     this.router.navigate(["/home"]);
   }
 
-logout(){
-  this.service.logOut()
-}
+// logout(){
+//   this.service.logOut()
+// }
 
 }
