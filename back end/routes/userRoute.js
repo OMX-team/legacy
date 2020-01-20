@@ -140,6 +140,7 @@ userRoute.route("/resend-msg").post((req, res, next) => {
 })
 ////////////////
 userRoute.route("/logIn").post((req, res, next) => {
+  console.log(req.body)
   const username = req.body.username;
   const password = req.body.password;
   User.findOne({
