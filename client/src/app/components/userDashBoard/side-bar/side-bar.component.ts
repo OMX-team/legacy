@@ -32,6 +32,7 @@ export class SideBarComponent implements OnInit {
     });
   }
   ngOnInit() {}
+
 goToUser(id){
  
    this.router.navigate([`/profile/${id}`])
@@ -46,4 +47,9 @@ goToUser(id){
     // this.logged = false;
     this.router.navigate(["/home"]);
   }
+
+logout(){
+  this.service.logOut()
+}
+
 }

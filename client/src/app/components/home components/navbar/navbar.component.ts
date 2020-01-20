@@ -66,14 +66,13 @@ export class NavbarComponent implements OnInit {
     if (f.submitted) {
       this.service.signin(f.value).subscribe(
         data => {
-          localStorage.setItem("username", data["username"]);
-          localStorage.setItem("id", data["_id"]);
-
           if (data["success"]) {
-            localStorage.setItem("token", data["token"]);
+            localStorage.setItem("username", data["user"]["username"]);
+            localStorage.setItem("id", data["user"]["_id"]);
+            localStorage.setItem("token", data["user"]["token"]);
             this.logged = true;
             this.frame.hide();
-            this.router.navigate([this.redirectUrl]);
+            this.router.navigate(['/dashboard']);
           }
         },
         err => {
