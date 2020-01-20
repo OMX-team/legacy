@@ -11,13 +11,6 @@ export class VerifyEmailComponent implements OnInit {
   code: String = "";
   success = null;
 
-<<<<<<< HEAD
-  constructor(private service: VerifyService, private router: Router) { }
-
-  ngOnInit() { }
-=======
-  // @Input() email: String;
-  // @Input() username: String;
   constructor(
     private service: VerifyService,
     private router: Router,
@@ -28,27 +21,11 @@ export class VerifyEmailComponent implements OnInit {
   async ngOnInit() {
     this.username = this.navService.user;
   }
->>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
   verify(event) {
     if (!!this.success) {
       this.router.navigate(['/home'])
       return;
     }
-<<<<<<< HEAD
-    event.preventDefault()
-    this.service.verify(localStorage.getItem("username"), this.code)
-      .subscribe(result => {
-        console.log('before success',
-          'result', result)
-        if (result["success"]) {
-          localStorage.setItem("token", result["token"])
-          this.success = true
-          this.router.navigate(['/dashboard'])
-        } else {
-          this.success = false
-        }
-      })
-=======
 
     event.preventDefault();
     console.log("the other ", this.username);
@@ -63,7 +40,6 @@ export class VerifyEmailComponent implements OnInit {
         this.success = false;
       }
     });
->>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
   }
   reSend() {
     if (!!this.success) {

@@ -48,7 +48,7 @@ app.use(
     extended: false
   })
 );
-// app.use(cors());
+app.use(cors());
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/search", searchtRoute);

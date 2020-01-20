@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-=======
 import {
   Component,
   OnInit,
@@ -9,7 +5,6 @@ import {
   ElementRef,
   Output
 } from "@angular/core";
->>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../../auth-service/auth.service";
@@ -27,14 +22,10 @@ export class NavbarComponent implements OnInit {
   @ViewChild("frame1", { static: true }) frame1: any;
 
   logged: Boolean = false;
-<<<<<<< HEAD
-  constructor(private service: AuthService, private router: Router) { }
-=======
   redirectUrl = "/dashboard";
   email: String = "";
   username: String = "";
   constructor(private service: AuthService, private router: Router) {}
->>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
 
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
@@ -75,11 +66,10 @@ export class NavbarComponent implements OnInit {
     if (f.submitted) {
       this.service.signin(f.value).subscribe(
         data => {
-          localStorage.setItem("username", data["username"]);
-          localStorage.setItem("id", data["_id"]);
-          console.log(data)
           if (data["success"]) {
-            localStorage.setItem("token", data["token"]);
+            localStorage.setItem("username", data["user"]["username"]);
+            localStorage.setItem("id", data["user"]["_id"]);
+            localStorage.setItem("token", data["user"]["token"]);
             this.logged = true;
             this.frame.hide();
             this.router.navigate(['/dashboard']);
@@ -95,11 +85,6 @@ export class NavbarComponent implements OnInit {
 
   signupUser(f1: NgForm) {
     if (f1.submitted) {
-<<<<<<< HEAD
-      localStorage.setItem("username", f1.value["username"])
-      this.service.signUp(f1.value).subscribe(data => {
-        if (data["err"]) {
-=======
       this.email = f1.value["email"];
       this.username = f1.value["username"];
       this.service.user = this.username;
@@ -107,7 +92,6 @@ export class NavbarComponent implements OnInit {
       this.service.signUp(f1.value).subscribe(data => {
         if (data["err"]) {
           console.log("error");
->>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
           return;
         }
         this.router.navigate(["/verify_Email"]);
