@@ -16,6 +16,7 @@ export class SideBarService {
   search(query, usedfor) {
     return this.http.getRequest(`/search?keyword=${query}&usedfor=${usedfor}`);
   }
+
   logOut(): void {
     localStorage.removeItem("token");
     localStorage.removeItem("id");

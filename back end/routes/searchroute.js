@@ -46,9 +46,10 @@ searchRoute.route("/").get((req, res) => {
             err
           });
         else
-          res.json({
+          {
+            res.json({
             users
-          });
+          });}
       }
     );
   } else if (req.query.usedfor == "Products") {

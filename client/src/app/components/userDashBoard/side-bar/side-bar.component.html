@@ -18,7 +18,7 @@
 
     <div *ngIf="users" id="catego">
       <div  *ngFor="let user of users.users">
-        <li><a href=""><mdb-icon class="icon" fas icon="user"></mdb-icon>{{user.username}}</a></li>
+        <li [id]="user[_id]" (click)='goToUser(user._id)'><a ><mdb-icon class="icon" fas icon="user"></mdb-icon>{{user.username}}</a></li>
       </div>
     </div>
 
@@ -26,9 +26,11 @@
   </ul>
   <button id="sidebar-btn" (click)="showSideNav()"><mdb-icon fas icon="bars"></mdb-icon></button>
   
-  <li id="logout"class="proff"><a routerLink="/profile" id="user"><mdb-icon fas icon="user-alt" ></mdb-icon> {{ user }} </a></li>
+  <li id="logout"class="proff"><a (click)="profile()" id="user"><mdb-icon fas icon="user-alt" ></mdb-icon> {{ user }} </a></li>
+
 
   <button type="button" id="logout"  (click)="logout()"> <mdb-icon style ="color: white;"fas icon="sign-out-alt"></mdb-icon> </button>
+
 
   
 
