@@ -1,47 +1,48 @@
-  <section>
-    <!-- <mdb-card-img [src]="info.products[counter].photo"></mdb-card-img> -->
-    <img [src]="info.products[counter].photo" alt="img">
+
+
+  <div class="card" id="card">
+    <!--  -->
     
+    <img class="card__img" [src]="info.products[counter].photo" style="height: 100%; width: 80%;border:1px solid #555; box-shadow:10px 10px 19px #555;; 
+    border-radius: 20px 20px 20px 20px;" 
+    />
+       
+    <!-- </div> -->
+    <!--  -->
+    <div class="card__description">
 
-    <div class="info">
-      <h4>Product Name : {{ info.products[counter].name }}</h4>
-      <h3>
-          Description :  {{ info.products[counter].description }}
-      </h3>
-      <div class="btns">
-         <button
-          mdbBtn
-          type="button"
-          gradient="blue"
-          rounded="true"
-          id="previous"
-          mdbWavesEffect
-          (click)="previousProduct($event)"
-          >
-          <mdb-icon fas icon="arrow-left"></mdb-icon>
-          </button> 
-          <h5 >
-            Price : {{ info.products[counter].price }} $
-          </h5>
-          <button
-          mdbBtn
-          type="button"
-          gradient="blue"
-          rounded="true"
-          id="previous"
-          mdbWavesEffect
-          (click)="nextProduct($event)"
-          >
-          <mdb-icon fas icon="arrow-right"></mdb-icon>
-          </button>
+        <div class="card__container">
+            <!--  -->
+            <div class="card__info">
+                <div class="card__header">
+                  <app-start-rating [id]="id" style="width: 350px;"></app-start-rating>
+                    <p class="card__price">{{ info.products[counter].price }} $</p>
+                </div>
+                <h1 class="card__title" >{{ info.products[counter].name }} </h1>
+                <h2 class="card__subtitle">Product description : {{ info.products[counter].description }}</h2>
+            </div>
+            <div class="btns" style=" display: flex;justify-content: center;position: relative; bottom:0px;height: 200px;">
+              <button
+              style="height: 40px;bottom: 0; position: absolute;left: 10px;background:linear-gradient(to bottom right, #C90A6D, #FF48A0) ;border-radius:20px 20px 20px 20px ;color: white;"
+               mdbBtn
+               type="button"
+               mdbWavesEffect
+               (click)="previousProduct($event)"
+               >
+               <mdb-icon fas icon="arrow-left"></mdb-icon>
+               </button> 
+            
+               <button mdbBtn type="button"  id="previous" mdbWavesEffect
+                style="height: 40px;bottom: 0; position: absolute;right: 10px; background:linear-gradient(to bottom right, #C90A6D, #FF48A0);border-radius:20px 20px 20px 20px;color: white; "
+               (click)="nextProduct($event)"
+               >
+               <mdb-icon fas icon="arrow-right"></mdb-icon>
+               </button>
+             </div>
+            <a class="card__button" style="color: white;">view seller</a>
         </div>
-     
     </div>
-
-  </section>
-  <h1 class="time"><mdb-icon far icon="clock" class="pr-1"></mdb-icon>05/10/2015</h1>
-
-
+</div>
 
 
 

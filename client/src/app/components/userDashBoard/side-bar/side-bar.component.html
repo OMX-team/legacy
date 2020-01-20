@@ -14,8 +14,7 @@
 
   </form>
   <ul>
-    <li id="cat"><a [routerLink]="['dashboard/categroy']"  id="cat"> categroy </a></li>
-    <li class="proff"><a routerLink="/profile" id="user"> {{ user }} </a></li>
+    <!-- <li id="cat"><a [routerLink]="['dashboard/categroy']"  id="cat"> categroy </a></li> -->
 
     <div *ngIf="users" id="catego">
       <div  *ngFor="let user of users.users">
@@ -25,10 +24,11 @@
 
    
   </ul>
-  <button id="sidebar-btn" (click)="showSideNav()"><mdb-icon fas icon="arrows-alt-h"></mdb-icon></button>
+  <button id="sidebar-btn" (click)="showSideNav()"><mdb-icon fas icon="bars"></mdb-icon></button>
   
-    
-      <button type="button" id="logout" >  Log out </button>
+  <li id="logout"class="proff"><a routerLink="/profile" id="user"><mdb-icon fas icon="user-alt" ></mdb-icon> {{ user }} </a></li>
+
+  <button type="button" id="logout" > <mdb-icon style ="color: white;"fas icon="sign-out-alt"></mdb-icon> </button>
     
   
 
