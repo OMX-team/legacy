@@ -7,7 +7,6 @@ const send = require('gmail-send')({
 function sendEmail(to, username, code) {
     // check the email before before sending
     var msg = {
-
         to: `${to}`,
         subject: 'Account Vertification',
         text: 'Verify Your Account',
@@ -28,10 +27,3 @@ sendEmail().then(({
 module.exports = {
     sendEmail
 }
-
-/** 
- * <h1>Hello ${username}</h1><br/>
-        <strong><h2>Thanks for registering to our website</h2></strong><br/>
-        <h5>This is your vertification code :</h5><br/>
-        <strong><h1>${code}</h1></strong>
- */

@@ -107,22 +107,19 @@ userRoute.route("/verify").post((req, res, next) => {
   );
 });
 userRoute.route("/resend-msg").post((req, res, next) => {
+  console.log(req.body.username)
   const newVerifyCode = generateId()
   User.findOneAndUpdate({
     username: req.body.username
   }, {
     verify_code: newVerifyCode
   }, (err, user) => {
-    if (!user.deactivated)
-      res.json({
-        success: false,
-        message: "Account is verified"
-      })
-
+    
     if (err) return res.json({
       success: false,
       err
     })
+    if (user.deactivated)
     sendEmail(user.email, user.username, newVerifyCode).then(({
       result
     }) => {

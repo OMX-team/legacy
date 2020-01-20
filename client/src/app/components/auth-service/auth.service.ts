@@ -7,6 +7,7 @@ import { Subject } from "rxjs";
 export class AuthService {
   constructor(private http: HttpService) {}
   user: any;
+  userId:any;
   signUp(user) {
     return this.http.postRequest(user, "/user/signUp");
   }

@@ -7,7 +7,7 @@ import { Subject } from "rxjs";
 
 export class VerifyService {
   constructor(private http: HttpService) {}
-
+  
   verify(username, code) {
     return this.http.postRequest({ username, code }, "/user/verify");
   }

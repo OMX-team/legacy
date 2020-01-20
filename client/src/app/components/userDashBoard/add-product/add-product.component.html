@@ -1,6 +1,6 @@
 <div class="container">
   <h1>ADD PRODUCT</h1>
-  <form>
+  <form (submit)="onSubmit()">
     <div class="form-group">
       <label for="name">Name</label>
       <input
@@ -89,7 +89,7 @@
       ></textarea>
     </div>
 
-    <button type="submit" (click)="onSubmit()" class="btn btn-success">
+    <button type="submit" class="btn btn-success">
       Submit
     </button>
   </form>
