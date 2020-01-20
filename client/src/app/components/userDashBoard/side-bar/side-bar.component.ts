@@ -16,6 +16,7 @@ export class SideBarComponent implements OnInit {
   usedfor: String = "People";
   usedforArray = ["Products", "People"];
   users;
+  id = window.location.pathname.split("/")[2]
   constructor(private service: SideBarService,private router: Router) {}
   @Input() user: String;
   showSideNav() {
@@ -31,6 +32,15 @@ export class SideBarComponent implements OnInit {
     });
   }
   ngOnInit() {}
+goToUser(id){
+ 
+   this.router.navigate([`/profile/${id}`])
+}
+  profile (){
+    console.log(`/profile/${this.id}`)
+    this.router.navigate([`/profile/${this.id}`]);
+  }
+
   logOut(): void {
     localStorage.removeItem("token");
     // this.logged = false;
