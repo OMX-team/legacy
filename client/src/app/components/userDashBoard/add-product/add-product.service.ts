@@ -5,6 +5,7 @@ import { HttpService } from "../../../services/http.service";
 })
 export class AddProductService {
   constructor(private http: HttpService) {}
+
   postProduct(data) {
     return this.http.postRequest(data, "/product/add");
   }
