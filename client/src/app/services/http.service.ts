@@ -11,13 +11,14 @@ export class HttpService {
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "application/json",
+      authorization: localStorage.getItem("token")
     })
   };
-
   getRequest(method) {
     return this.http.get(this.url + method);
   }
   postRequest(data = {}, method) {
+    console.log(this.httpOptions)
     return this.http.post(this.url + method, data, this.httpOptions);
   }
   followAFriend(id){

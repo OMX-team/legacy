@@ -31,12 +31,10 @@ export class VerifyEmailComponent implements OnInit {
     event.preventDefault();
     console.log("the other ", this.username);
     this.service.verify(this.username, this.code).subscribe(result => {
-      console.log(result);
       if (result["success"]) {
         localStorage.setItem("token", result["token"]);
         this.success = true;
-        console.log(this.success);
-        this.router.navigate(["/dashboard"]);
+        this.router.navigate(["/"]);
       } else {
         this.success = false;
       }

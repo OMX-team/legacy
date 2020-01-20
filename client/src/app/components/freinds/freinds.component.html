@@ -7,7 +7,7 @@
       <a ><mdb-icon fas icon="plus"></mdb-icon></a>
   </div>
   
-  <div class="icon" (click)="frame.show()">
+  <div class="icon" (click)="frame1.show()">
       <a><mdb-icon fas icon="shopping-cart"></mdb-icon></a>
   </div>
 </div>
@@ -33,5 +33,25 @@
       </ul>
     </div>
   </div>
-  
+</div>
+<div
+mdbModal
+#frame1="mdbModal"
+class="modal fade"
+id="frameModalTop"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <ul>
+      <li *ngFor="let follower of followrs">
+        <div (click)="goToUser(follower.follower._id)">
+          {{ follower.follower.username }}
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
