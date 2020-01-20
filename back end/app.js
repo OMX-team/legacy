@@ -64,6 +64,7 @@ app.use("/upload", async (req, res, next) => {
         data: imageUrl
       })
   } catch (error) {
+    console.log(error)
     next(error)
   }
 });
