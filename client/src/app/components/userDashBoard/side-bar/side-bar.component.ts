@@ -1,7 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { SideBarService } from "./side-bar.service";
 import $ from "jquery";
-@Component({
+import {
+  CanActivate,
+  Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from "@angular/router";@Component({
   selector: "app-side-bar",
   templateUrl: "./side-bar.component.html",
   styleUrls: ["./side-bar.component.css"]
@@ -11,7 +16,7 @@ export class SideBarComponent implements OnInit {
   usedfor: String = "People";
   usedforArray = ["Products", "People"];
   users;
-  constructor(private service: SideBarService) {}
+  constructor(private service: SideBarService,private router: Router) {}
   @Input() user: String;
   showSideNav() {
     $("#sidebar").toggleClass("visible");
@@ -26,4 +31,9 @@ export class SideBarComponent implements OnInit {
     });
   }
   ngOnInit() {}
+  logOut(): void {
+    localStorage.removeItem("token");
+    // this.logged = false;
+    this.router.navigate(["/home"]);
+  }
 }
