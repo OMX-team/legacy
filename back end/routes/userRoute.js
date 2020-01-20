@@ -13,7 +13,7 @@ const passport = require("passport");
 const ObjectId = require("mongodb").ObjectID;
 const bcrypt = require("bcryptjs");
 // const Items = require("../model/item");
-const upload = require("./uploadroute");
+// const upload = require("./uploadroute");
 const sendEmail = require("../emailValidation/emailSender").sendEmail;
 console.log("send function", sendEmail);
 const generateId = require("shortid");
