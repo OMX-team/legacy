@@ -1,27 +1,23 @@
-
-
-
-  <div class="all">
-    <div class="wrapper">
-   
-      
-      <div class="profile">
-          <img [style.background-image]="'url('+info.photo+')'" class="thumbnail">
-          <div class="check"><i class="fas fa-check"></i></div>
-          <h3 class="name">{{info.username }}</h3>
-          <p class="title"> I'm rated {{ rating }} </p>
-          <p class="description">phone : {{info.phone }}</p>
-          <button type="button" class="btn">follow</button>
-      </div>
-      <div class="btns">
-        <app-start-rating [id]="id"></app-start-rating>
-        <app-freinds ></app-freinds>
-      </div>
-   
-  
-  </div>
-  
-   <div *ngIf="render" class="profinf">
-      <app-product-card></app-product-card> 
+<div class="all">
+  <div class="wrapper">
+    <div class="profile">
+      <img
+        [style.background-image]="'url(' + info.photo + ')'"
+        class="thumbnail"
+      />
+      <div class="check"><i class="fas fa-check"></i></div>
+      <h3 class="name">{{ info.username }}</h3>
+      <p class="title">I'm rated {{ rating }}</p>
+      <p class="description">phone : {{ info.phone }}</p>
+      <button type="button" class="btn">follow</button>
+    </div>
+    <div class="btns">
+      <app-start-rating [id]="id"></app-start-rating>
+      <app-freinds></app-freinds>
     </div>
   </div>
+
+  <div *ngIf="render" class="profinf">
+    <app-product-card></app-product-card>
+  </div>
+</div>

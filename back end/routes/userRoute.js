@@ -69,6 +69,7 @@ userRoute.route("/verify").post((req, res, next) => {
           err
         });
       //check if the url correct
+      console.log(req.body);
       if (user.verify_code === req.body.code) {
         User.findByIdAndUpdate(
           user._id,

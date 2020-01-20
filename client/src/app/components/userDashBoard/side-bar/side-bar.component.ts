@@ -13,7 +13,6 @@ export class SideBarComponent implements OnInit {
   users;
   constructor(private service: SideBarService) {}
   @Input() user: String;
-  @Output() srhProducts = new EventEmitter<object>();
   showSideNav() {
     $("#sidebar").toggleClass("visible");
   }
