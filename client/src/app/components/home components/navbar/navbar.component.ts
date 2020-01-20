@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
   redirectUrl = "/dashboard";
   email: String = "";
   username: String = "";
+  id : String =""
   constructor(private service: AuthService, private router: Router) {}
 
   profileForm = new FormGroup({
@@ -33,7 +34,6 @@ export class NavbarComponent implements OnInit {
   });
 
   ngOnInit() {
-    console.log(this.frame1);
     this.validatingForm = new FormGroup({
       loginFormModalEmail: new FormControl("", Validators.email),
       loginFormModalPassword: new FormControl("", Validators.required),
@@ -67,12 +67,13 @@ export class NavbarComponent implements OnInit {
       this.service.signin(f.value).subscribe(
         data => {
           if (data["success"]) {
-            localStorage.setItem("username", data["user"]["username"]);
-            localStorage.setItem("id", data["user"]["_id"]);
-            localStorage.setItem("token", data["user"]["token"]);
+            this.username = data["user"]["username"]
+            this.id =  data["user"]["_id"]
+            this.service.userId = this.id
+            localStorage.setItem("token", data["user"]["token"])
             this.logged = true;
             this.frame.hide();
-            this.router.navigate(['/dashboard']);
+            this.router.navigate([`/dashboard/:${this.id}`]);
           }
         },
         err => {

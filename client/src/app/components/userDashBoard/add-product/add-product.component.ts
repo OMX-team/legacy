@@ -23,10 +23,11 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {}
   onSubmit() {
+    console.log('submitted')
     console.log(this.product);
     this.service.postProduct(this.product).subscribe(
       result => {
-        console.log("request sent!!!");
+        console.log("request sent!!!", result);
       },
       err => console.log(err)
     );
