@@ -16,6 +16,7 @@ productRoute.route("/add").post(
 
   // upload.single("photo"),
   (req, res) => {
+    console.log(req.headers)
     // req.body.photo = req.file.filename;
     req.body.user = req.user._id; //try to understand this
     req.body.available = JSON.parse(req.body.available); // should reconsider this for security
