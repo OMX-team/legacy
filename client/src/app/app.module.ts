@@ -13,7 +13,7 @@ import { UserDashBoardComponent } from "./components/userDashBoard/userDashBoard
 import { ProductsComponent } from "./components/userDashBoard/products/products.component";
 import { CategroyComponent } from "./components/categroy/categroy.component";
 import { SideBarComponent } from "./components/userDashBoard/side-bar/side-bar.component";
-import { ProductComponent } from "./components/product/product.component";
+import { ProductComponent } from "./components/userDashBoard/product/product.component";
 import { AppComponent } from "./app.component";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { FormsModule } from "@angular/forms";
