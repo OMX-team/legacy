@@ -1,34 +1,16 @@
-<div class="btns">
-  <button
-  type="button"
-  mdbBtn
-  color="primary"
-  class="waves-light"
-  data-toggle="modal"
-  data-target="#basicExample"
-  (click)="frame.show()"
-  mdbWavesEffect
->
-  followers
-</button>
-
-
-  <button
-  type="button"
-  mdbBtn
-  color="primary"
-  class="waves-light"
-  data-toggle="modal"
-  data-target="#basicExample"
-  (click)="frame.show()"
-  mdbWavesEffect
->
-  followings
-</button>
-<button (click)='followFriend()'></button>
-
+<div class="social-icons">
+  <div class="icon"  (click)="frame.show()">
+      <a ><mdb-icon fas icon="user-friends"></mdb-icon></a>
+  </div>
+  
+  <div class="icon" (click)='followFriend()'>
+      <a ><mdb-icon fas icon="plus"></mdb-icon></a>
+  </div>
+  
+  <div class="icon" (click)="frame.show()">
+      <a><mdb-icon fas icon="shopping-cart"></mdb-icon></a>
+  </div>
 </div>
-
 
 <div
   mdbModal
@@ -39,7 +21,7 @@
   role="dialog"
   aria-labelledby="myModalLabel"
   aria-hidden="true"
->
+  >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <ul>
@@ -51,7 +33,5 @@
       </ul>
     </div>
   </div>
-  <!-- /////////////////////////// -->
-  <!-- /let follower of follower / {{follower.follower.username}}*/ -->
-  <!-- ///////// -->
+  
 </div>

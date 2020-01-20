@@ -1,9 +1,21 @@
+<<<<<<< HEAD
 
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+=======
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Output
+} from "@angular/core";
+>>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { NgForm } from '@angular/forms';
-import { AuthService } from "../../auth-service/auth.service"
-import { Router } from '@angular/router';
+import { NgForm } from "@angular/forms";
+import { AuthService } from "../../auth-service/auth.service";
+import { Router } from "@angular/router";
+import { Subject } from "rxjs";
+
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -15,7 +27,14 @@ export class NavbarComponent implements OnInit {
   @ViewChild("frame1", { static: true }) frame1: any;
 
   logged: Boolean = false;
+<<<<<<< HEAD
   constructor(private service: AuthService, private router: Router) { }
+=======
+  redirectUrl = "/dashboard";
+  email: String = "";
+  username: String = "";
+  constructor(private service: AuthService, private router: Router) {}
+>>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
 
   profileForm = new FormGroup({
     loginFormModalEmail: new FormControl(""),
@@ -76,15 +95,24 @@ export class NavbarComponent implements OnInit {
 
   signupUser(f1: NgForm) {
     if (f1.submitted) {
+<<<<<<< HEAD
       localStorage.setItem("username", f1.value["username"])
       this.service.signUp(f1.value).subscribe(data => {
         if (data["err"]) {
+=======
+      this.email = f1.value["email"];
+      this.username = f1.value["username"];
+      this.service.user = this.username;
+
+      this.service.signUp(f1.value).subscribe(data => {
+        if (data["err"]) {
+          console.log("error");
+>>>>>>> a1b5b9accedfd88a8a8701d2b594e6260ed87186
           return;
         }
-        this.router.navigate(['/verify_Email'])
-        this.frame1.hide(),
-          err => console.log(err)
-      })
+        this.router.navigate(["/verify_Email"]);
+        this.frame1.hide(), err => console.log(err);
+      });
     }
   }
 }

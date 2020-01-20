@@ -27,6 +27,7 @@ import { ServicesService } from "./components/services/services.service";
 import { VerifyEmailComponent } from "./components/verify-email/verify-email.component";
 import { AuthService } from "./components/auth-service/auth.service";
 import { TestUploadComponent } from "./components/test-upload/test-upload.component";
+import { EditProfileComponent } from './components/profile cmponents/edit-profile/edit-profile.component';
 
 const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
     HomeComponent,
     VerifyEmailComponent,
     TestUploadComponent,
-    FreindsComponent
+    FreindsComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

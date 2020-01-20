@@ -1,26 +1,23 @@
-<br>
-<br>
-<br>
-
-
-<div class="allcom"> 
-  <div class="card1">
-    <div class="imgholder"><div class="img" [style.background-image]="'url('+info.photo+')'"></div></div>
-    <div class="rest">
-        <h2>{{ info.username }}<mdb-icon style="color: white;margin-left: 10px; font-size: 25px;" fas icon="edit"></mdb-icon></h2>
-        <h3 ><mdb-icon fas icon="phone-volume"></mdb-icon> {{ info.phone }} </h3>
-        <h6>I'm rated {{ rating }} /5</h6>
-        
+<div class="all">
+  <div class="wrapper">
+    <div class="profile">
+      <img
+        [style.background-image]="'url(' + info.photo + ')'"
+        class="thumbnail"
+      />
+      <div class="check"><i class="fas fa-check"></i></div>
+      <h3 class="name">{{ info.username }}</h3>
+      <p class="title">I'm rated {{ rating }}</p>
+      <p class="description">phone : {{ info.phone }}</p>
+      <button type="button" class="btn">follow</button>
     </div>
-    <app-start-rating [id]="id"></app-start-rating>
-    <app-freinds ></app-freinds>
-
+    <div class="btns">
+      <app-start-rating [id]="id"></app-start-rating>
+      <app-freinds></app-freinds>
+    </div>
   </div>
-  <!-- /// -->
-
 
   <div *ngIf="render" class="profinf">
-    <app-product-card></app-product-card> 
+    <app-product-card></app-product-card>
   </div>
-  
 </div>
