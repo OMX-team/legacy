@@ -16,12 +16,10 @@ body {
   left: -20%;
   
   transition: left 0.5s linear;
-  background-image: url(https://wallpapershome.com/images/wallpapers/lines-1080x1920-digital-red-4k-18954.jpg);
+  background-image: url(https://ecuaexperience.com/wp-content/uploads/2018/10/Green-Background-Wallpapermost-popular-green-background-wallpaper-2560x1600-PIC-WPXH352294.jpg);
   background-size: auto 100%  ;
   background-repeat: no-repeat;
   /* border-right: 2px solid rgb(247, 10, 10); */
-  border-top: 2px solid rgb(247, 10, 10);
-  border-bottom: 2px solid rgb(247, 10, 10);
   z-index: 10;
 
   
@@ -55,11 +53,11 @@ input{
   right: -50px;
   outline: none;
   border: none;
-  background-color: black;
   /* border-left: 2px solid rgb(247, 10, 10); */
   z-index: 10;
   font-size: 25px;
-  color: rgb(247, 10, 10);
+  color: rgb(1, 32, 19);
+  background: none;
 
   
 }
@@ -69,37 +67,48 @@ input{
 form{
   display: flex;
   flex-direction: column;
+  height: 25%;
 
 }
 form button{
-  width: 80%;
+  width:100%;
   margin-bottom: 10px;
-  border: 1px solid white;
+  position: relative;
+  left: 0;
   color: white;
-  border-radius:20px 20px 20px 20px;
+  background: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin:0;
+  height: 50px;
+  font-size: 25px;
+  /* border-radius:20px 20px 20px 20px; */
 
   
 }
 form select{
-  width: 80%;
-  text-align: center;
-  border: 1px solid white;
+  width:100%;
+  margin-bottom: 10px;
+  position: relative;
+  left: 0;
   color: white;
-  border-radius:20px 20px 20px 20px;
-
+  background: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin:0;
+  height: 50px;
+  font-size: 25px;
+  text-align-last:center;
+ 
 }
 form select option{
-  color: rgb(247, 10, 10);
+  color: white;
   height: 50px;
   border-radius:20px 20px 20px 20px;
+  background-color: rgb(1, 32, 19);
 
 }
-form select:hover,form button:hover{
-  background-color:#10202F;
-  color: rgb(247, 10, 10);
-  transform: scale(1.06);
-  border: 1px solid rgb(247, 10, 10);
-}
+
 
 
 ul{
@@ -108,22 +117,20 @@ ul{
   overflow-y: scroll;
 }
 #logout{
-  width: 50%;
-  position: relative;
-  left: 24%;
+ 
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   text-align: center;
-  background-color: white;
-  border: 1px solid black;
-  border-radius:20px 20px 20px 20px;
+  font-size: 25px;
+  background: none;
+  border: none;
+
+  
 }
-#logout:hover{
-  background-color:#10202F;
-  color: rgb(247, 10, 10);
-  transform: scale(1.06);
-  border: 1px solid rgb(247, 10, 10);
-}
+
 #cat{
-  color: rgb(247, 10, 10);
+  color: white;
   width: 100%;
   text-align: center;
   font-size: 30px;
@@ -137,6 +144,8 @@ li{
 }
 a{
   text-decoration: none;
+  width: 100%;
+  text-align: center;
  
 }
 #catego li a{
@@ -148,22 +157,10 @@ a{
   text-align: center;
 
 }
-#catego li:hover a{
-  color: rgb(247, 10, 10);
-}
-#catego li:hover{
-  color: rgb(247, 10, 10);
-  transform: scale(1.06);
-  border: 1px solid rgb(247, 10, 10);
-  transform: scaleY(1.2);
-  transform: translateY(-2px);
-  transition: 0.3s;
-  background-color: #10202F;
 
-}
 #catego li{
   height: 60px;
-  border: 2px solid white;
+  border-top: 1px solid #eee;
   width: 100%;
   margin-bottom: 10px;
   transition: 0.3s;
@@ -171,14 +168,17 @@ a{
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius:20px 20px 20px 20px;
+  margin: 0;
 
 
 }
 ul{
   display: flex;
   flex-direction: column;
-  padding: 0 10px;
+  margin: 0;
+  padding: 0;
+  height: 60%;
+
 
 
 }

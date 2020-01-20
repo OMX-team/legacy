@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-
+import {$}from "jquery"
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
