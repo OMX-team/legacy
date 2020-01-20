@@ -19,9 +19,5 @@ export class SideBarService {
   search(query, usedfor) {
     return this.http.getRequest(`/search?keyword=${query}&usedfor=${usedfor}`);
   }
-  logOut(): void {
-    localStorage.removeItem("token");
-    // this.logged = false;
-    this.router.navigate(["/home"]);
-  }
+
 }
