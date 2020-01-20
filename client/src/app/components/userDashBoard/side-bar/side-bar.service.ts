@@ -2,10 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "../../../services/http.service";
 
 import {
-  CanActivate,
   Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot
 } from "@angular/router";
 import { Subject } from "rxjs";
 
@@ -21,7 +18,8 @@ export class SideBarService {
   }
   logOut(): void {
     localStorage.removeItem("token");
-    // this.logged = false;
+    localStorage.removeItem("id");
+    localStorage.removeItem("username");
     this.router.navigate(["/home"]);
   }
 }

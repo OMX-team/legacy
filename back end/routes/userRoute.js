@@ -13,7 +13,7 @@ const passport = require("passport");
 const ObjectId = require("mongodb").ObjectID;
 const bcrypt = require("bcryptjs");
 // const Items = require("../model/item");
-const upload = require("./uploadroute");
+// const upload = require("./uploadroute");
 const sendEmail = require("../emailValidation/emailSender").sendEmail;
 console.log("send function", sendEmail);
 const generateId = require("shortid");
@@ -38,7 +38,9 @@ userRoute.route("/signUp").post((req, res) => {
           });
         created.password = undefined; // just a secuirity messerment dnt worry about it
         sendEmail(created.email, req.body.username, created.verify_code)
-          .then(({ result }) => {
+          .then(({
+            result
+          }) => {
             created.verify_code = undefined;
             res.json({
               success: true,
@@ -58,8 +60,7 @@ userRoute.route("/signUp").post((req, res) => {
 // Verify route + update deactivated
 userRoute.route("/verify").post((req, res, next) => {
   //changed the route to post for better security
-  User.findOne(
-    {
+  User.findOne({
       username: req.body.username
     },
     (err, user) => {
@@ -72,8 +73,7 @@ userRoute.route("/verify").post((req, res, next) => {
       console.log(req.body);
       if (user.verify_code === req.body.code) {
         User.findByIdAndUpdate(
-          user._id,
-          {
+          user._id, {
             deactivated: false,
             verify_code: ""
           },
@@ -85,8 +85,7 @@ userRoute.route("/verify").post((req, res, next) => {
             } else {
               const token = jwt.sign(
                 user.toJSON(),
-                require("./config/config").secret,
-                {
+                require("./config/config").secret, {
                   expiresIn: 500
                 }
               );
@@ -108,26 +107,28 @@ userRoute.route("/verify").post((req, res, next) => {
   );
 });
 userRoute.route("/resend-msg").post((req, res, next) => {
-  const newVerifyCode = generateId();
-  User.findOneAndUpdate(
-    {
-      username: req.body.username
-    },
-    {
-      verify_code: newVerifyCode
-    },
-    (err, user) => {
-      if (err)
-        return res.json({
-          success: false,
-          err
-        });
-      sendEmail(user.email, user.username, newVerifyCode)
-        .then(({ result }) => {
-          res.json({
-            success: true,
-            result
-          });
+  const newVerifyCode = generateId()
+  User.findOneAndUpdate({
+    username: req.body.username
+  }, {
+    verify_code: newVerifyCode
+  }, (err, user) => {
+    if (!user.deactivated)
+      res.json({
+        success: false,
+        message: "Account is verified"
+      })
+
+    if (err) return res.json({
+      success: false,
+      err
+    })
+    sendEmail(user.email, user.username, newVerifyCode).then(({
+      result
+    }) => {
+      res.json({
+          success: true,
+          result
         })
         .catch(err => {
           if (err) {
@@ -137,15 +138,14 @@ userRoute.route("/resend-msg").post((req, res, next) => {
             });
           }
         });
-    }
-  );
-});
+    });
+  });
+})
 ////////////////
 userRoute.route("/logIn").post((req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  User.findOne(
-    {
+  User.findOne({
       username
     },
     (err, user) => {
@@ -162,8 +162,7 @@ userRoute.route("/logIn").post((req, res, next) => {
           user.password = undefined;
           const token = jwt.sign(
             user.toJSON(),
-            require("./config/config").secret,
-            {
+            require("./config/config").secret, {
               expiresIn: 604800 // 1 week
             }
           );
@@ -216,10 +215,11 @@ userRoute.route("/:id/uploadImage").post(
     console.log("testtttt");
     // console.log(req.body);
     // console.log({ reqhead: req.headers });
-    console.log({ req: req[file] });
+    console.log({
+      req: req[file]
+    });
     User.findByIdAndUpdate(
-      req.user._id,
-      {
+      req.user._id, {
         $set: {
           photo: req.file.filename
         }
@@ -240,8 +240,8 @@ userRoute.route("/:id/products").get(
   (req, res) => {
     if (req.user._id == req.params.id) {
       Product.find({
-        user: req.user._id
-      })
+          user: req.user._id
+        })
         .sort({
           _id: -1
         })
@@ -257,8 +257,7 @@ userRoute.route("/:id/products").get(
             });
         });
     } else {
-      Follow.exists(
-        {
+      Follow.exists({
           followed: req.params.id,
           follower: req.user._id
         },
@@ -266,8 +265,8 @@ userRoute.route("/:id/products").get(
           user.followed = exist;
           user.password = undefined;
           Product.find({
-            user: req.params.id
-          })
+              user: req.params.id
+            })
             .sort({
               _id: -1
             })
@@ -299,7 +298,7 @@ userRoute.route("/:id/follow").get(
     };
     Follow.findOne(data, (err, found) => {
       if (!found) {
-        Follow.create(data, function(err, user) {
+        Follow.create(data, function (err, user) {
           if (err)
             res.json({
               success: false,
@@ -311,7 +310,7 @@ userRoute.route("/:id/follow").get(
             });
         });
       } else {
-        Follow.remove(data, function(err, user) {
+        Follow.remove(data, function (err, user) {
           if (err)
             res.json({
               success: false,
@@ -333,10 +332,10 @@ userRoute.route("/:id/followers").get(
   }),
   (req, res) => {
     Follow.find({
-      followed: ObjectId(req.params.id)
-    })
+        followed: ObjectId(req.params.id)
+      })
       .populate("follower")
-      .exec(function(err, data) {
+      .exec(function (err, data) {
         if (err)
           res.json({
             success: false,
@@ -355,10 +354,10 @@ userRoute
     }),
     (req, res) => {
       Follow.find({
-        follower: ObjectId(req.params.id)
-      })
+          follower: ObjectId(req.params.id)
+        })
         .populate("followed")
-        .exec(function(err, data) {
+        .exec(function (err, data) {
           if (err)
             res.json({
               success: false,

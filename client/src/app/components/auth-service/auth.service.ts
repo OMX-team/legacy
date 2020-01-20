@@ -14,4 +14,5 @@ export class AuthService {
   signin(data) {
     return this.http.postRequest(data, "/user/logIn");
   }
+  
 }

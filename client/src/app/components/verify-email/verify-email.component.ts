@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { VerifyService } from "./verify.service";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth-service/auth.service";
@@ -11,8 +11,6 @@ export class VerifyEmailComponent implements OnInit {
   code: String = "";
   success = null;
 
-  // @Input() email: String;
-  // @Input() username: String;
   constructor(
     private service: VerifyService,
     private router: Router,
@@ -24,7 +22,8 @@ export class VerifyEmailComponent implements OnInit {
     this.username = this.navService.user;
   }
   verify(event) {
-    if (this.success) {
+    if (!!this.success) {
+      this.router.navigate(['/home'])
       return;
     }
 
@@ -43,10 +42,10 @@ export class VerifyEmailComponent implements OnInit {
     });
   }
   reSend() {
-    if (this.success) {
-      return;
+    if (!!this.success) {
+      this.router.navigate(['/home'])
     }
     //send post request to the backend
-    this.service.reSendVerifyMsg(this.username);
+    this.service.reSendVerifyMsg(localStorage.getItem("username"))
   }
 }
