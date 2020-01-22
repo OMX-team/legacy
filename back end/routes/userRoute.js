@@ -107,7 +107,6 @@ userRoute.route("/verify").post((req, res, next) => {
   );
 });
 userRoute.route("/resend-msg").post((req, res, next) => {
-  console.log(req.body.username)
   const newVerifyCode = generateId()
   User.findOneAndUpdate({
     username: req.body.username
