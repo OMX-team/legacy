@@ -1,7 +1,7 @@
 require('dotenv').config()
 const send = require('gmail-send')({
-    user: 'omx.rbk@gmail.com',
-    pass: 'azruraakmmpjorft',
+    user: process.env.gmail_sender,
+    pass: process.env.gmail_password,
 });
 
 function sendEmail(to, username, code) {
