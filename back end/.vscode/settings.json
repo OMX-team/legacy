@@ -1,0 +1,10 @@
+{
+    "jshint.options": {
+        "esversion": 6
+    },
+    "bookmarks.navigateThroughAllFiles": true,
+    "bookmarks.saveBookmarksInProject": true,
+    "bookmarks.showCommandsInContextMenu": true,
+    "bookmarks.useWorkaroundForFormatters": true,
+    "bookmarks.sideBar.expanded": true,
+}
