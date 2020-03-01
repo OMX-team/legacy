@@ -10,17 +10,16 @@ cloudinary.config({
 const storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: "gavatar",
-  allowedFormats: ["jpg", "png"],
+  allowedFormats: ["jpg", "jpeg", "png", "mp4", "mkv"],
   transformation: [{
     width: 500,
     height: 500,
     crop: "limit"
-  }],
-
+  }]
 });
 var parser = multer({
   storage: storage
 });
 module.exports = {
   parser
-}
+};

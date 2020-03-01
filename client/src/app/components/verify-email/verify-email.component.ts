@@ -8,6 +8,7 @@ import { AuthService } from "../auth-service/auth.service";
   styleUrls: ["./verify-email.component.scss"]
 })
 export class VerifyEmailComponent implements OnInit {
+  email = "";
   code: String = "";
   success = null;
 
@@ -20,11 +21,10 @@ export class VerifyEmailComponent implements OnInit {
 
   async ngOnInit() {
     this.username = this.navService.user;
-    
   }
   verify(event) {
     if (!!this.success) {
-      this.router.navigate(['/home'])
+      this.router.navigate(["/home"]);
       return;
     }
 
@@ -42,9 +42,9 @@ export class VerifyEmailComponent implements OnInit {
   }
   reSend() {
     if (this.success === true) {
-      this.router.navigate(['/home'])
+      this.router.navigate(["/home"]);
     }
     //send post request to the backend
-    if(!!this.username) this.service.reSendVerifyMsg(this.username)
+    if (!!this.username) this.service.reSendVerifyMsg(this.username);
   }
 }

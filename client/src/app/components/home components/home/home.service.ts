@@ -15,6 +15,9 @@ export class HomeService {
   };
 
   checkToken(): Observable<any> {
-    return this.http.get(`http://localhost:4000/api/user/me`, this.httpOptions);
+    return this.http.get(
+      `https://omx-backend.herokuapp.com/api/user/me`,
+      this.httpOptions
+    );
   }
 }

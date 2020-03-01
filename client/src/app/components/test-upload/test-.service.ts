@@ -19,7 +19,7 @@ export class TestService {
     formData.append("photo", photo);
 
     return this.http.post(
-      `http://localhost:4000/api/user/5e202f545eb7ee3a0c5e4748/uploadImage`,
+      `https://omx-backend.herokuapp.com/api/user/5e202f545eb7ee3a0c5e4748/uploadImage`,
       formData,
       this.httpOptions
     );

@@ -7,10 +7,14 @@ let express = require("express"),
   passport = require("passport"),
   dataBase = require("./database/db");
 
-const { parser } = require("./imageUploader");
+const {
+  parser
+} = require("./imageUploader");
 require("./routes/config/passport")(passport);
 var graphqlHTTP = require("express-graphql");
-var { buildSchema } = require("graphql");
+var {
+  buildSchema
+} = require("graphql");
 
 var schema = buildSchema(`
   type Query {
@@ -94,7 +98,7 @@ const server = app.listen(port, () => {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

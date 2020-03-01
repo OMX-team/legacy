@@ -7,6 +7,7 @@ import $ from "jquery";
   styleUrls: ["./userDashBoard.component.css"]
 })
 export class UserDashBoardComponent implements OnInit {
+  username = "adam";
   userId = window.location.pathname.split("/")[2]; //should be coded
 
   constructor() {}

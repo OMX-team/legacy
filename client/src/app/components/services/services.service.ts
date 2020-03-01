@@ -10,12 +10,14 @@ export class ServicesService {
   updateRating(rating, id) {
     const obj = { rating, id };
     let data = this.http
-      .patch(`http://localhost:4000/api/user/ratings/`, obj)
-      .subscribe(data => {console.log(data)});
+      .patch(`https://omx-backend.herokuapp.com/api/user/ratings/`, obj)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   getUserInfo(id): Observable<any> {
-    return this.http.get(`http://127.0.0.1:4000/api/user/${id}`);
+    return this.http.get(`https://omx-backend.herokuapp.com/api/user/${id}`);
   }
 
   httpOptions = {
@@ -27,19 +29,19 @@ export class ServicesService {
 
   getUserProducts(id): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:4000/api/user/${id}/products`,
+      `https://omx-backend.herokuapp.com/api/user/${id}/products`,
       this.httpOptions
     );
   }
   getUserFollowers(id): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:4000/api/user/${id}/followers`,
+      `https://omx-backend.herokuapp.com/api/user/${id}/followers`,
       this.httpOptions
     );
   }
   getUserFollowings(id): Observable<any> {
     return this.http.get(
-      `http://127.0.0.1:4000/api/user/${id}/followings`,
+      `https://omx-backend.herokuapp.com/api/user/${id}/followings`,
       this.httpOptions
     );
   }

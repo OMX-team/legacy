@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mdb-angular-free": {
+    "omx-frontEnd": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mdb-angular-free",
+            "outputPath": "dist/index",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -78,18 +78,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mdb-angular-free:build"
+            "browserTarget": "omx-frontEnd:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mdb-angular-free:build:production"
+              "browserTarget": "omx-frontEnd:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mdb-angular-free:build"
+            "browserTarget": "omx-frontEnd:build"
           }
         },
         "test": {
@@ -127,16 +127,20 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mdb-angular-free:serve"
+            "devServerTarget": "omx-frontEnd:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mdb-angular-free:serve:production"
+              "devServerTarget": "omx-frontEnd:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "mdb-angular-free"
+  "defaultProject": "omx-frontEnd"
 }
