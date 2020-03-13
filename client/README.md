@@ -1,7 +1,6 @@
-# OMX -| E-commerence
+# OMX | E-Commerence 🛒
 
-[Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
-
+E-commerence website as it represents basic idea of online commrence shop  where you can sell and buy products including the ability to 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
