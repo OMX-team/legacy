@@ -13,9 +13,10 @@
       </div>
     </div>
     <div class="card__img"></div>
-    <a href="#" class="card_link">
-      <div class="card__img--hover" [style.background-image]=""></div>
-    </a>
+    <!-- <a href="#" class="card_link"> -->
+    <div (click)='goToProfile(product)' class="card__img--hover"
+      [style.background-image]="'url(' + product.photo + ')'"></div>
+    <!-- </a> -->
     <div class="card__info">
       <span class="card__category">
         <!-- {{ product.name }} -->
