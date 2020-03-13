@@ -41,8 +41,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/mohamed-Dhia"><img src="https://avatars2.githubusercontent.com/u/56113399?s=460&u=64ea56185b0a08a251959c323889a50ff17415f6&v=4" width="100px;" alt="Omar Bara"/><br /><sub><b>Omar Bara</b></sub></a><br /><sub><b>Scrum Master </b></sub></td>
-    <td align="center"><a href="https://github.com/guizenifarouk"><img src="https://avatars3.githubusercontent.com/u/56113176?s=460&v=4" width="100px;" alt="fared"/><br /><sub><b>mohamed</b></sub></a><br /><sub><b>Product Owner</b></sub></td>
+    <td align="center"><a href="https://github.com/mohamed-Dhia"><img src="https://avatars2.githubusercontent.com/u/56113399?s=460&u=64ea56185b0a08a251959c323889a50ff17415f6&v=4" width="100px;" alt="Omar Bara"/><br /><sub><b>Mohamed</b></sub></a><br /><sub><b>Scrum Master </b></sub></td>
+    <td align="center"><a href="https://github.com/guizenifarouk"><img src="https://avatars3.githubusercontent.com/u/56113176?s=460&v=4" width="100px;" alt="fared"/><br /><sub><b>Farouk</b></sub></a><br /><sub><b>Product Owner</b></sub></td>
     <td align="center"><a href="https://github.com/AdamMomen"><img src="https://avatars1.githubusercontent.com/u/55929982?s=400&v=4" width="100px;" alt="Adam Momen"/><br /><sub><b>Adam Momen</b></sub></a>
-    <td align="center"><a href="https://github.com/TahaZnazen"><img src="https://avatars2.githubusercontent.com/u/48031507?s=460&u=7533815471be77da3f5f0941f37e87b21a413553&v=4" width="100px;" alt="Amar"/><br /><sub><b>Amar</b></sub></a></td>
+    <td align="center"><a href="https://github.com/TahaZnazen"><img src="https://avatars2.githubusercontent.com/u/48031507?s=460&u=7533815471be77da3f5f0941f37e87b21a413553&v=4" width="100px;" alt="Amar"/><br /><sub><b>Taha</b></sub></a></td>
 </table>
