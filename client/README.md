@@ -2,7 +2,7 @@
 
 # OMX | E-Commerence 🛒
 
-E-commerence website as it represents basic idea of online commrence shop where you can sell and buy products including the ability to follow the seller products and rate hin based on that.
+E-commerence website as it represents basic idea of online commrence shop where you can sell and buy products including the ability to follow the seller products and provide rating.
 
 ## Live Demo
 
