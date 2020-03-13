@@ -1,0 +1,31 @@
+.items{
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+    position: relative;
+    left: 20%;
+    z-index: 1;
+    height:900px;
+    overflow-y: scroll;
+    /* background-color: #555; */
+    
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

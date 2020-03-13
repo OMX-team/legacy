@@ -3,57 +3,57 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Routes, RouterModule } from "@angular/router";
-import { UserComponent } from "./components/user/user.component";
-import { ProductsComponent } from "./components/products/products.component";
+//////////////
+import { HomeComponent } from "./components/home components/home/home.component";
+import { NavbarComponent } from "./components/home components/navbar/navbar.component";
+import { FirstPageComponent } from "./components/home components/first-page/first-page.component";
+import { SecondPageComponent } from "./components/home components/second-page/second-page.component";
+//////////////
+import { UserDashBoardComponent } from "./components/userDashBoard/userDashBoard.component";
+import { ProductsComponent } from "./components/userDashBoard/products/products.component";
 import { CategroyComponent } from "./components/categroy/categroy.component";
-import { SideBarComponent } from "./components/side-bar/side-bar.component";
-import { ProductComponent } from "./components/product/product.component";
+import { SideBarComponent } from "./components/userDashBoard/side-bar/side-bar.component";
+import { ProductComponent } from "./components/userDashBoard/product/product.component";
 import { AppComponent } from "./app.component";
 import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { FormsModule } from "@angular/forms";
 import { AngularMaterialModule } from "./modules/angular-material/angular-material.module";
-import { AddProductComponent } from "./components/add-product/add-product.component";
-import { ProductCardComponent } from "./components/product-card/product-card.component";
-import { ProfilComponent } from "./components/profil/profil.component";
-import { StartRatingComponent } from "./components/start-rating/start-rating.component";
-import { ServicesService } from "./components/services/services.service";
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { FirstPageComponent } from "./components/first-page/first-page.component";
-import { SecondPageComponent } from "./components/second-page/second-page.component";
-import { AuthService } from "./components/auth-service/auth.service";
-import { HomeComponent } from "./components/home/home.component";
-
+import { AddProductComponent } from "./components/userDashBoard/add-product/add-product.component";
+import { ProductCardComponent } from "./components/profile cmponents/product-card/product-card.component";
+import { ProfilComponent } from "./components/profile cmponents/profil/profil.component";
+import { StartRatingComponent } from "./components/profile cmponents/start-rating/start-rating.component";
 import { FreindsComponent } from "./components/freinds/freinds.component";
+import { ServicesService } from "./components/services/services.service";
+import { VerifyEmailComponent } from "./components/verify-email/verify-email.component";
+import { AuthService } from "./components/auth-service/auth.service";
+import { TestUploadComponent } from "./components/test-upload/test-upload.component";
+import { EditProfileComponent } from './components/profile cmponents/edit-profile/edit-profile.component';
 
-const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
-// const appRoutes: Routes = [
-
-
-//   {
-//     path: "home", component: HomeComponent, children:
-//       [
-//         { path: "quick", component: SecondPageComponent },
-//       ]
-//   },
-//   { path: '', redirectTo: 'home', pathMatch: 'full' },
-//   {
-//     path: "dashboard", component: UserComponent,
-//     children: [
-//       { path: "add-product", component: AddProductComponent },
-//       { path: "category", component: CategroyComponent },
-//       {
-//         path: "products", component: ProductsComponent
-//       },
-//     ]
-//   },
-// ];
-
-
+const appRoutes: Routes = [
+  { path: "home", component: HomeComponent },
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "verify_Email", component: VerifyEmailComponent },
+  {
+    path: 'dashboard/:id',
+    component: UserDashBoardComponent,
+    pathMatch: "full",
+    children: [
+      { path: "add-product", component: AddProductComponent },
+      { path: "category", component: CategroyComponent },
+      { path: "products", component: ProductsComponent }
+    ]
+  },
+  { path: "dashboard/:id/add-product", component: AddProductComponent },
+  { path: "dashboard/:id/category", component: CategroyComponent },
+  { path: "dashboard/:id/products", component: ProductsComponent },
+  { path: "profile/:id", component: ProfilComponent },
+  { path: "**", component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    UserDashBoardComponent,
     ProductsComponent,
     CategroyComponent,
     SideBarComponent,
@@ -67,9 +67,9 @@ const appRoutes: Routes = [{ path: "profile/:id", component: ProfilComponent }];
     StartRatingComponent,
     HomeComponent,
     VerifyEmailComponent,
-
-    FreindsComponent
-
+    TestUploadComponent,
+    FreindsComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

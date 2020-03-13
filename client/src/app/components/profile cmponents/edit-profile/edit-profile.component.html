@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>EDIT PROFILE</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" required name="name" />
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" class="form-control" id="price" required name="price" />
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="quantity">quantity</label>
+        <input type="number" class="form-control" id="quantity" required name="quantity" />
+      </div>
+    </div>
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="available">available</label>
+        <input type="checkbox" class="form-control" id="available" required name="available" />
+      </div>
+    </div>
+
+    <!-- UNCOMMENT THIS TO ENABLE CATEGROY -->
+
+    <!-- <div class="col-xs-3">
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select class="form-control" id="category" name="category" required [(ngModel)]="product.category">
+            <option *ngFor="let category of categorys" [value]="category">{{category}}</option>
+          </select>
+        </div>
+      </div> -->
+
+    <div class="col-xs-7">
+      <div class="form-group">
+        <label for="picture">Picture URL</label>
+        <input type="text" class="form-control" id="picture" required name="picture" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1"> Description </label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="description"></textarea>
+    </div>
+
+    <button type="submit" (click)="onSubmit()" class="btn btn-success">
+      Submit
+    </button>
+  </form>
+</div>

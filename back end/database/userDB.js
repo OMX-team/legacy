@@ -1,6 +1,6 @@
 // here we are requiring the mongoose and saving into a constant called mongoose
 const mongoose = require("mongoose");
-
+const shortid = require('shortid');
 // this schema is for the user
 const Schema = mongoose.Schema({
   username: {
@@ -40,8 +40,9 @@ const Schema = mongoose.Schema({
     type: Boolean,
     default: true
   },
-  verify_Id: {
+  verify_code: {
     type: String,
+    default: shortid.generate
   }
 });
 

@@ -1,3 +1,4 @@
+require("dotenv").config();
 let express = require("express"),
   path = require("path"),
   mongoose = require("mongoose"),
@@ -5,30 +6,29 @@ let express = require("express"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
   dataBase = require("./database/db");
-require('dotenv').config()
-// Setting Up the Email Verifier
-// xxxxxxxxxxxx.configure({
-//     verificationURL: `http:/localhost:4000/email-verification/:id/${URL}`,
-//     persistentUserModel: User,
-//     tempUserCollection: 'myawesomewebsite_tempusers',
 
-//     transportOptions: {
-//       service: 'Gmail',
-//       auth: {
-//         user: 'OMX@gmail.com',
-//         pass: 'OMX2020'
-//       }
-//     },
-//     verifyMailOptions: {
-//       from: 'Do Not Reply <OMX_do_not_reply@gmail.com>',
-//       subject: 'Please confirm account',
-//       html: `Click the following link to confirm your account:</p><p>${URL}</p>`,
-//       text: `Please confirm your account by clicking the following link: ${URL}`
-//     },
-//   },
-//   function (error, options) {});
+const {
+  parser
+} = require("./imageUploader");
+require("./routes/config/passport")(passport);
+var graphqlHTTP = require("express-graphql");
+var {
+  buildSchema
+} = require("graphql");
 
-//////////////////////////////////
+var schema = buildSchema(`
+  type Query {
+    hello: String!
+    name: String!
+  }
+`);
+
+var root = {
+  hello: () => "Hello world!",
+  name: () => "Adam Momen"
+};
+
+///Uploading part
 
 //////////////////////////////////
 // Connecting mongoDB
@@ -59,31 +59,43 @@ app.use(
   })
 );
 app.use(cors());
-
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/search", searchtRoute);
+app.use("/api/images", parser.single("file"), (req, res) => {
+  const image = {};
+  image.url = req.file.url;
+  image.id = req.file.public_id;
+  res.json({
+    image
+  });
+});
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+  })
+);
+// app.use((err, req, res, next) => {
+//   res.status(500).json({
+//     error: err,
+//     message: 'Internal server error!',
+//   })
+//   next()
+// })
 
 ////////////////
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/config/passport")(passport);
-////////////////
-
-// app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-// app.use('/', express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-
 // Create port
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
-  console.log("Connected to port ", server.address().port);
+  console.log(" 🚀 Connected to port ", server.address().port);
+  console.log("Press Ctrl + C to stop the server ");
 });
-
-// // Find 404 and hand over to error handler
-// app.use((req, res, next) => {
-//   next(createError(404));
-// });
 
 // error handler
 app.use(function (err, req, res, next) {

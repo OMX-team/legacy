@@ -16,18 +16,20 @@ productRoute.route("/add").post(
 
   // upload.single("photo"),
   (req, res) => {
+    console.log(req.headers)
     // req.body.photo = req.file.filename;
-
     req.body.user = req.user._id; //try to understand this
-    req.body.available = JSON.parse(req.body.available); //i should reconsider this for security
+    req.body.available = JSON.parse(req.body.available); // should reconsider this for security
 
-    Product.create(req.body, function (err, product) {
-      if (err) res.json({
-        err
-      });
-      else res.json({
-        product
-      });
+    Product.create(req.body, function(err, product) {
+      if (err)
+        res.json({
+          err
+        });
+      else
+        res.json({
+          product
+        });
     });
   }
 );
@@ -37,9 +39,10 @@ productRoute.route("/:id").get((req, res) => {
   Product.findById(req.params.id)
     .populate("user")
     .exec((err, product) => {
-      if (err) res.json({
-        err
-      });
+      if (err)
+        res.json({
+          err
+        });
       else res.json(product);
     });
 });
@@ -52,18 +55,19 @@ productRoute.route("/").get((req, res) => {
     })
     .populate(["user"])
     .exec((err, items) => {
-      if (err) res.json({
-        err
-      });
+      if (err)
+        res.json({
+          err
+        });
       else res.json(items);
     });
 });
 
-
 productRoute.route("/:id").patch((req, res) => {
   // upadate product by id
   Product.findByIdAndUpdate(
-    req.params.id, {
+    req.params.id,
+    {
       $set: req.body
     },
     (err, product) => {
@@ -75,7 +79,8 @@ productRoute.route("/:id").patch((req, res) => {
 
 productRoute.route("/:id/toggle").patch((req, res) => {
   Product.findByIdAndUpdate(
-    req.params.id, {
+    req.params.id,
+    {
       $set: req.body.deactivated
     },
     (err, product) => {

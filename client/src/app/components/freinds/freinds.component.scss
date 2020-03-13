@@ -1,0 +1,57 @@
+$purple-gradient: linear-gradient(45deg, rgba(87,29,146,1) 0%,rgba(172,25,102,1) 100%);
+$purple-gradient: linear-gradient(to bottom right, #C90A6D, #FF48A0);
+$blue1-gradient: linear-gradient(to bottom right, #5E5AEC, #3F9EFC);
+$blue2-gradient: linear-gradient(to bottom right, #6452E9, #639FF9);
+$shadow: 0 13px 26px rgba(#000, .2), 0 3px 6px rgba(#000, .2);
+
+.social-icons {
+    display: flex;
+    margin-top: 1.2em;
+    justify-content: space-between;
+    
+    .icon {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        a {
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 30px;
+            box-shadow: $shadow;
+        }
+        &:nth-of-type(1) {
+            a {
+                background: $purple-gradient;
+            }
+        }
+        &:nth-of-type(2) {
+            a {
+                background: $blue1-gradient;
+            }
+        }
+        &:nth-of-type(3) {
+            a {
+                background: $blue2-gradient;
+            }
+        }
+        
+        h4 {
+            color: #080911;
+            font-size: 1em;
+            margin-top: 1.3em;
+            margin-bottom: .2em;
+        }
+        
+        p {
+            color: #666B7D;
+            font-size: 12px;        
+        }
+    }
+}
+.social-icons div{
+    margin-left: 10px;
+}

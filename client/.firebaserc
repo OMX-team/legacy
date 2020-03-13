@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "omx-reloaded": {
+      "hosting": {
+        "omx-frontEnd": [
+          "omx-reloaded"
+        ]
+      }
+    }
+  }
+}
