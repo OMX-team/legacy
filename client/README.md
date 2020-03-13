@@ -1,6 +1,6 @@
 ![CircleCI](https://img.shields.io/circleci/build/github/AdamMomen/omx-backend/master)
 
-# OMX | FRONTEND 🛒
+# OMX | FRONT-END 🛒
 
 E-commerence website as it represents basic idea of online commrence shop where you can sell and buy products including the ability to follow the seller products and provide rating.
 
