@@ -1,0 +1,14 @@
+<div class="all">
+  <app-side-bar [(user)]="username"></app-side-bar>
+
+  <div id="prod">
+    <nav (click)="hideSideNav()">
+      <a [routerLink]="['add-product']">Add product </a>
+      <a [routerLink]="['category']">Categroy</a>
+      <a [routerLink]="['products']">Products</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <app-products></app-products>
+    <router-outlet></router-outlet>
+  </div>
+</div>

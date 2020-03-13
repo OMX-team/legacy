@@ -1,0 +1,47 @@
+<div class="social-icons">
+  <div class="icon" (click)="frame.show()">
+    <a>
+      <mdb-icon fas icon="user-friends"></mdb-icon>
+    </a>
+  </div>
+
+  <div class="icon" (click)='followFriend()'>
+    <a>
+      <mdb-icon fas icon="plus"></mdb-icon>
+    </a>
+  </div>
+
+  <div class="icon" (click)="frame1.show()">
+    <a>
+      <mdb-icon fas icon="shopping-cart"></mdb-icon>
+    </a>
+  </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <ul>
+        <li *ngFor="let following of followings">
+          <div (click)="goToUser(following.followed._id)">
+            {{ following.followed.username }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div mdbModal #frame1="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <ul>
+        <li *ngFor="let follower of followers">
+          <div (click)="goToUser(follower.follower._id)">
+            {{ follower.follower.username }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
