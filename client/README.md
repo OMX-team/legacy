@@ -1,4 +1,4 @@
-# OMX | E-Commerence 🛒
+# OMX | Front-End 🛒
 
 E-commerence website as it represents basic idea of online commrence shop  where you can sell and buy products including the ability to 
 ## Development server
