@@ -1,55 +1,34 @@
 require("dotenv").config();
-let express = require("express"),
+const express = require("express"),
   path = require("path"),
   mongoose = require("mongoose"),
   cors = require("cors"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
-  dataBase = require("./database/db");
-
-const {
-  parser
-} = require("./imageUploader");
+  // Set up express js port
+  userRoute = require("./routes/userRoute"),
+  productRoute = require("./routes/productRoute"),
+  searchtRoute = require("./routes/searchroute"),
+  { parser } = require("./imageUploader");
 require("./routes/config/passport")(passport);
-var graphqlHTTP = require("express-graphql");
-var {
-  buildSchema
-} = require("graphql");
-
-var schema = buildSchema(`
-  type Query {
-    hello: String!
-    name: String!
-  }
-`);
-
-var root = {
-  hello: () => "Hello world!",
-  name: () => "Adam Momen"
-};
-
-///Uploading part
 
 //////////////////////////////////
 // Connecting mongoDB
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 mongoose
-  .connect(dataBase.db, {
-    useNewUrlParser: true
+  .connect(process.env.DB_LINK, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
   .then(
     () => {
       console.log("Database connected sucessfully ");
     },
     error => {
-      console.log("Could not connected to database : " + error);
+      console.log("Could not connected to database : ", error);
     }
   );
-
-// Set up express js port
-const userRoute = require("./routes/userRoute");
-const productRoute = require("./routes/productRoute");
-const searchtRoute = require("./routes/searchroute");
 
 const app = express();
 app.use(bodyParser.json());
@@ -70,35 +49,23 @@ app.use("/api/images", parser.single("file"), (req, res) => {
     image
   });
 });
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true
-  })
-);
-// app.use((err, req, res, next) => {
-//   res.status(500).json({
-//     error: err,
-//     message: 'Internal server error!',
-//   })
-//   next()
-// })
 
-////////////////
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Create port
-const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-  console.log(" 🚀 Connected to port ", server.address().port);
-  console.log("Press Ctrl + C to stop the server ");
+app.use("/", (req, res) => {
+  res.send("This is OMX-backend");
+});
+//Server Starter
+const server = app.listen(process.env.PORT, () => {
+  console.log(`
+      ################################################
+           🛡️  Server listening on port: ${process.env.PORT} 🛡️ 
+      ################################################
+    `);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
