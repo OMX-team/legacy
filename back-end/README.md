@@ -1,5 +1,5 @@
-![CircleCI](https://img.shields.io/circleci/build/github/AdamMomen/blocks-backend/master)
-# omx-backend 🏗️
+![CircleCI](https://img.shields.io/circleci/build/github/AdamMomen/omx-backend/master)
+# OMX-BackEnd 🏗️
 E-commerence website where you can sell and buy products.
 [Link of our deployed backEnd on Heroku](https://omx-backend.herokuapp.com)
 # Tech/framework used
