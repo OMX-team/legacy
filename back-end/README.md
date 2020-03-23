@@ -29,7 +29,6 @@ Then just start the server with
 npm start
 ```
 
-It uses nodemon for livereloading :peace-fingers:
 
 # TEAM
 
