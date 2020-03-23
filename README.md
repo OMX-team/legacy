@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/AdamMomen/omx-backend.svg?style=svg)](https://circleci.com/gh/AdamMomen/omx-backend)[![CircleCI](https://circleci.com/gh/AdamMomen/omx-backend.svg?style=svg)](https://circleci.com/gh/AdamMomen/omx-backend)
+[![CircleCI](https://circleci.com/gh/AdamMomen/omx-backend.svg?style=svg)](https://circleci.com/gh/AdamMomen/omx-backend)
 # OMX | E-Commerence 🛒
 ![omx](./demo/demo.gif)
 
