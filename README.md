@@ -1,3 +1,4 @@
+![CircleCI](https://img.shields.io/circleci/build/github/AdamMomen/omx-backend/master)
 # OMX | E-Commerence 🛒
 ![omx](./demo/demo.gif)
 
